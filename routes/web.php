@@ -13,6 +13,7 @@
 
 Route::get('/', 'WelcomeController@index');
 Route::get('/listing', 'WelcomeController@index');
+Route::post('/listing', 'WelcomeController@show');
 
 Route::get('/verify/{ver_token}/{id}','Auth\RegisterController@verify_register');
 

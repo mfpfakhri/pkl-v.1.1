@@ -103,7 +103,7 @@
                     </div>
                     <div class="row">
                         <div class="col-sm-12 text-center">
-                            <p class="text-muted">Forgot Your Password? <a href="{{ url('/password/reset') }}" class="text-primary m-l-5"><b>Reset</b></a></p>
+                            <p class="text-muted">Forgot Your Password? <a href="{{ url('/password/reset') }}" class="text-primary m-l-5"><b>Reset Password</b></a></p>
                         </div>
                     </div>
                 </div>
