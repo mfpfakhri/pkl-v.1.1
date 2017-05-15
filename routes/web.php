@@ -22,6 +22,6 @@ Auth::routes();
 Route::get('/home', 'HomeController@index');
 
 // Manage Profile
-Route::get('/profile', function () {
-    return view('editprofile');
+Route::get('/booking', function () {
+    return view('bookingform');
 });

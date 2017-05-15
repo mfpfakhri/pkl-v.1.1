@@ -10,7 +10,7 @@
         <link rel="shortcut icon" href="assets/images/favicon.ico">
 
         <!-- App title -->
-        <title>Customer Registration</title>
+        <title>Booking Form</title>
 
         <!-- App CSS -->
         <link href="assets/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
@@ -65,6 +65,7 @@
                         </div>
                     </div>
 
+                    <label class="control-label partisipan" for="example-input1-group1">Participants</label>
                     <div class="form-group">
                         <div class="col-sm-3">
                             <select class="form-control">
