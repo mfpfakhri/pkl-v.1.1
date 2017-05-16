@@ -11,6 +11,13 @@
 |
 */
 
+Route::group(['middleware' => 'admin'], function(){
+	//Dashboard
+	Route::get('/dashboard', function(){
+		return view('admin.dashboard');
+	});
+});
+
 Route::get('/', 'WelcomeController@index');
 Route::get('/listing', 'WelcomeController@index');
 Route::post('/listing', 'WelcomeController@show');
