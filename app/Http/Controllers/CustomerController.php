@@ -50,7 +50,9 @@ class CustomerController extends Controller
      */
     public function show($id)
     {
-        //
+        //Form Manage Profile
+        $customer = User::find($id);
+        return view('manageprofile', ['customer'=>$customer]);
     }
 
     /**

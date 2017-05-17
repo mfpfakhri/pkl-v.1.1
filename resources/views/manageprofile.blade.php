@@ -13,13 +13,13 @@
         <title>Manage Profile</title>
 
         <!-- App CSS -->
-        <link href="assets/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
-        <link href="assets/css/core.css" rel="stylesheet" type="text/css" />
-        <link href="assets/css/components.css" rel="stylesheet" type="text/css" />
-        <link href="assets/css/icons.css" rel="stylesheet" type="text/css" />
-        <link href="assets/css/pages.css" rel="stylesheet" type="text/css" />
-        <link href="assets/css/menu.css" rel="stylesheet" type="text/css" />
-        <link href="assets/css/responsive.css" rel="stylesheet" type="text/css" />
+        <link href="/assets/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+        <link href="/assets/css/core.css" rel="stylesheet" type="text/css" />
+        <link href="/assets/css/components.css" rel="stylesheet" type="text/css" />
+        <link href="/assets/css/icons.css" rel="stylesheet" type="text/css" />
+        <link href="/assets/css/pages.css" rel="stylesheet" type="text/css" />
+        <link href="/assets/css/menu.css" rel="stylesheet" type="text/css" />
+        <link href="/assets/css/responsive.css" rel="stylesheet" type="text/css" />
 
         <!-- HTML5 Shiv and Respond.js IE8 support of HTML5 elements and media queries -->
         <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -49,25 +49,25 @@
 
                     <div class="form-group ">
                         <div class="col-xs-12 col-sm-12 col-md-12">
-                            <input class="form-control" name="fullname" type="text"  placeholder="{{$customers->username}}" required autofocus>
+                            <input class="form-control" name="fullname" type="text"  value="{{$customer->username}}" required autofocus>
                         </div>
                     </div>
 
                     <div class="form-group ">
                         <div class="col-xs-12 col-sm-12 col-md-12">
-                            <input class="form-control" name="email" type="email"  placeholder="{{$customers->email}}" required>
+                            <input class="form-control" name="email" type="email"  value="{{$customer->email}}" required>
                         </div>
                     </div>
 
                     <div class="form-group ">
                         <div class="col-xs-12 col-sm-12 col-md-12">
-                            <input class="form-control" name="phone" type="tel"  placeholder="{{$customers->phone}}" required>
+                            <input class="form-control" name="phone" type="tel"  value="{{$customer->phone}}" required>
                         </div>
                     </div>
 
                     <div class="form-group">
                         <div class="col-xs-12 col-sm-12 col-md-12">
-                            <textarea class="form-control" rows="5" placeholder="{{$customers->alamat}}" required></textarea>
+                            <textarea class="form-control" rows="5" required></textarea>
                         </div>
                     </div>
 
@@ -92,20 +92,20 @@
     </script>
 
     <!-- jQuery  -->
-    <script src="assets/js/jquery.min.js"></script>
-    <script src="assets/js/bootstrap.min.js"></script>
-    <script src="assets/js/detect.js"></script>
-    <script src="assets/js/fastclick.js"></script>
-    <script src="assets/js/jquery.slimscroll.js"></script>
-    <script src="assets/js/jquery.blockUI.js"></script>
-    <script src="assets/js/waves.js"></script>
-    <script src="assets/js/wow.min.js"></script>
-    <script src="assets/js/jquery.nicescroll.js"></script>
-    <script src="assets/js/jquery.scrollTo.min.js"></script>
+    <script src="/assets/js/jquery.min.js"></script>
+    <script src="/assets/js/bootstrap.min.js"></script>
+    <script src="/assets/js/detect.js"></script>
+    <script src="/assets/js/fastclick.js"></script>
+    <script src="/assets/js/jquery.slimscroll.js"></script>
+    <script src="/assets/js/jquery.blockUI.js"></script>
+    <script src="/assets/js/waves.js"></script>
+    <script src="/assets/js/wow.min.js"></script>
+    <script src="/assets/js/jquery.nicescroll.js"></script>
+    <script src="/assets/js/jquery.scrollTo.min.js"></script>
 
     <!-- App js -->
-    <script src="assets/js/jquery.core.js"></script>
-    <script src="assets/js/jquery.app.js"></script>
+    <script src="/assets/js/jquery.core.js"></script>
+    <script src="/assets/js/jquery.app.js"></script>
 
   </body>
 </html>

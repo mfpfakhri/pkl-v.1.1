@@ -26,10 +26,12 @@ Route::get('/verify/{ver_token}/{id}','Auth\RegisterController@verify_register')
 
 Auth::routes();
 
-Route::get('/{id}/userdetail', 'HomeController@index');
-
 // Manage Profile
-Route::get('/{id}/manage', 'CustomerController@edit');
+Route::get('/{id}/manage', 'CustomerController@show');
+
+// Lengkapi Data
+Route::get('/{id}/userdetail', 'UserController@edit');
+Route::PUT('/{id}/','UserController@update');
 
 // Booking Form
 Route::get('/booking', function () {

@@ -10,7 +10,7 @@
         <link rel="shortcut icon" href="assets/images/favicon.ico">
 
         <!-- App title -->
-        <title>Manage Profile</title>
+        <title>User Detail</title>
 
         <!-- App CSS -->
         <link href="/assets/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
@@ -42,57 +42,94 @@
       </div>
         <div class="m-t-40 card-box">
             <div class="text-center">
-                <h4 class="text-uppercase font-bold m-b-0">Manage Profile</h4>
+                <h4 class="text-uppercase font-bold m-b-0">User Detail</h4>
             </div>
             <div class="panel-body">
-                <form class="form-horizontal m-t-20" role="form" method="POST" action="{{ url('/asdasd') }}">
+                <form class="form-horizontal m-t-20" method="POST" action="/{{$customer->id}}">
 
                     <div class="form-group ">
-                        <div class="col-xs-12 col-sm-12 col-md-12">
-                            <input class="form-control" name="firstname" type="text"  placeholder="Your First Name" required autofocus>
+                        <div class="row">
+                            <div class="col-xs-12 col-sm-12 col-md-12">
+                                <input class="form-control" name="firstname" type="text"  placeholder="Your First Name" required autofocus>
+                                <!-- validation-->
+                                @if ($errors->has('firstname'))
+                                <!-- <div class="container red-text text accent-3"> -->
+                                  {{ $errors->first('firstname') }}
+                                <!-- </div> -->
+                                @endif
+                                <!-- endvalidation-->
+                            </div>
+                        </div>
+                        <br>
+                        <div class="row">
+                            <div class="col-xs-12 col-sm-12 col-md-12">
+                                <input class="form-control" name="lastname" type="text"  placeholder="Your Last Name" required autofocus>
+                                <!-- validation-->
+                                @if ($errors->has('lastname'))
+                                <!-- <div class="container red-text text accent-3"> -->
+                                  {{ $errors->first('lastname') }}
+                                <!-- </div> -->
+                                @endif
+                                <!-- endvalidation-->
+                            </div>
+                        </div>
+                        <br>
+                        <div class="row">
+                            <div class="col-xs-12 col-sm-12 col-md-12">
+                                <textarea class="form-control" rows="5" name="alamat" placeholder="Your Address" required></textarea>
+                                <!-- validation-->
+                                @if ($errors->has('alamat'))
+                                <!-- <div class="container red-text text accent-3"> -->
+                                  {{ $errors->first('alamat') }}
+                                <!-- </div> -->
+                                @endif
+                                <!-- endvalidation-->
+                            </div>
+                        </div>
+                        <br>
+                        <div class="row">
+                            <div class="col-xs-12 col-sm-12 col-md-12">
+                                <input class="form-control" name="phone" type="text"  placeholder="Your Phone" required>
+                                <!-- validation-->
+                                @if ($errors->has('phone'))
+                                <!-- <div class="container red-text text accent-3"> -->
+                                  {{ $errors->first('phone') }}
+                                <!-- </div> -->
+                                @endif
+                                <!-- endvalidation-->
+                            </div>
+                        </div>
+                        <br>
+                        <div class="row">
+                            <div class="radio">
+                                <div class="col-xs-3 col-sm-3 col-md-3">
+                                    <input type="radio" name="gender" id="radio1" value="M" checked>
+                                    <label for="radio1">
+                                        Male
+                                    </label>
+                                </div>
+                                <div class="col-xs-3 col-sm-3 col-md-3">
+                                    <input type="radio" name="gender" id="radio2" value="F">
+                                    <label for="radio2">
+                                        Female
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                        <br>
+                        <div class="row">
+                            <div class="form-group text-center m-t-40">
+                                <input type="hidden" name="_method" value="PUT">
+                                <div class="col-xs-12 col-sm-12 col-md-12">
+                                {{ csrf_field() }}
+                                    <button class="btn btn-custom btn-bordred btn-block waves-effect waves-light" type="submit">
+                                        Completing Your Profile
+                                    </button>
+                                </div>
+                            </div>
                         </div>
                     </div>
 
-                    <div class="form-group ">
-                        <div class="col-xs-12 col-sm-12 col-md-12">
-                            <input class="form-control" name="lastname" type="text"  placeholder="Your Last Name" required autofocus>
-                        </div>
-                    </div>
-
-                    <div class="form-group">
-                        <div class="col-xs-12 col-sm-12 col-md-12">
-                            <textarea class="form-control" rows="5" placeholder="Your Address" required></textarea>
-                        </div>
-                    </div>
-
-                    <div class="form-group ">
-                        <div class="col-xs-12 col-sm-12 col-md-12">
-                            <input class="form-control" name="phone" type="tel"  placeholder="Your Phone" required>
-                        </div>
-                    </div>
-
-                    <div class="radio">
-                        <div class="col-xs-3 col-sm-3 col-md-3">
-                            <input type="radio" name="radio" id="radio1" value="m" checked>
-                            <label for="radio1">
-                                Male
-                            </label>
-                        </div>
-                        <div class="col-xs-3 col-sm-3 col-md-3">
-                            <input type="radio" name="radio" id="radio1" value="f">
-                            <label for="radio1">
-                                Female
-                            </label>
-                        </div>
-                    </div>
-
-                    <div class="form-group text-center m-t-40">
-                        <div class="col-xs-12 col-sm-12 col-md-12">
-                            <button class="btn btn-custom btn-bordred btn-block waves-effect waves-light" type="submit">
-                                Update Your Profile
-                            </button>
-                        </div>
-                    </div>
                 </form>
             </div>
         </div>
