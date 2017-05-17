@@ -26,9 +26,12 @@ Route::get('/verify/{ver_token}/{id}','Auth\RegisterController@verify_register')
 
 Auth::routes();
 
-Route::get('/home', 'HomeController@index');
+Route::get('/{id}/userdetail', 'HomeController@index');
 
 // Manage Profile
+Route::get('/{id}/manage', 'CustomerController@edit');
+
+// Booking Form
 Route::get('/booking', function () {
     return view('bookingform');
 });
