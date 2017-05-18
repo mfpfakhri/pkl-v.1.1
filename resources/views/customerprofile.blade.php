@@ -45,29 +45,51 @@
                 <h4 class="text-uppercase font-bold m-b-0">Manage Profile</h4>
             </div>
             <div class="panel-body">
-                <form class="form-horizontal m-t-20" role="form" method="POST" action="{{ url('/asdasd') }}">
+                <form class="form-horizontal m-t-20" role="form" method="POST" action="/{{$customer->id}}">
 
                     <div class="form-group ">
                         <div class="col-xs-12 col-sm-12 col-md-12">
                             <input class="form-control" name="fullname" type="text"  value="{{$customer->username}}" required autofocus>
+                            <!-- validation-->
+                            @if ($errors->has('fullname'))
+                            <!-- <div class="container red-text text accent-3"> -->
+                            {{ $errors->first('fullname') }}
+                            <!-- </div> -->
+                            @endif
+                            <!-- endvalidation-->
                         </div>
                     </div>
 
                     <div class="form-group ">
                         <div class="col-xs-12 col-sm-12 col-md-12">
                             <input class="form-control" name="email" type="email"  value="{{$customer->email}}" required>
+                            <!-- validation-->
+                            @if ($errors->has('email'))
+                            <!-- <div class="container red-text text accent-3"> -->
+                            {{ $errors->first('email') }}
+                            <!-- </div> -->
+                            @endif
+                            <!-- endvalidation-->
                         </div>
                     </div>
 
                     <div class="form-group ">
                         <div class="col-xs-12 col-sm-12 col-md-12">
                             <input class="form-control" name="phone" type="tel"  value="{{$customer->phone}}" required>
+                            <!-- validation-->
+                            @if ($errors->has('phone'))
+                            <!-- <div class="container red-text text accent-3"> -->
+                            {{ $errors->first('phone') }}
+                            <!-- </div> -->
+                            @endif
+                            <!-- endvalidation-->
                         </div>
                     </div>
 
                     <div class="form-group">
                         <div class="col-xs-12 col-sm-12 col-md-12">
-                            <textarea class="form-control" rows="5" required></textarea>
+                            <textarea class="form-control" rows="5" name="address" required>{{ old('alamat') }}
+                            </textarea>
                         </div>
                     </div>
 

@@ -52,7 +52,7 @@ class CustomerController extends Controller
     {
         //Form Manage Profile
         $customer = User::find($id);
-        return view('manageprofile', ['customer'=>$customer]);
+        return view('customerprofile', ['customer'=>$customer]);
     }
 
     /**
@@ -69,7 +69,7 @@ class CustomerController extends Controller
           if(!$customers){
             abort(404);
           }
-          return view('manageprofile', ['customers' => $customers]);
+          return view('customerprofile', ['customers' => $customers]);
     }
 
     /**
@@ -81,7 +81,23 @@ class CustomerController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        //Simpan Data Hasil Edit
+        $this->validate($request, [
+            'fullname'  => 'required|alpha',
+            'email'     => 'required',
+            'phone'     => 'required|between:10,12',
+            'address'   => 'required|max:50',
+
+        ]);
+
+        $customer = User::find($id);
+        $customer->fullname = $request->fullname;
+        $customer->email    = $request->email;
+        $customer->phone    = $request->phone;
+        $customer->alamat   = $request->alamat;
+        $customer->save();
+
+        return redirect ('/');
     }
 
     /**

@@ -27,7 +27,8 @@ Route::get('/verify/{ver_token}/{id}','Auth\RegisterController@verify_register')
 Auth::routes();
 
 // Manage Profile
-Route::get('/{id}/manage', 'CustomerController@show');
+Route::get('/{id}/customerprofile', 'CustomerController@show');
+Route::post('/{id}/','CustomerController@update'); //Belum Bisa Save Edit Profile
 
 // Lengkapi Data
 Route::get('/{id}/userdetail', 'UserController@edit');
