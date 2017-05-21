@@ -1,6 +1,6 @@
 @extends('layouts.side')
 
-@section('title', 'Dashboard Admin')
+@section('title', 'Product')
 
 @section('content')
 
@@ -27,7 +27,7 @@
                         </button>
                     </li>
                     <li>
-                        <h4 class="page-title">Dashboard</h4>
+                        <h4 class="page-title">Product</h4>
                     </li>
                 </ul>
 
@@ -88,11 +88,11 @@
                   <li class="text-muted menu-title">Navigation</li>
 
                     <li>
-                        <a href="dashboard" class="waves-effect active"><i class="zmdi zmdi-view-dashboard"></i> <span> Dashboard </span> </a>
+                        <a href="dashboard" class="waves-effect"><i class="zmdi zmdi-view-dashboard"></i> <span> Dashboard </span> </a>
                     </li>
 
                     <li>
-                        <a href="product" class="waves-effect"><i class="zmdi zmdi-cloud-box"></i> <span> Product </span> </a>
+                        <a href="product" class="waves-effect active"><i class="zmdi zmdi-cloud-box"></i> <span> Product </span> </a>
                     </li>
 
                     <li>
@@ -119,99 +119,53 @@
         <!-- Start content -->
         <div class="content">
             <div class="container">
-
                 <div class="row">
-
-                    <div class="col-lg-4 col-md-6">
-                    <div class="card-box">
-                            
-                      <h4 class="header-title m-t-0 m-b-30">Total Product</h4>
-
-                            <div class="widget-chart-1">
-                                <div class="widget-detail-1">
-                                    <h2 class="p-t-10 m-b-0">
-                                      <?php
-                                        echo $countproduct;
-                                      ?>
-                                    </h2>
-                                    <p class="text-muted">Unit</p>
+                    <div class="col-sm-12">
+                        <div class="panel">
+                            <div class="panel-body">
+                                <div class="row">
+                                    <div class="col-sm-6">
+                                        <div class="m-b-30">
+                                            <h2>Kategori</h2>
+                                                <select class="form-control">
+                                                    <option>1</option>
+                                                </select>
+                                        </div>
+                                    </div>
                                 </div>
-                            </div>
-                    </div>
-                    </div><!-- end col -->
 
-                    <div class="col-lg-4 col-md-6">
-                    <div class="card-box">
-
-                      <h4 class="header-title m-t-0 m-b-30">Total Agent</h4>
-
-                            <div class="widget-chart-1">
-                                <div class="widget-detail-1">
-                                    <h2 class="p-t-10 m-b-0">
-                                       <?php
-                                          echo $countagent;
-                                       ?>
-                                    </h2>
-                                    <p class="text-muted">Agent</p>
+                                <div class="">
+                                    <table class="table table-striped" id="datatable-editable">
+                                        <thead>
+                                            <tr>
+                                                <th>Rendering engine</th>
+                                                <th>Browser</th>
+                                                <th>Platform(s)</th>
+                                                <th>Actions</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr class="gradeX">
+                                                        <td>Trident</td>
+                                                        <td>Internet
+                                                            Explorer 4.0
+                                                        </td>
+                                                        <td>Win 95+</td>
+                                                        <td class="actions">
+                                                            <a href="#" class="hidden on-editing save-row"><i class="fa fa-save"></i></a>
+                                                            <a href="#" class="hidden on-editing cancel-row"><i class="fa fa-times"></i></a>
+                                                            <a href="#" class="on-default edit-row"><i class="fa fa-pencil"></i></a>
+                                                            <a href="#" class="on-default remove-row"><i class="fa fa-trash-o"></i></a>
+                                                        </td>
+                                                    </tr>
+                                        </tbody>
+                                    </table>
                                 </div>
-                            </div>
-                    </div>
-                    </div><!-- end col -->
+                            </div><!-- end: panel body -->
 
-                    <div class="col-lg-4 col-md-6">
-                    <div class="card-box">
-
-                      <h4 class="header-title m-t-0 m-b-30">Total Customer</h4>
-
-                            <div class="widget-chart-1">
-                                <div class="widget-detail-1">
-                                    <h2 class="p-t-10 m-b-0">
-                                      <?php
-                                        echo $countcustomer;
-                                      ?>
-                                    </h2>
-                                    <p class="text-muted">Customer</p>
-                                </div>
-                            </div>
-                    </div>
-                    </div><!-- end col -->
-                </div>
-                <!-- end row -->
-
-                <div class="row">
-                    <div class="col-lg-4">
-                    <div class="card-box">
-                      <h4 class="header-title m-t-0">Production By Category</h4>
-                            <div class="widget-chart text-center">
-                                <div id="morris-donut-example"style="height: 245px;"></div>
-                                <ul class="list-inline chart-detail-list m-b-0">
-                                    <li>
-                                        <h5 style="color: #ff8acc;"><i class="fa fa-circle m-r-5"></i>Series A</h5>
-                                    </li>
-                                    <li>
-                                        <h5 style="color: #5b69bc;"><i class="fa fa-circle m-r-5"></i>Series B</h5>
-                                    </li>
-                                </ul>
-                          </div>
-                    </div>
-                    </div><!-- end col -->
-
-                    <div class="col-lg-4">
-                        <div class="card-box">
-                            <h4 class="header-title m-t-0">Statistics</h4>
-                            <div id="morris-bar-example" style="height: 280px;"></div>
-                        </div>
-                    </div><!-- end col -->
-
-                    <div class="col-lg-4">
-                        <div class="card-box">
-                            <h4 class="header-title m-t-0">Total Revenue</h4>
-                            <div id="morris-line-example" style="height: 280px;"></div>
-                        </div>
-                    </div><!-- end col -->
-
-                </div>
-                <!-- end row -->
+                        </div> <!-- end panel -->
+                    </div> <!-- end col-->
+                </div><!-- end row -->
 
             </div> <!-- container -->
 

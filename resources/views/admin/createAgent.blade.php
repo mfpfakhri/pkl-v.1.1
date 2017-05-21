@@ -1,6 +1,6 @@
 @extends('layouts.side')
 
-@section('title', 'Dashboard Admin')
+@section('title', 'Create Agent')
 
 @section('content')
 
@@ -27,7 +27,7 @@
                         </button>
                     </li>
                     <li>
-                        <h4 class="page-title">Dashboard</h4>
+                        <h4 class="page-title">Agent</h4>
                     </li>
                 </ul>
 
@@ -88,7 +88,7 @@
                   <li class="text-muted menu-title">Navigation</li>
 
                     <li>
-                        <a href="dashboard" class="waves-effect active"><i class="zmdi zmdi-view-dashboard"></i> <span> Dashboard </span> </a>
+                        <a href="dashboard" class="waves-effect"><i class="zmdi zmdi-view-dashboard"></i> <span> Dashboard </span> </a>
                     </li>
 
                     <li>
@@ -96,7 +96,7 @@
                     </li>
 
                     <li>
-                        <a href="agent" class="waves-effect"><i class="zmdi zmdi-account-box"></i> <span> Agent </span> </a>
+                        <a href="agent" class="waves-effect active"><i class="zmdi zmdi-account-box"></i> <span> Agent </span> </a>
                         
                     <li>
                         <a href="customer" class="waves-effect"><i class="zmdi zmdi-account-box-o"></i><span> Customer </span> </a>
@@ -117,105 +117,155 @@
     <!-- ============================================================== -->
     <div class="content-page">
         <!-- Start content -->
-        <div class="content">
-            <div class="container">
-
-                <div class="row">
-
-                    <div class="col-lg-4 col-md-6">
-                    <div class="card-box">
-                            
-                      <h4 class="header-title m-t-0 m-b-30">Total Product</h4>
-
-                            <div class="widget-chart-1">
-                                <div class="widget-detail-1">
-                                    <h2 class="p-t-10 m-b-0">
-                                      <?php
-                                        echo $countproduct;
-                                      ?>
-                                    </h2>
-                                    <p class="text-muted">Unit</p>
-                                </div>
+	<div class="content">
+			<div class="container">
+				<div class="row">
+					<center>
+						<div class="col-sm-10">
+							<div class="text-center">
+                                <a href="index.html" class="logo"><span>NEKANEKA</span></span></a>
+                                <h5 class="text-muted m-t-0 font-600">Sign Up</h5><br/>
                             </div>
-                    </div>
-                    </div><!-- end col -->
+								<div class="col-sm-offset-2 col-sm-7">
+									<form class="form-horizontal" role="form" method="POST" 
+                                    action="{{ URL('/agent')}}" accept-charset="UTF-8" enctype="multipart/form-data">
+                                    <!-- {{ csrf_field() }} -->
+                                        <div class="form-group">
+                                            <label class="col-md-2 control-label">Username</label>
+                                                <div class="col-md-10">
+                                                    <input type="text" name="username" class="form-control" placeholder="Username">
+                                                </div>
+                                        </div>
+                                        <div class="form-group ">
+                                        	<label class="col-md-2 control-label" placeholder="Password">Password</label>
+					                            <div class="col-md-10">
+					                                <input class="form-control" name="password" id="password" type="password" placeholder="Password">
+					                            </div>
+				                        </div>
+                                        <div class="form-group">
+											<label class="col-md-2 control-label" placeholder="Fullname">Fullname</label>
+												<div class="col-md-10">
+													<input type="text" name="fullname" class="form-control" placeholder="Fullname" required/>
+												</div>
+										</div>
+										<div class="form-group">
+											<label class="col-md-2 control-label" placeholder="">E-Mail</label>
+												<div class="col-md-10">
+													<input type="text" name="email" class="form-control" placeholder="E-Mail" required/>
+												</div>
+										</div>
+										<div class="form-group">
+											<label class="col-md-2 control-label" placeholder="Address">Address</label>
+												<div class="col-md-10">
+													<input type="text" name="address" class="form-control" placeholder="Address" required/>
+												</div>
+										</div>
+										<div class="form-group">
+											<label class="col-sm-2 control-label">Provinsi</label>
+												<div class="col-md-10">
+													<select class="form-control" name="province">
+														<option>1</option>
+														<option>2</option>
+														<option>3</option>
+														<option>4</option>
+														<option>5</option>
+	                                                </select>
+	                                            </div>
+										</div>
+										<div class="form-group">
+											<label class="col-sm-2 control-label">Kabupaten</label>
+												<div class="col-md-10">
+													<select class="form-control" name="city">
+														<option>1</option>
+														<option>2</option>
+														<option>3</option>
+														<option>4</option>
+														<option>5</option>
+	                                                </select>
+	                                            </div>
+										</div>
+										<div class="form-group">
+                                        <label class="col-sm-2 control-label">Gender</label>
+                                            <div class="col-sm-1">
+                                                <div class="radio radio-custom">
+                                                    <input type="radio" name="gender" id="male" value="male" checked>
+                                                    <label for="male">
+                                                        Male
+                                                    </label>
+                                                </div>
+                                                <div class="radio radio-custom">
+                                                    <input type="radio" name="gender" id="female" value="female">
+                                                    <label for="female">
+                                                        Female
+                                                    </label>
+                                                </div>
+                                                <div class="radio radio-custom">
+                                                    <input type="radio" name="gender" id="other" value="other">
+                                                    <label for="other">
+                                                        Other
+                                                    </label>
+                                                </div>
+                                            </div>
+                                        </div>
+			                            <div class="form-group">
+											<label class="control-label col-sm-2">Tanggal Lahir</label>
+												<div class="col-sm-8">
+													<div class="input-group">
+														<input type="text" name="tanggallahir" class="form-control" placeholder="mm/dd/yyyy" id="datepicker" required>
+															<span class="input-group-addon bg-primary b-0 text-white"><i class="ti-calendar"></i></span>
+														</div><!-- input-group -->
+												</div>
+										</div>
 
-                    <div class="col-lg-4 col-md-6">
-                    <div class="card-box">
+										<div class="form-group">
+										<label class="col-sm-2 control-label">Bahasa</label>
+											<div class="col-sm-10">
+												<select class="form-control select2" name="bahasa">
+													<option value="ID">Indonesia</option>
+													<option value="ENG">English</option>
+												</select>
+											</div>
+										</div>
+										<div class="container">
+											<div class="row">
+												<div class="form-group">
+												<label class="col-sm-2 control-label">Foto Diri</label>
+													<div class="col-sm-10">
+							                            <div class="card-box">
+							                                    <input type="file" name="fotodiri" class="dropify" data-height="200" />
+							                            </div>
+													</div>
+												</div>
+											</div>
+										</div>
 
-                      <h4 class="header-title m-t-0 m-b-30">Total Agent</h4>
-
-                            <div class="widget-chart-1">
-                                <div class="widget-detail-1">
-                                    <h2 class="p-t-10 m-b-0">
-                                       <?php
-                                          echo $countagent;
-                                       ?>
-                                    </h2>
-                                    <p class="text-muted">Agent</p>
-                                </div>
-                            </div>
-                    </div>
-                    </div><!-- end col -->
-
-                    <div class="col-lg-4 col-md-6">
-                    <div class="card-box">
-
-                      <h4 class="header-title m-t-0 m-b-30">Total Customer</h4>
-
-                            <div class="widget-chart-1">
-                                <div class="widget-detail-1">
-                                    <h2 class="p-t-10 m-b-0">
-                                      <?php
-                                        echo $countcustomer;
-                                      ?>
-                                    </h2>
-                                    <p class="text-muted">Customer</p>
-                                </div>
-                            </div>
-                    </div>
-                    </div><!-- end col -->
-                </div>
-                <!-- end row -->
-
-                <div class="row">
-                    <div class="col-lg-4">
-                    <div class="card-box">
-                      <h4 class="header-title m-t-0">Production By Category</h4>
-                            <div class="widget-chart text-center">
-                                <div id="morris-donut-example"style="height: 245px;"></div>
-                                <ul class="list-inline chart-detail-list m-b-0">
-                                    <li>
-                                        <h5 style="color: #ff8acc;"><i class="fa fa-circle m-r-5"></i>Series A</h5>
-                                    </li>
-                                    <li>
-                                        <h5 style="color: #5b69bc;"><i class="fa fa-circle m-r-5"></i>Series B</h5>
-                                    </li>
-                                </ul>
-                          </div>
-                    </div>
-                    </div><!-- end col -->
-
-                    <div class="col-lg-4">
-                        <div class="card-box">
-                            <h4 class="header-title m-t-0">Statistics</h4>
-                            <div id="morris-bar-example" style="height: 280px;"></div>
-                        </div>
-                    </div><!-- end col -->
-
-                    <div class="col-lg-4">
-                        <div class="card-box">
-                            <h4 class="header-title m-t-0">Total Revenue</h4>
-                            <div id="morris-line-example" style="height: 280px;"></div>
-                        </div>
-                    </div><!-- end col -->
-
-                </div>
-                <!-- end row -->
-
-            </div> <!-- container -->
-
-        </div> <!-- content -->
+										<div class="container">
+											<div class="row">
+												<div class="form-group">
+												<label class="col-sm-2 control-label">Foto KTP</label>
+													<div class="col-sm-10">
+							                            <div class="card-box">
+							                                    <input type="file" name="fotoktp" class="dropify" data-height="200" />
+							                            </div>
+													</div>
+												</div>
+											</div>
+										</div>
+							
+										<div class="form-group text-center">
+											<div class="col-xs-12">
+												{{ csrf_field() }}
+												<button class="btn btn-custom btn-bordred btn-block waves-effect waves-light" type="submit">
+													Submit
+												</button>
+											</div>
+										</div>
+									</form>
+								</div>
+						</div>
+					</center>
+				</div>
+			</div>
 
         <footer class="footer text-right">
             2016 © NEKANEKA.
@@ -302,5 +352,5 @@
 
 </div>
 <!-- END wrapper -->
-
+		
 @stop
