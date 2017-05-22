@@ -13,6 +13,9 @@ use Illuminate\Foundation\Auth\Access\AuthorizesResources;
 use App\Models\Paket;
 use App\Models\Schedule;
 use App\Models\Activity;
+use DB;
+use App\Models\Adventures;
+use App\Models\Inf_lokasi;
 
 class PaketController extends BaseController {
 
@@ -79,6 +82,12 @@ class PaketController extends BaseController {
    * @param  int  $id
    * @return Response
    */
+  public function showAll()
+  {
+    $data['query'] = DB::table('adventures')->get();
+    return view('admin.product',$data);
+  }
+
   public function show($id)
   {
     //

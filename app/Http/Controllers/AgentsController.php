@@ -2,19 +2,24 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
+// use Illuminate\Http\Request;
 
-use Illuminate\Foundation\Bus\DispatchesJobs;
-use Illuminate\Routing\Controller as BaseController;
-use Illuminate\Foundation\Validation\ValidatesRequests;
-use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
-use Illuminate\Foundation\Auth\Access\AuthorizesResources;
-use Illuminate\Support\Facades\DB;
-use App\Http\Middleware\VerifyCsrfToken;
+// use Illuminate\Foundation\Bus\DispatchesJobs;
+// use Illuminate\Routing\Controller as BaseController;
+// use Illuminate\Foundation\Validation\ValidatesRequests;
+// use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
+// use Illuminate\Foundation\Auth\Access\AuthorizesResources;
+// use Illuminate\Support\Facades\DB;
+// use App\Http\Middleware\VerifyCsrfToken;
 
 use App\Models\Agents;
+use Illuminate\Http\Request;
 
-class AgentsController extends BaseController {
+use App\Http\Requests;
+use Storage;
+use File;
+
+class AgentsController extends Controller {
 
   /**
    * Display a listing of the resource.
@@ -80,7 +85,7 @@ class AgentsController extends BaseController {
 
   public function storeByAdmin(Request $request) 
   {
-
+    dd($request);
     $agent = new Agents;
     $agent->username = $request->username;
     $agent->email = $request->email;
@@ -95,8 +100,16 @@ class AgentsController extends BaseController {
     $agent->verif_stat = 1;
     // $agent->foto = $request->foto;
     // $agent->multidokumen = $request->multidokumen;
+
+    // save gambar
+    // $file = $request->file('foto'); 
+    $filename = $request->foto;
+    $request->file('foto')->storeAs("public/foto",$filename);
+
     $agent->save();
     return redirect ('/agent');
+
+
   }
 
   public function showAll() 
@@ -128,7 +141,7 @@ class AgentsController extends BaseController {
   
   public function edit($id, Request $request) 
   {
-   $agents = new Agents();
+    $agents = new Agents();
     $data = array(
         'fullname'=>$request->fullname,
         'username'=>$request->username,
@@ -136,11 +149,10 @@ class AgentsController extends BaseController {
         'address'=>$request->address, 
         'province'=>$request->province,
         'city'=>$request->city,
-        'gender'=>$request->gender,
         'tanggallahir'=>$request->tanggallahir,
-        'bahasa'=>$request->bahasa,
-        'foto'=>$request->fotodiri,
-        'multidokumen'=>$request->fotoktp,
+        'bahasa'=>$request->bahasa
+        /*'foto'=>$request->fotodiri,
+        'multidokumen'=>$request->fotoktp*/
       );
     $update = $agents::where('id', $id)->update($data);
     echo "success"; 
@@ -159,8 +171,9 @@ class AgentsController extends BaseController {
           $data=Agents::find($id)->delete();
           if ($data) {
             echo "success";
+          }else{
+            echo "failed";
           }
-          echo "failed";
       }
     }
   }

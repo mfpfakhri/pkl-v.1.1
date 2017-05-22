@@ -14,7 +14,11 @@ use App\Http\Middleware\VerifyCsrfToken;
 
 use App\Models\Customer;
 
-class CustomerController extends BaseController {
+use App\Http\Requests;
+use Storage;
+use File;
+
+class CustomerController extends Controller {
 
   /**
    * Display a listing of the resource.
@@ -49,6 +53,13 @@ class CustomerController extends BaseController {
    *
    * @return Response
    */
+  public function createByAdmin()
+  {
+    return view('admin.createCustomer');
+
+  }
+
+
   public function store($id, Request $request)
   {
     $customer = new Customer();
@@ -101,7 +112,7 @@ class CustomerController extends BaseController {
 
   public function showAll()
   {
-    $data=Customer::all();
+    $data = Customer::where('level','=',1)->get();
     return view('admin.customer')->with('data',$data);
   }
 
@@ -143,9 +154,9 @@ public function show($id)
         'alamat'=>$request->alamat,
         'phone'=>$request->phone,
         'gender'=>$request->gender,
-        'tanggallahir'=>$request->tanggallahir,
         'nationality'=>$request->nationality,
-        'foto'=>$request->foto,
+        'tanggallahir'=>$request->tanggallahir,
+        // 'foto'=>$request->foto,
       );
     $update = $customer::where('id', $id)->update($data);
     echo "success"; 
@@ -165,9 +176,9 @@ public function show($id)
           $data=Customer::find($id)->delete();
           if ($data) {
             echo "success";
-            return;
-          }
+          }else{
           echo "failed";
+        }
       }
     }
   }

@@ -1,6 +1,6 @@
 @extends('layouts.side')
 
-@section('title', 'Agent')
+@section('title', 'Booking Agent')
 
 @section('content')
 
@@ -27,7 +27,7 @@
                         </button>
                     </li>
                     <li>
-                        <h4 class="page-title">Agent</h4>
+                        <h4 class="page-title">Booking</h4>
                     </li>
                 </ul>
 
@@ -50,6 +50,13 @@
                         </div>
                         <!-- End Notification bar -->
                     </li>
+                    <li class="hidden-xs">
+                        <form role="search" class="app-search">
+                            <input type="text" placeholder="Search..."
+                                   class="form-control">
+                            <a href=""><i class="fa fa-search"></i></a>
+                        </form>
+                    </li>
                 </ul>
 
             </div><!-- end container -->
@@ -64,13 +71,8 @@
 
             <!-- User -->
             <div class="user-box">
-                <h5><a href="#">Admin</a> </h5>
+                <h5><a href="#">Agent</a> </h5>
                 <ul class="list-inline">
-                    <li>
-                        <a href="/" class="text-custom">
-                            <i class="zmdi zmdi-home"></i>
-                        </a>
-                    </li>
                     <li>
                         <a href="#" class="text-custom">
                             <i class="zmdi zmdi-power"></i>
@@ -84,21 +86,15 @@
             <div id="sidebar-menu">
                 <ul>
                   <li class="text-muted menu-title">Navigation</li>
-
                     <li>
-                        <a href="dashboard" class="waves-effect"><i class="zmdi zmdi-view-dashboard"></i> <span> Dashboard </span> </a>
+                        <a href="dashboardagent" class="waves-effect"><i class="zmdi zmdi-view-dashboard"></i> <span> Dashboard </span> </a>
                     </li>
-
                     <li>
-                        <a href="product" class="waves-effect"><i class="zmdi zmdi-cloud-box"></i> <span> Product </span> </a>
+                        <a href="productagent" class="waves-effect"><i class="zmdi zmdi-cloud-box"></i> <span> Product </span> </a>
                     </li>
-
                     <li>
-                        <a href="agent" class="waves-effect active"><i class="zmdi zmdi-account-box"></i> <span> Agent </span> </a>
-                        
-                    <li>
-                        <a href="customer" class="waves-effect"><i class="zmdi zmdi-account-box-o"></i><span> Customer </span> </a>
-                        
+                        <a href="bookingagent" class="waves-effect active"><i class="zmdi zmdi-email-open"></i> <span> Booking </span> </a>
+                    </li>
                 </ul>
                 <div class="clearfix"></div>
             </div>
@@ -117,18 +113,11 @@
         <!-- Start content -->
         <div class="content">
             <div class="container">
+
                 <div class="row">
                     <div class="col-sm-12">
                         <div class="panel">
                             <div class="panel-body">
-                                <div class="row">
-                                    <div class="col-sm-6">
-                                        <div class="m-b-30">
-                                            <a href="agentcreate" class="btn btn-primary waves-effect waves-light">Add Agent <i class="fa fa-plus"></i></a>
-                                            <a href="agent" class="btn btn-primary waves-effect waves-light">List Agent <i class="fa fa-list"></i></a>
-                                        </div>
-                                    </div>
-                                </div>
                                 <div class="">
                                     <table class="table table-striped" id="datatable-editable">
                                         <thead>
@@ -143,31 +132,32 @@
                                         </thead>
                                         <tbody>
                                             <tr class="gradeX">
-                                            @foreach($data as $row)
-                                                <td>{{$row->id}}</td>
-                                                <td>{{$row->email}}</td>
-                                                <td>{{$row->username}}</td>
-                                                <td>{{$row->fullname}}</td>
-                                                <td>{{$row->address}}</td>
+                                                <td>Trident</td>
+                                                <td>Internet Explorer 4.0</td>
+                                                <td>Win 95+</td>
                                                 <td class="actions">
-                                                    <a onclick="showagent({{$row->id}})" href="#" class=""><i class="fa fa-eye"></i></a>
-                                                    <a onclick="editagent({{$row->id}})" href="#" class="on-default edit-row"><i class="fa fa-pencil"></i></a>
-                                                    <a onclick="deleteagent({{$row->id}})" href="#" class="on-default remove-row"><i class="fa fa-trash-o"></i></a>
+                                                    <a href="#" class="on-default edit-row"><i class="fa fa-pencil"></i></a>
+                                                    <a href="#" class="on-default remove-row"><i class="fa fa-trash-o"></i></a>
+                                                </td>
+
+                                                <td class="actions">
+                                                    <a onclick="" href="#" class="on-default edit-row" style="color:#65E839;"><i class="fa fa-check-square" style="color:#65E839;"></i> Approve</a>
+                                                    <a onclick="" href="#" class="on-default remove-row" style="color:#FF5043;"><i class="fa fa-minus-square" style="color:#FF5043;"></i> Reject</a>
                                                 </td>
                                             </tr>
-                                            @endforeach
+                                            
                                         </tbody>
                                     </table>
                                 </div>
                             </div>
                             <!-- end: panel body -->
 
-                            <div id="con-close-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
+                            <div id="con-close-modal-customer" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
                                 <div class="modal-dialog">
                                     <div class="modal-content">
                                         <div class="modal-header">
                                             <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-                                            <h4 class="modal-title">Agent</h4>
+                                            <h4 class="modal-title">Customer</h4>
                                         </div>
                                         <div class="modal-body">
                                             <div class="user-box">
@@ -176,13 +166,7 @@
                                                 </div>
                                             </div>
                                             <div class="row">
-                                                <div class="col-md-6">
-                                                    <div class="form-group">
-                                                        <label for="field-1" class="control-label">Fullname</label>
-                                                        <input id="nama" type="text" class="form-control">
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-6">
+                                                <div class="col-md-6" >
                                                     <div class="form-group">
                                                         <label for="field-2" class="control-label">Username</label>
                                                         <input id="username" type="text" class="form-control">
@@ -192,14 +176,28 @@
                                             <div class="row">
                                                 <div class="col-md-6">
                                                     <div class="form-group">
-                                                        <label for="field-3" class="control-label">E-mail</label>
-                                                        <input id="email" type="text" class="form-control">
+                                                        <label for="field-2" class="control-label">Tanggal Lahir</label>
+                                                        <input id="tanggallahir" type="text" class="form-control">
                                                     </div>
                                                 </div>
                                                 <div class="col-md-6">
                                                     <div class="form-group">
-                                                        <label for="field-4" class="control-label">Tanggal Lahir</label>
-                                                        <input id="tanggallahir" type="text" class="form-control">
+                                                        <label for="field-3" class="control-label">E-mail</label>
+                                                        <input id="email" type="text" class="form-control">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <label for="field-1" class="control-label">Firstname</label>
+                                                        <input id="firstname" type="text" class="form-control">
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <label for="field-4" class="control-label">Lastname</label>
+                                                        <input id="lastname" type="text" class="form-control">
                                                     </div>
                                                 </div>
                                             </div>
@@ -214,45 +212,45 @@
                                             <div class="row">
                                                 <div class="col-md-4">
                                                     <div class="form-group">
-                                                        <label for="field-6" class="control-label">Kota</label>
-                                                        <input id="kota" type="text" class="form-control">
+                                                        <label for="field-6" class="control-label">Phone</label>
+                                                        <input id="phone" type="text" class="form-control">
                                                     </div>
                                                 </div>
                                                 <div class="col-md-4">
                                                     <div class="form-group">
-                                                        <label for="field-7" class="control-label">Provinsi</label>
-                                                        <input id="provinsi" type="text" class="form-control">
+                                                        <label for="field-7" class="control-label">Gender</label>
+                                                        <input id="gender" type="text" class="form-control">
                                                     </div>
                                                 </div>
                                                 <div class="col-md-4">
                                                     <div class="form-group">
-                                                        <label for="field-8" class="control-label">Bahasa</label>
-                                                        <input id="bahasa" type="text" class="form-control">
+                                                        <label for="field-8" class="control-label">Nationality</label>
+                                                        <input id="nationality" type="text" class="form-control">
                                                     </div>
                                                 </div>
                                             </div>
                                         </div>
                                         <div class="modal-footer">
                                             <button type="button" class="btn btn-default waves-effect" data-dismiss="modal">Close</button>
-                                            <button onclick="saveagent()" id="save" type="button" class="btn btn-info waves-effect waves-light">Save changes</button>
+                                            <button onclick="savecustomer()" id="save" type="button" class="btn btn-info waves-effect waves-light">Save changes</button>
                                         </div>
                                     </div>
                                 </div>
                             </div><!-- /.modal -->
 
-                            <div id="panel-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
+                            <div id="panel-modal-customer" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
                                 <div class="modal-dialog">
                                     <div class="modal-content p-0 b-0">
                                         <div class="panel panel-color panel-primary">
                                             <div class="panel-heading">
-                                                <button type="button" class="close m-t-5" data-dismiss="modal" aria-hidden="true"></button>
-                                                <h3 class="panel-title">Delete Agent</h3>
+                                                <button type="button" class="close m-t-5" data-dismiss="modal" aria-hidden="true">×</button>
+                                                <h3 class="panel-title">Delete Customer</h3>
                                             </div>
                                             <div class="panel-body">
-                                                <p>Apa Anda yakin ingin menghapus Agent?</p>
+                                                <p>Apa Anda yakin ingin menghapus Customer?</p>
                                             <div class="modal-footer">
                                                 <button type="button" class="btn btn-default waves-effect" data-dismiss="modal">Tidak</button>
-                                                <button onclick="executedeleteagent(this)" id="delete" type="button" class="btn btn-info waves-effect waves-light">Ya</button>
+                                                <button onclick="executedeletecustomer()" id="delete" type="button" class="btn btn-info waves-effect waves-light">Ya</button>
                                             </div>
                                             </div>
                                         </div>
@@ -261,9 +259,11 @@
                             </div><!-- /.modal -->
 
                         </div> <!-- end panel -->
+                        
                     </div> <!-- end col-->
-                </div><!-- end row -->
 
+                </div><!-- end row -->
+                
             </div> <!-- container -->
 
         </div> <!-- content -->

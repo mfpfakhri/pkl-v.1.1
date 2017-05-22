@@ -59,22 +59,22 @@
 
 @elseif(Auth::user())
 @if(Auth::user()->isAdmin(true))
-      <a href="/dashboard">Dashboard</a>
+        <ul class="nav navbar-nav navbar-right">
+          <li><a href="/dashboard">Dashboard</a></li>
+
 @endif        
-        <div class="row">
-          <a class="logout" href="{{ url('/logout') }}"
+          <li>
+            <a href="{{ url('/logout') }}"
               onclick="event.preventDefault();
-                       document.getElementById('logout-form').submit();">
+                      document.getElementById('logout-form').submit();">
               Logout
-          </a>
-        </div>
-        <form id="logout-form" action="{{ url('/logout') }}" method="POST">
-          {{ csrf_field() }}
-        </form>
-
-
+            </a>
+          </li>
+          <form id="logout-form" action="{{ url('/logout') }}" method="POST">
+            {{ csrf_field() }}
+          </form>
 @endif
-      </div>
+        </ul>
     </nav>
 
   <!-- Navigation Bar Menu -->

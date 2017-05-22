@@ -50,13 +50,6 @@
                         </div>
                         <!-- End Notification bar -->
                     </li>
-                    <li class="hidden-xs">
-                        <form role="search" class="app-search">
-                            <input type="text" placeholder="Search..."
-                                   class="form-control">
-                            <a href=""><i class="fa fa-search"></i></a>
-                        </form>
-                    </li>
                 </ul>
 
             </div><!-- end container -->
@@ -73,6 +66,11 @@
             <div class="user-box">
                 <h5><a href="#">Admin</a> </h5>
                 <ul class="list-inline">
+                    <li>
+                        <a href="/" class="text-custom">
+                            <i class="zmdi zmdi-home"></i>
+                        </a>
+                    </li>
                     <li>
                         <a href="#" class="text-custom">
                             <i class="zmdi zmdi-power"></i>
@@ -126,7 +124,7 @@
                                 <div class="row">
                                     <div class="col-sm-6">
                                         <div class="m-b-30">
-                                            <a href="addcustomer/{id}" class="btn btn-primary waves-effect waves-light">Add Customer <i class="fa fa-plus"></i></a>
+                                            <a href="customercreate" class="btn btn-primary waves-effect waves-light">Add Customer <i class="fa fa-plus"></i></a>
                                             <a href="customer" class="btn btn-primary waves-effect waves-light">List Customer <i class="fa fa-list"></i></a>
                                         </div>
                                     </div>
@@ -151,7 +149,7 @@
                                                 <td>{{$row->email}}</td>
                                                 <td>{{$row->username}}</td>
                                                 <td>{{$row->firstname}}</td>
-                                                <td>{{$row->address}}</td>
+                                                <td>{{$row->alamat}}</td>
                                                 <td class="actions">
                                                     <a onclick="showcustomer({{$row->id}})" href="#" class="on-default show-row"><i class="fa fa-eye"></i></a>
                                                     <a onclick="editcustomer({{$row->id}})" href="#" class="on-default edit-row"><i class="fa fa-pencil"></i></a>

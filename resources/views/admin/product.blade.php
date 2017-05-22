@@ -50,13 +50,6 @@
                         </div>
                         <!-- End Notification bar -->
                     </li>
-                    <li class="hidden-xs">
-                        <form role="search" class="app-search">
-                            <input type="text" placeholder="Search..."
-                                   class="form-control">
-                            <a href=""><i class="fa fa-search"></i></a>
-                        </form>
-                    </li>
                 </ul>
 
             </div><!-- end container -->
@@ -73,6 +66,11 @@
             <div class="user-box">
                 <h5><a href="#">Admin</a> </h5>
                 <ul class="list-inline">
+                    <li>
+                        <a href="/" class="text-custom">
+                            <i class="zmdi zmdi-home"></i>
+                        </a>
+                    </li>
                     <li>
                         <a href="#" class="text-custom">
                             <i class="zmdi zmdi-power"></i>
@@ -126,9 +124,19 @@
                                 <div class="row">
                                     <div class="col-sm-6">
                                         <div class="m-b-30">
+                                            <a href="" class="btn btn-primary waves-effect waves-light">Add Product <i class="fa fa-plus"></i></a>
+                                            <a href="product" class="btn btn-primary waves-effect waves-light">List Product <i class="fa fa-list"></i></a>
+                                        </div>
+                                        <div class="m-b-30">
                                             <h2>Kategori</h2>
                                                 <select class="form-control">
-                                                    <option>1</option>
+                                                    <option value="" selected disabled>All Adventure</option>
+                                                        @foreach($query as $result)
+                                                        <option value="{{$result->id_adv}}">
+                                                        <?php
+                                                            echo $result->nama_adv
+                                                        ?></option>
+                                                        @endforeach
                                                 </select>
                                         </div>
                                     </div>
@@ -138,26 +146,29 @@
                                     <table class="table table-striped" id="datatable-editable">
                                         <thead>
                                             <tr>
-                                                <th>Rendering engine</th>
-                                                <th>Browser</th>
-                                                <th>Platform(s)</th>
-                                                <th>Actions</th>
+                                                <th>ID</th>
+                                                <th>Agent</th>
+                                                <th>Paket</th>
+                                                <th>Harga</th>
+                                                <th>Jadwal</th>
+                                                <th>Peserta</th>
+                                                <th>Action</th>
                                             </tr>
                                         </thead>
                                         <tbody>
                                             <tr class="gradeX">
-                                                        <td>Trident</td>
-                                                        <td>Internet
-                                                            Explorer 4.0
-                                                        </td>
-                                                        <td>Win 95+</td>
-                                                        <td class="actions">
-                                                            <a href="#" class="hidden on-editing save-row"><i class="fa fa-save"></i></a>
-                                                            <a href="#" class="hidden on-editing cancel-row"><i class="fa fa-times"></i></a>
-                                                            <a href="#" class="on-default edit-row"><i class="fa fa-pencil"></i></a>
-                                                            <a href="#" class="on-default remove-row"><i class="fa fa-trash-o"></i></a>
-                                                        </td>
-                                                    </tr>
+                                                <td>Trident</td>
+                                                <td>Internet Explorer 4.0</td>
+                                                <td>Win 95+</td>
+                                                <td>H</td>
+                                                <td>I</td>
+                                                <td>J</td>
+                                                <td class="actions">
+                                                    <a onclick="" href="#" class=""><i class="fa fa-eye"></i></a>
+                                                    <a onclick="" href="#" class="on-default edit-row"><i class="fa fa-pencil"></i></a>
+                                                    <a onclick="" href="#" class="on-default remove-row"><i class="fa fa-trash-o"></i></a>
+                                                </td>
+                                            </tr>
                                         </tbody>
                                     </table>
                                 </div>

@@ -50,13 +50,6 @@
                         </div>
                         <!-- End Notification bar -->
                     </li>
-                    <li class="hidden-xs">
-                        <form role="search" class="app-search">
-                            <input type="text" placeholder="Search..."
-                                   class="form-control">
-                            <a href=""><i class="fa fa-search"></i></a>
-                        </form>
-                    </li>
                 </ul>
 
             </div><!-- end container -->
@@ -73,6 +66,11 @@
             <div class="user-box">
                 <h5><a href="#">Admin</a> </h5>
                 <ul class="list-inline">
+                    <li>
+                        <a href="/" class="text-custom">
+                            <i class="zmdi zmdi-home"></i>
+                        </a>
+                    </li>
                     <li>
                         <a href="#" class="text-custom">
                             <i class="zmdi zmdi-power"></i>
@@ -120,11 +118,21 @@
 	<div class="content">
 			<div class="container">
 				<div class="row">
-					<center>
-						<div class="col-sm-10">
+					<div class="col-sm-12">
+                        <div class="panel">
+                            <div class="panel-body">
+                                <div class="row">
+                                    <div class="col-sm-6">
+                                        <div class="m-b-30">
+                                            <a href="agentcreate" class="btn btn-primary waves-effect waves-light">Add Agent <i class="fa fa-plus"></i></a>
+                                            <a href="agent" class="btn btn-primary waves-effect waves-light">List Agent <i class="fa fa-list"></i></a>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-sm-10">
 							<div class="text-center">
                                 <a href="index.html" class="logo"><span>NEKANEKA</span></span></a>
-                                <h5 class="text-muted m-t-0 font-600">Sign Up</h5><br/>
+                                <h5 class="text-muted m-t-0 font-600">Add Agent</h5><br/>
                             </div>
 								<div class="col-sm-offset-2 col-sm-7">
 									<form class="form-horizontal" role="form" method="POST" 
@@ -238,20 +246,18 @@
 												</div>
 											</div>
 										</div>
-
 										<div class="container">
 											<div class="row">
 												<div class="form-group">
 												<label class="col-sm-2 control-label">Foto KTP</label>
 													<div class="col-sm-10">
 							                            <div class="card-box">
-							                                    <input type="file" name="fotoktp" class="dropify" data-height="200" />
+							                                    <input type="file" name="fotoa" class="dropify" />
 							                            </div>
 													</div>
 												</div>
 											</div>
 										</div>
-							
 										<div class="form-group text-center">
 											<div class="col-xs-12">
 												{{ csrf_field() }}
@@ -262,10 +268,14 @@
 										</div>
 									</form>
 								</div>
-						</div>
-					</center>
-				</div>
-			</div>
+							</div>
+                        	</div>
+                        </div> <!-- end panel -->
+                    </div> <!-- end col-->
+                </div><!-- end row -->
+            </div>
+        </div> <!-- container -->
+        </div> <!-- content -->
 
         <footer class="footer text-right">
             2016 © NEKANEKA.

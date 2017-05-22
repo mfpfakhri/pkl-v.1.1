@@ -11,39 +11,45 @@
 |
 */
 
-Route::group(['middleware' => 'admin'], function(){
-	
-	//Agent
-	Route::get('/agent', function(){
-		return view('admin.agent');
-	});
-	
+Route::group(['middleware' => 'admin'], function(){	
 	//Dashboard
 	Route::get('/dashboard', 'DashboardController@index');
 
 	//CRUD Agent
 	Route::get('/agent', 'AgentsController@showAll');
 	Route::get('/agent/{id}','AgentsController@show');
-	Route::post('/agent','AgentsController@storeByAdmin');
-
 	Route::get('/agentcreate','AgentsController@createByAdmin');
+	Route::post('/agent','AgentsController@storeByAdmin');
 	Route::post('/agentupdate/{id}','AgentsController@edit');
 	Route::get('/agentdelete/{id}','AgentsController@destroy');
 
 	//CRUD Customer
-	Route::get('/addcustomer/', 'CustomerController@addNew');
-	Route::post('/addcustomerprocess/', 'CustomerController@add');
 	Route::get('/customer', 'CustomerController@showAll');
 	Route::get('/customer/{id}', 'CustomerController@show');
+	Route::get('/customercreate/', 'CustomerController@createByAdmin');
+	Route::post('/customer/', 'CustomerController@storeByAdmin');
 	Route::post('/customerupdate/{id}', 'CustomerController@edit');
 	Route::get('/customerdelete/{id}', 'CustomerController@destroy');
 
 	//CRUD Product
-	Route::get('/product', function(){
-		return view('admin.product');
-	});
+	Route::get('/product', 'PaketController@showAll');
 
 });
+
+//Agent
+	Route::get('/dashboardagent', function(){
+		return view('agent.dashboardAgent');
+	});
+
+//Product
+	Route::get('/productagent', function(){
+		return view('agent.productAgent');
+	});
+
+//Booking
+	Route::get('/bookingagent', function(){
+		return view('agent.BookingAgent');
+	});
 
 //Create and register Agent
 Route::get('/registeragent', 'AgentsController@index');

@@ -1,6 +1,6 @@
 @extends('layouts.side')
 
-@section('title', 'Dashboard Admin')
+@section('title', 'Dashboard Agent')
 
 @section('content')
 
@@ -50,6 +50,13 @@
                         </div>
                         <!-- End Notification bar -->
                     </li>
+                    <li class="hidden-xs">
+                        <form role="search" class="app-search">
+                            <input type="text" placeholder="Search..."
+                                   class="form-control">
+                            <a href=""><i class="fa fa-search"></i></a>
+                        </form>
+                    </li>
                 </ul>
 
             </div><!-- end container -->
@@ -64,13 +71,8 @@
 
             <!-- User -->
             <div class="user-box">
-                <h5><a href="#">Admin</a> </h5>
+                <h5><a href="#">Agent</a> </h5>
                 <ul class="list-inline">
-                    <li>
-                        <a href="/" class="text-custom">
-                            <i class="zmdi zmdi-home"></i>
-                        </a>
-                    </li>
                     <li>
                         <a href="#" class="text-custom">
                             <i class="zmdi zmdi-power"></i>
@@ -84,21 +86,15 @@
             <div id="sidebar-menu">
                 <ul>
                   <li class="text-muted menu-title">Navigation</li>
-
                     <li>
-                        <a href="dashboard" class="waves-effect active"><i class="zmdi zmdi-view-dashboard"></i> <span> Dashboard </span> </a>
+                        <a href="dashboardagent" class="waves-effect active"><i class="zmdi zmdi-view-dashboard"></i> <span> Dashboard </span> </a>
                     </li>
-
                     <li>
-                        <a href="product" class="waves-effect"><i class="zmdi zmdi-cloud-box"></i> <span> Product </span> </a>
+                        <a href="productagent" class="waves-effect"><i class="zmdi zmdi-cloud-box"></i> <span> Product </span> </a>
                     </li>
-
                     <li>
-                        <a href="agent" class="waves-effect"><i class="zmdi zmdi-account-box"></i> <span> Agent </span> </a>
-                        
-                    <li>
-                        <a href="customer" class="waves-effect"><i class="zmdi zmdi-account-box-o"></i><span> Customer </span> </a>
-                        
+                        <a href="bookingagent" class="waves-effect"><i class="zmdi zmdi-email-open"></i> <span> Booking </span> </a>
+                    </li>
                 </ul>
                 <div class="clearfix"></div>
             </div>
@@ -129,7 +125,7 @@
                                 <div class="widget-detail-1">
                                     <h2 class="p-t-10 m-b-0">
                                       <?php
-                                        echo $countproduct;
+                                        //echo $countproduct;
                                       ?>
                                     </h2>
                                     <p class="text-muted">Unit</p>
@@ -147,7 +143,7 @@
                                 <div class="widget-detail-1">
                                     <h2 class="p-t-10 m-b-0">
                                        <?php
-                                          echo $countagent;
+                                         // echo $countagent;
                                        ?>
                                     </h2>
                                     <p class="text-muted">Agent</p>
@@ -165,7 +161,7 @@
                                 <div class="widget-detail-1">
                                     <h2 class="p-t-10 m-b-0">
                                       <?php
-                                        echo $countcustomer;
+                                      //  echo $countcustomer;
                                       ?>
                                     </h2>
                                     <p class="text-muted">Customer</p>
