@@ -9,7 +9,7 @@ use App\Http\Controllers\Controller;
 //Tambah
 // use App\Http\Request;
 
-class CustomerController extends Controller
+class EditProfilController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -50,9 +50,7 @@ class CustomerController extends Controller
      */
     public function show($id)
     {
-        //Form Manage Profile
-        $customer = User::find($id);
-        return view('customerprofile', ['customer'=>$customer]);
+        //
     }
 
     /**
@@ -64,12 +62,12 @@ class CustomerController extends Controller
     public function edit($id)
     {
         // dd($id);
-          $customers = User::find($id);
+          $customer = User::find($id);
 
-          if(!$customers){
+          if(!$customer){
             abort(404);
           }
-          return view('customerprofile', ['customers' => $customers]);
+          return view('editprofil', ['customer' => $customer]);
     }
 
     /**
@@ -81,22 +79,19 @@ class CustomerController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //Simpan Data Hasil Edit
+        //Simpan Data
         $this->validate($request, [
-            'fullname'  => 'required|alpha',
-            'email'     => 'required',
+            'username'  => 'required|alpha',
+            'email'     => 'required|max:50',
             'phone'     => 'required|between:10,12',
-            'address'   => 'required|max:50',
-
+            'alamat'    => 'required|max:80',
         ]);
-
         $customer = User::find($id);
-        $customer->fullname = $request->fullname;
+        $customer->username = $request->username;
         $customer->email    = $request->email;
         $customer->phone    = $request->phone;
         $customer->alamat   = $request->alamat;
         $customer->save();
-
         return redirect ('/');
     }
 

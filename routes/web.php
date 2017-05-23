@@ -26,13 +26,14 @@ Route::get('/verify/{ver_token}/{id}','Auth\RegisterController@verify_register')
 
 Auth::routes();
 
-// Manage Profile
-Route::get('/{id}/customerprofile', 'CustomerController@show');
-Route::post('/{id}/','CustomerController@update'); //Belum Bisa Save Edit Profile
+//lengkapiDataSetelahVerif
+Route::get('/{id}/userdetail', 'LengkapiDataController@edit');
+Route::PUT('/{id}', 'LengkapiDataController@update');
 
-// Lengkapi Data
-Route::get('/{id}/userdetail', 'UserController@edit');
-Route::PUT('/{id}/','UserController@update');
+// Manage Profile
+// Route::get('/{id}/manageprofile', 'EditProfilController@edit');  //Lengkapi Data Terganggu, tidak bisa menuju ke '/' atau
+// Route::PUT('/{id}', 'EditProfilController@update'); 				//tidak mau input data (tetap di view lengkapidata)
+																	
 
 // Booking Form
 Route::get('/booking', function () {
