@@ -124,13 +124,13 @@
                                 <div class="row">
                                     <div class="col-sm-6">
                                         <div class="m-b-30">
-                                            <a href="" class="btn btn-primary waves-effect waves-light">Add Product <i class="fa fa-plus"></i></a>
+                                            <a href="productcreate" class="btn btn-primary waves-effect waves-light">Add Product <i class="fa fa-plus"></i></a>
                                             <a href="product" class="btn btn-primary waves-effect waves-light">List Product <i class="fa fa-list"></i></a>
                                         </div>
                                         <div class="m-b-30">
                                             <h2>Kategori</h2>
                                                 <select class="form-control">
-                                                    <option value="" selected disabled>All Adventure</option>
+                                                    <option value="" selected>All Adventure</option>
                                                         @foreach($query as $result)
                                                         <option value="{{$result->id_adv}}">
                                                         <?php

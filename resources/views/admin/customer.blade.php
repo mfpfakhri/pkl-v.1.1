@@ -137,7 +137,8 @@
                                                 <th>ID</th>
                                                 <th>Email</th>
                                                 <th>Username</th>
-                                                <th>Fullname</th>
+                                                <th>Firstname</th>
+                                                <th>Lastname</th>
                                                 <th>Address</th>
                                                 <th>Action</th>
                                             </tr>
@@ -149,6 +150,7 @@
                                                 <td>{{$row->email}}</td>
                                                 <td>{{$row->username}}</td>
                                                 <td>{{$row->firstname}}</td>
+                                                <td>{{$row->lastname}}</td>
                                                 <td>{{$row->alamat}}</td>
                                                 <td class="actions">
                                                     <a onclick="showcustomer({{$row->id}})" href="#" class="on-default show-row"><i class="fa fa-eye"></i></a>
@@ -173,7 +175,7 @@
                                         <div class="modal-body">
                                             <div class="user-box">
                                                 <div class="user-img">
-                                                    <img src="assets/images/users/avatar-1.jpg" alt="user-img" title="Mat Helme" class="img-circle img-thumbnail img-responsive">
+                                                    <img id="avatar" src="" alt="user-img" class="img-circle img-thumbnail img-responsive">
                                                 </div>
                                             </div>
                                             <div class="row">

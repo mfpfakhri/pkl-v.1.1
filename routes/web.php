@@ -26,13 +26,18 @@ Route::group(['middleware' => 'admin'], function(){
 	//CRUD Customer
 	Route::get('/customer', 'CustomerController@showAll');
 	Route::get('/customer/{id}', 'CustomerController@show');
-	Route::get('/customercreate/', 'CustomerController@createByAdmin');
-	Route::post('/customer/', 'CustomerController@storeByAdmin');
+	Route::get('/customercreate', 'CustomerController@createByAdmin');
+	Route::post('/customer', 'CustomerController@storeByAdmin');
 	Route::post('/customerupdate/{id}', 'CustomerController@edit');
 	Route::get('/customerdelete/{id}', 'CustomerController@destroy');
 
 	//CRUD Product
 	Route::get('/product', 'PaketController@showAll');
+	Route::get('/product/{id}', 'PaketController@show');
+	Route::get('/productcreate', 'PaketController@createByAdmin');
+	Route::post('/product', 'PaketController@storeByAdmin');
+	Route::post('/product/{id}', 'PaketController@edit');
+	Route::get('/productdelete/{id}', 'PaketController@destroy');
 
 });
 

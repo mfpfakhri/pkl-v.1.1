@@ -1,6 +1,6 @@
 @extends('layouts.side')
 
-@section('title', 'Product Agent')
+@section('title', 'Create Product')
 
 @section('content')
 
@@ -49,6 +49,7 @@
                             </ul>
                         </div>
                         <!-- End Notification bar -->
+                    </li>
                 </ul>
 
             </div><!-- end container -->
@@ -63,7 +64,7 @@
 
             <!-- User -->
             <div class="user-box">
-                <h5><a href="#">Agent</a> </h5>
+                <h5><a href="#">Admin</a> </h5>
                 <ul class="list-inline">
                     <li>
                         <a href="/" class="text-custom">
@@ -83,15 +84,21 @@
             <div id="sidebar-menu">
                 <ul>
                   <li class="text-muted menu-title">Navigation</li>
+
                     <li>
-                        <a href="dashboardagent" class="waves-effect"><i class="zmdi zmdi-view-dashboard"></i> <span> Dashboard </span> </a>
+                        <a href="dashboard" class="waves-effect"><i class="zmdi zmdi-view-dashboard"></i> <span> Dashboard </span> </a>
                     </li>
+
                     <li>
-                        <a href="productagent" class="waves-effect active"><i class="zmdi zmdi-cloud-box"></i> <span> Product </span> </a>
+                        <a href="product" class="waves-effect active"><i class="zmdi zmdi-cloud-box"></i> <span> Product </span> </a>
                     </li>
+
                     <li>
-                        <a href="bookingagent" class="waves-effect"><i class="zmdi zmdi-email-open"></i> <span> Booking </span> </a>
-                    </li>
+                        <a href="agent" class="waves-effect"><i class="zmdi zmdi-account-box"></i> <span> Agent </span> </a>
+                        
+                    <li>
+                        <a href="customer" class="waves-effect"><i class="zmdi zmdi-account-box-o"></i><span> Customer </span> </a>
+                        
                 </ul>
                 <div class="clearfix"></div>
             </div>
@@ -117,46 +124,151 @@
                                 <div class="row">
                                     <div class="col-sm-6">
                                         <div class="m-b-30">
-                                            <a href="addcustomer/{id}" class="btn btn-primary waves-effect waves-light">Add Product <i class="fa fa-plus"></i></a>
-                                            <a href="productagent" class="btn btn-primary waves-effect waves-light">List Product <i class="fa fa-list"></i></a>
-                                        </div>
-                                        <div class="m-b-10">
-                                            <h2>Kategori</h2>
-                                                <select class="form-control">
-                                                    <option>All</option>
-                                                </select>
+                                            <a href="" class="btn btn-primary waves-effect waves-light">Add Product <i class="fa fa-plus"></i></a>
+                                            <a href="product" class="btn btn-primary waves-effect waves-light">List Product <i class="fa fa-list"></i></a>
                                         </div>
                                     </div>
-                                </div>
+                    
+                    <div class="col-sm-10">
+                    <div class="text-center">
+                      <a href="index.html" class="logo"><span>NEKANEKA</span></span></a>
+                      <h5 class="text-muted m-t-0 font-600">Product</h5><br/>
+                    </div>
+                    <div class="col-sm-offset-2 col-sm-7">                    
+                    <form class="form-horizontal" role="form" method="POST" action="{{ URL('/product') }}" accept-charset="UTF-8" enctype="multipart/form-data">
+                        {{ csrf_field() }}
+                    <div class="form-group">
+                      <label class="col-md-2 control-label">Nomor ID</label>
+                        <div class="col-md-10">
+                        <select class="form-control" name="idagent">
+                            <option value="P0" selected disabled>ID Agent</option>
+                            @foreach($query1 as $result)
+                            <option value="{{$result->id}}">
+                            <?php
+                                echo $result->username
+                            ?></option>
+                            @endforeach
+                        </select>
+                        </div>
+                    </div>
 
-                                <div class="">
-                                    <table class="table table-striped" id="datatable-editable">
-                                        <thead>
-                                           <tr>
-                                                <th>ID</th>
-                                                <th>Paket</th>
-                                                <th>Harga</th>
-                                                <th>Jadwal</th>
-                                                <th>Peserta</th>
-                                                <th>Action</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            <tr class="gradeX">
-                                                <td>1</td>
-                                                <td>Wisata Bromo</td>
-                                                <td>Rp 400.000</td>
-                                                <td>5-5-2017</td>
-                                                <td>20</td>
-                                                <td class="actions">
-                                                    <a onclick="" href="#" class=""><i class="fa fa-eye"></i></a>
-                                                    <a onclick="" href="#" class="on-default edit-row"><i class="fa fa-pencil"></i></a>
-                                                    <a onclick="" href="#" class="on-default remove-row"><i class="fa fa-trash-o"></i></a>
-                                                </td>
-                                            </tr>
-                                        </tbody>
-                                    </table>
-                                </div>
+                    <div class="form-group">
+                    <label class="col-sm-2 control-label">Title</label>
+                      <div class="col-sm-10">
+                        <input type="text" name="title" class="form-control" placeholder="Title">
+                      </div>
+                    </div>
+
+                    <div class="form-group">
+                      <label class="col-sm-2 control-label">Kategori</label>
+                        <div class="col-md-10">
+                          <select class="form-control" name="kategori" id="kategori">
+                            <option value="A0" selected disabled>Select Adventure</option>
+                                @foreach($query as $result)
+                                <option value="{{$result->id_adv}}">
+                                <?php
+                                    echo $result->nama_adv
+                                ?></option>
+                                @endforeach
+                          </select>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                      <label class="control-label col-sm-2">Date Range</label>
+                        <div class="col-sm-10">
+                          <div class="input-daterange input-group" id="date-range">
+                            <input type="text" name="start_date" class="form-control" name="start" />
+                              <span class="input-group-addon bg-primary b-0 text-white">to</span>
+                                <input type="text" name="end_date" class="form-control" name="end" />
+                          </div>
+                        </div>
+                      </div>
+
+                      <div class="form-group">
+                      <label class="col-sm-2 control-label">Provinsi</label>
+                        <div class="col-md-10">
+                          <select class="form-control" name="provinsi" id="provinsi">
+                            <option>1</option>
+                          </select>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                      <label class="col-sm-2 control-label">Kota</label>
+                        <div class="col-md-10">
+                          <select class="form-control" name="kota" id="kota">
+                            <option>1</option>
+                          </select>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                    <label class="col-sm-2 control-label">Pickup Point</label>
+                      <div class="col-sm-10">
+                        <input type="text" name="pickuppoint" class="form-control" placeholder="Pickup Point">
+                      </div>
+                    </div>
+
+                    <div class="form-group">
+                    <label class="col-sm-2 control-label">End Point</label>
+                      <div class="col-sm-10">
+                        <input type="text" name="endpoint" class="form-control" placeholder="End Point">
+                      </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="col-md-2 control-label">Itinerary</label>
+                        <div class="col-md-10">
+                            <textarea name="event" class="form-control" rows="5"></textarea>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                    <label class="col-sm-2 control-label">Peserta</label>
+                      <div class="col-sm-10">
+                        <input type="text" name="peserta" class="form-control" placeholder="">
+                      </div>
+                    </div>
+
+                    <div class="form-group">
+                    <label class="col-sm-2 control-label">Price</label>
+                      <div class="col-sm-10">
+                        <input type="text" name="price" id="price" class="form-control" placeholder=""><p id="harga"></p>
+                      </div>
+                    </div>
+
+                    <div class="container">
+                      <div class="row">
+                        
+                        <label class="col-sm-2 control-label">Foto</label>
+                          <div class="col-sm-10">
+                              <div class="card-box">
+                                <input type="file" name="foto" class="dropify" data-height="200" />
+                              </div>
+                          </div>
+                        
+                      </div>
+                    </div>
+
+                    <div class="form-group">
+                    <label class="col-sm-2 control-label">Description</label>
+                      <div class="col-sm-10">
+                        <textarea name="description" class="form-control" rows="5"></textarea>
+                      </div>
+                    </div>
+                    </div>                    
+                    <div class="form-group text-center">
+                      <div class="col-xs-offset-3 col-sm-offset-3 col-md-offset-3 col-xs-6 col-sm-6 col-md-6 tombol-submit">
+                        <button class="btn btn-custom btn-bordred btn-block waves-effect waves-light" type="submit">
+                          Submit
+                        </button>
+                      </div>
+                    </div>
+                  </form>
+                  </div>
+
+
                             </div><!-- end: panel body -->
 
                         </div> <!-- end panel -->

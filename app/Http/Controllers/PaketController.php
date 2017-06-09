@@ -17,7 +17,7 @@ use DB;
 use App\Models\Adventures;
 use App\Models\Inf_lokasi;
 
-class PaketController extends BaseController {
+class PaketController extends Controller {
 
   /**
    * Display a listing of the resource.
@@ -37,6 +37,14 @@ class PaketController extends BaseController {
   public function create()
   {
    
+  }
+
+  public function createByAdmin()
+  {
+    $data['query'] = DB::table('adventures')->get();
+    $data['query1'] = DB::table('agents')->get();
+    return view('admin.createProduct',$data);
+
   }
 
   /**
@@ -82,6 +90,38 @@ class PaketController extends BaseController {
    * @param  int  $id
    * @return Response
    */
+
+  public function storeByAdmin(Request $request)
+  {
+    $paket = new paket();
+    $paket->agents_id = $request->idagent;
+    $paket->judul = $request->title;
+    $paket->description = $request->description;
+    $paket->price = $request->price;
+    $paket->multipic = $request->foto;
+    $paket->save();
+
+    // save avatar
+    $imageName = time().'.'.$request->foto->getClientOriginalName();
+    $paket->foto = $imageName;
+    $request->foto->move(public_path('foto_paket'), $imageName);
+
+    dd($paket); 
+
+    // $schedule = new schedule();
+    // $schedule->start_date = $request->start_date;
+    // $schedule->paket_id = $request->nomorid;
+    // $schedule->end_date = $request->end_date;
+    // $schedule->start_point = $request->pickuppoint;
+    // $schedule->end_point = $request->endpoint;
+    // $schedule->maxpeople = $request->peserta;
+    // $schedule->save();
+
+    // $activity = new activity();
+    // $activity->event = $request->event;
+    // $activity->save();
+  } 
+
   public function showAll()
   {
     $data['query'] = DB::table('adventures')->get();

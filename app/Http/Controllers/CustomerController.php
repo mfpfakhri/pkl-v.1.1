@@ -53,6 +53,7 @@ class CustomerController extends Controller {
    *
    * @return Response
    */
+  
   public function createByAdmin()
   {
     return view('admin.createCustomer');
@@ -84,6 +85,31 @@ class CustomerController extends Controller {
    * @param  int  $id
    * @return Response
    */
+
+   public function storeByAdmin(Request $request) 
+  {
+    // dd($request);
+    $customer = new Customer;
+    $customer->username = $request->username;
+    $customer->email = $request->email;
+    $customer->password = sha1($request->password);
+    $customer->firstname = $request->firstname;
+    $customer->lastname = $request->lastname;
+    $customer->alamat = $request->alamat;
+    $customer->phone = $request->phone;
+    $customer->gender = $request->gender;
+    $customer->nationality = $request->nationality;
+    $customer->tanggallahir = $request->tanggallahir;
+    $customer->foto = $request->foto;
+
+    // save gambar
+    $imageName = time().'.'.$request->foto->getClientOriginalName();
+    $customer->foto = $imageName;
+    $request->foto->move(public_path('foto_customer'), $imageName);
+
+    $customer->save();
+    return redirect ('/customer');
+  }
 
   public function addNew()
   {

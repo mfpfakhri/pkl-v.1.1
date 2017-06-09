@@ -49,14 +49,6 @@
                             </ul>
                         </div>
                         <!-- End Notification bar -->
-                    </li>
-                    <li class="hidden-xs">
-                        <form role="search" class="app-search">
-                            <input type="text" placeholder="Search..."
-                                   class="form-control">
-                            <a href=""><i class="fa fa-search"></i></a>
-                        </form>
-                    </li>
                 </ul>
 
             </div><!-- end container -->
@@ -73,6 +65,11 @@
             <div class="user-box">
                 <h5><a href="#">Agent</a> </h5>
                 <ul class="list-inline">
+                    <li>
+                        <a href="/" class="text-custom">
+                            <i class="zmdi zmdi-home"></i>
+                        </a>
+                    </li>
                     <li>
                         <a href="#" class="text-custom">
                             <i class="zmdi zmdi-power"></i>
@@ -113,65 +110,6 @@
         <!-- Start content -->
         <div class="content">
             <div class="container">
-
-                <div class="row">
-
-                    <div class="col-lg-4 col-md-6">
-                    <div class="card-box">
-                            
-                      <h4 class="header-title m-t-0 m-b-30">Total Product</h4>
-
-                            <div class="widget-chart-1">
-                                <div class="widget-detail-1">
-                                    <h2 class="p-t-10 m-b-0">
-                                      <?php
-                                        //echo $countproduct;
-                                      ?>
-                                    </h2>
-                                    <p class="text-muted">Unit</p>
-                                </div>
-                            </div>
-                    </div>
-                    </div><!-- end col -->
-
-                    <div class="col-lg-4 col-md-6">
-                    <div class="card-box">
-
-                      <h4 class="header-title m-t-0 m-b-30">Total Agent</h4>
-
-                            <div class="widget-chart-1">
-                                <div class="widget-detail-1">
-                                    <h2 class="p-t-10 m-b-0">
-                                       <?php
-                                         // echo $countagent;
-                                       ?>
-                                    </h2>
-                                    <p class="text-muted">Agent</p>
-                                </div>
-                            </div>
-                    </div>
-                    </div><!-- end col -->
-
-                    <div class="col-lg-4 col-md-6">
-                    <div class="card-box">
-
-                      <h4 class="header-title m-t-0 m-b-30">Total Customer</h4>
-
-                            <div class="widget-chart-1">
-                                <div class="widget-detail-1">
-                                    <h2 class="p-t-10 m-b-0">
-                                      <?php
-                                      //  echo $countcustomer;
-                                      ?>
-                                    </h2>
-                                    <p class="text-muted">Customer</p>
-                                </div>
-                            </div>
-                    </div>
-                    </div><!-- end col -->
-                </div>
-                <!-- end row -->
-
                 <div class="row">
                     <div class="col-lg-4">
                     <div class="card-box">

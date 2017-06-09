@@ -82,46 +82,12 @@
                       </div>
                     </div>
 
-                      <div id="tes">
-                        <div class="panel panel-default">
-                          <div class="panel-body">
-                            <div class="col-md-12 col-sm-12 col-xs-12">
-                              <div class="row">
-                                <div class="form-group">
-                                  <label class="col-sm-2 control-label">Tanggal</label>
-                                  <div class="col-sm-3">
-                                    <input type="text" class="form-control" placeholder="mm/dd/yyyy" id="datepicker-autoclose">
-                                  </div>
-                                </div>
-                              </div>
-                            </div>
-
-                          <div class="col-md-12 col-sm-12 col-xs-12">
-                            <div class="row">
-                              <div class="col-md-offset-2 col-sm-offset-2 col-xs-offset-2 col-md-2 col-sm-2 col-xs-2">
-                                   <div class="form-group">
-                                     <div class="bootstrap-timepicker">
-                                       <input id="timepicker2" type="text" class="form-control" name="time[]" placeholder="Time">
-                                     </div>
-                                   </div>
-                               </div>
-                               <div class="col-md-8 col-sm-8 col-xs-8">
-                                  <div class="form-group">
-                                    <div class="spasi">
-                                      <input type="text" name="kegiatan[]" class="form-control" placeholder="Kegiatan" style="position: relative; left: 10px;">
-                                    </div>
-                                  </div>
-                               </div>
-                            </div>
-                          </div>
+                       <div class="form-group">
+                        <label class="col-md-2 control-label">Itinerary</label>
+                        <div class="col-md-10">
+                            <textarea class="form-control" rows="5"></textarea>
                         </div>
-                      </div>
                     </div>
-
-                    <div id="kegiatan"></div>
-                    <button class="btn btn-default" type="button" id="tambah">Tambah</button>
-                    <br/>
-                    <br/>
 
                     <div class="form-group">
                     <label class="col-sm-2 control-label">Peserta</label>

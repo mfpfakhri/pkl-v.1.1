@@ -49,14 +49,6 @@
                             </ul>
                         </div>
                         <!-- End Notification bar -->
-                    </li>
-                    <li class="hidden-xs">
-                        <form role="search" class="app-search">
-                            <input type="text" placeholder="Search..."
-                                   class="form-control">
-                            <a href=""><i class="fa fa-search"></i></a>
-                        </form>
-                    </li>
                 </ul>
 
             </div><!-- end container -->
@@ -73,6 +65,11 @@
             <div class="user-box">
                 <h5><a href="#">Agent</a> </h5>
                 <ul class="list-inline">
+                    <li>
+                        <a href="/" class="text-custom">
+                            <i class="zmdi zmdi-home"></i>
+                        </a>
+                    </li>
                     <li>
                         <a href="#" class="text-custom">
                             <i class="zmdi zmdi-power"></i>
@@ -125,21 +122,20 @@
                                                 <th>ID</th>
                                                 <th>Email</th>
                                                 <th>Username</th>
-                                                <th>Fullname</th>
+                                                <th>Firstname</th>
+                                                <th>Lastname</th>
                                                 <th>Address</th>
                                                 <th>Action</th>
                                             </tr>
                                         </thead>
                                         <tbody>
                                             <tr class="gradeX">
-                                                <td>Trident</td>
-                                                <td>Internet Explorer 4.0</td>
-                                                <td>Win 95+</td>
-                                                <td class="actions">
-                                                    <a href="#" class="on-default edit-row"><i class="fa fa-pencil"></i></a>
-                                                    <a href="#" class="on-default remove-row"><i class="fa fa-trash-o"></i></a>
-                                                </td>
-
+                                                <td>1</td>
+                                                <td>user2@email.com</td>
+                                                <td>user2 username</td>
+                                                <td>User2</td>
+                                                <td>Last</td>
+                                                <td>Address user2</td>
                                                 <td class="actions">
                                                     <a onclick="" href="#" class="on-default edit-row" style="color:#65E839;"><i class="fa fa-check-square" style="color:#65E839;"></i> Approve</a>
                                                     <a onclick="" href="#" class="on-default remove-row" style="color:#FF5043;"><i class="fa fa-minus-square" style="color:#FF5043;"></i> Reject</a>

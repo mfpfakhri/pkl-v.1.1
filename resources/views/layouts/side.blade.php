@@ -141,16 +141,11 @@
 
         <script>
             jQuery(document).ready(function() {
-                $("#tambah").click(function(){
-                    $("#kegiatan").append("<div id='tes'><div class='panel panel-default'><div class='panel-body'><div class='col-md-12 col-sm-12 col-xs-12'><div class='row'><div class='form-group'><label class='col-sm-2 control-label'>Tanggal</label><div class='col-sm-3'><input type='text' class='form-control'placeholder='mm/dd/yyyy'id='datepicker-autoclose'></div></div></div></div><div class='col-md-12 col-sm-12 col-xs-12'><div class='row'><div class='col-md-offset-2 col-sm-offset-2 col-xs-offset-2 col-md-2 col-sm-2 col-xs-2'><div class='form-group'><div class='bootstrap-timepicker'><input id='timepicker2' type='text' class='form-control' name='time[]' placeholder='Time'></div></div></div><div class='col-md-8 col-sm-8 col-xs-8'><div class='form-group'><div class='spasi'><input type='text' name='kegiatan[]' class='form-control' placeholder='Kegiatan' style='position: relative; left: 10px;'></div></div></div></div></div></div></div></div>");
-                });
-
-                //
                 $("#price").keyup(function(){
                     var harga = $(this).val();
                     var hasil = 0.05*harga+10000;
                     var profit = harga-hasil;
-                    $("#harga").text("Value: " +profit);
+                    $("#harga").text("Harga yang Agent dapatkan: " +profit);
                 });
 
                 //advance multiselect start
@@ -407,6 +402,7 @@
                 }).done(function(data) {
                     data=JSON.parse(data);
                     console.log(data);
+                    $("#avatar").attr('src', 'images/'+data.foto);
                     $("#nama").val(data.fullname).attr('disabled','true');
                     $("#username").val(data.username).attr('disabled','true');
                     $("#email").val(data.email).attr('disabled','true');
@@ -414,7 +410,8 @@
                     $("#tanggallahir").val(data.tanggallahir).attr('disabled','true');
                     $("#kota").val(data.city).attr('disabled','true');
                     $("#provinsi").val(data.province).attr('disabled','true');
-                    $("#bahasa").val(data.bahasa).attr('disabled','true'); 
+                    $("#bahasa").val(data.bahasa).attr('disabled','true');
+                    $("#fotoktp").attr('src', 'ktp/'+data.multidokumen); 
                     $('#save').css({
                         "display":"none"
                     });
@@ -430,14 +427,16 @@
                 }).done(function(data) {
                     temp['id'] = id;
                     data=JSON.parse(data);
+                    $("#avatar").attr('src', 'images/'+data.foto);
                     $("#nama").val(data.fullname).removeAttr('disabled');
                     $("#username").val(data.username).removeAttr('disabled');
                     $("#email").val(data.email).removeAttr('disabled');
                     $("#alamat").val(data.address).removeAttr('disabled');
-                    $("#tanggallahir").val(data.tanggallahir).removeAttr('disabled');
+                    $("#datepicker").val(data.tanggallahir).removeAttr('disabled');
                     $("#kota").val(data.city).removeAttr('disabled');
                     $("#provinsi").val(data.province).removeAttr('disabled');
-                    $("#bahasa").val(data.bahasa).removeAttr('disabled'); 
+                    $("#bahasa").val(data.bahasa).removeAttr('disabled');
+                    $("#fotoktp").attr('src', 'ktp/'+data.multidokumen); 
                     $('#save').css({
                         "display":"inline-block" 
                     });
@@ -461,6 +460,7 @@
                     city:$('#kota').val(),
                     province:$('#provinsi').val(),
                     bahasa:$('#bahasa').val(),
+                    
                     'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
                 },
                 function(data, status){
@@ -489,13 +489,13 @@
                     }
                 });
             }
-            
 
             function showcustomer(id){
                 $.ajax({
                   url: "customer/"+id
                 }).done(function(data) {
                     data=JSON.parse(data);
+                    $("#avatar").attr('src', 'foto_customer/'+data.foto);
                     $("#username").val(data.username).attr('disabled','true');
                     $("#firstname").val(data.firstname).attr('disabled','true');
                     $("#lastname").val(data.lastname).attr('disabled','true');

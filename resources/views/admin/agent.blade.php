@@ -153,7 +153,10 @@
                                                     <a onclick="showagent({{$row->id}})" href="#" class=""><i class="fa fa-eye"></i></a>
                                                     <a onclick="editagent({{$row->id}})" href="#" class="on-default edit-row"><i class="fa fa-pencil"></i></a>
                                                     <a onclick="deleteagent({{$row->id}})" href="#" class="on-default remove-row"><i class="fa fa-trash-o"></i></a>
+                                                    <a onclick="approve()" href="#" class="on-default edit-row" style="color:#65E839;"><i class="fa fa-check-square" style="color:#65E839;"></i> Approve</a>
+                                                    <a onclick="" href="#" class="on-default remove-row" style="color:#FF5043;"><i class="fa fa-minus-square" style="color:#FF5043;"></i> Reject</a>
                                                 </td>
+
                                             </tr>
                                             @endforeach
                                         </tbody>
@@ -172,7 +175,7 @@
                                         <div class="modal-body">
                                             <div class="user-box">
                                                 <div class="user-img">
-                                                    <img src="assets/images/users/avatar-1.jpg" alt="user-img" title="Mat Helme" class="img-circle img-thumbnail img-responsive">
+                                                    <img id="avatar" src="images/" alt="user-img" class="img-circle img-thumbnail img-responsive">
                                                 </div>
                                             </div>
                                             <div class="row">
@@ -199,7 +202,7 @@
                                                 <div class="col-md-6">
                                                     <div class="form-group">
                                                         <label for="field-4" class="control-label">Tanggal Lahir</label>
-                                                        <input id="tanggallahir" type="text" class="form-control">
+                                                        <input name="tanggallahir" type="text" class="form-control" placeholder="yyyy/mm/dd" id="datepicker">
                                                     </div>
                                                 </div>
                                             </div>
@@ -224,12 +227,24 @@
                                                         <input id="provinsi" type="text" class="form-control">
                                                     </div>
                                                 </div>
+
                                                 <div class="col-md-4">
                                                     <div class="form-group">
-                                                        <label for="field-8" class="control-label">Bahasa</label>
-                                                        <input id="bahasa" type="text" class="form-control">
+                                                        <label for="field-8" class="control-label" >Bahasa</label>
+                                                        <select id="bahasa" class="form-control select2">
+                                                            <option value="ID">Indonesia</option>
+                                                             <option value="ENG">English</option>
+                                                        </select>
                                                     </div>
                                                 </div>
+                                                
+                                                <div class="col-md-4">
+                                                    <div class="user-img">
+                                                    <label for="field-8" class="control-label">Foto KTP</label></br>
+                                                        <img id="fotoktp" src="ktp/" alt="user-img" class="img-thumbnail img-responsive" width="200px" height="200px">
+                                                    </div>
+                                                </div>
+                                                
                                             </div>
                                         </div>
                                         <div class="modal-footer">

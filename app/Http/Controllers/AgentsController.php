@@ -9,7 +9,7 @@ namespace App\Http\Controllers;
 // use Illuminate\Foundation\Validation\ValidatesRequests;
 // use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 // use Illuminate\Foundation\Auth\Access\AuthorizesResources;
-// use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\DB;
 // use App\Http\Middleware\VerifyCsrfToken;
 
 use App\Models\Agents;
@@ -46,7 +46,7 @@ class AgentsController extends Controller {
     $agents = new Agents();
     $data['id'] = $id;
     $data['query'] = $agents::where('id', $id)->get();
-    return view('agents_create', $data);
+    return view('agent_create', $data);
   }
 
   /**
@@ -56,7 +56,12 @@ class AgentsController extends Controller {
    */
   public function createByAdmin()
   {
-    return view('admin.createAgent');
+    //provinsi
+    $data['query'] = DB::table('inf_lokasi')->where('lokasi_kabupatenkota', '00')->where('lokasi_kecamatan', '00')->where('lokasi_kelurahan', '0000')->orderby('lokasi_nama')->get();
+
+    //kota
+    $data['query1'] = DB::table('inf_lokasi')->where('lokasi_kecamatan', '00')->where('lokasi_kelurahan', '0000')->orderby('lokasi_propinsi')->get();
+    return view('admin.createAgent',$data);
 
   }
 
@@ -73,8 +78,8 @@ class AgentsController extends Controller {
         'gender'=>$request->gender,
         'tanggallahir'=>$request->tanggallahir,
         'bahasa'=>$request->bahasa,
-        'foto'=>$request->fotodiri,
-        'multidokumen'=>$request->fotoktp
+        'foto'=>$request->foto,
+        'multidokumen'=>$request->multidokumen
       );
     // $file=$request->file('fotodiri');
     // $filename=$request->username.".png"; 
@@ -85,11 +90,11 @@ class AgentsController extends Controller {
 
   public function storeByAdmin(Request $request) 
   {
-    dd($request);
+    // dd($request);
     $agent = new Agents;
     $agent->username = $request->username;
     $agent->email = $request->email;
-    $agent->password = $request->password;
+    $agent->password = sha1($request->password);
     $agent->fullname = $request->fullname;
     $agent->address = $request->address;
     $agent->city = $request->city;
@@ -98,18 +103,23 @@ class AgentsController extends Controller {
     $agent->bahasa = $request->bahasa;
     $agent->tanggallahir = $request->tanggallahir;
     $agent->verif_stat = 1;
-    // $agent->foto = $request->foto;
-    // $agent->multidokumen = $request->multidokumen;
+    $agent->foto = $request->foto;
+    $agent->multidokumen = $request->fotoktp;
 
-    // save gambar
-    // $file = $request->file('foto'); 
-    $filename = $request->foto;
-    $request->file('foto')->storeAs("public/foto",$filename);
+    // save avatar
+    $imageName = time().'.'.$request->foto->getClientOriginalName();
+    $agent->foto = $imageName;
+    $request->foto->move(public_path('images'), $imageName);
+
+    // save ktp
+    $imageNameKtp = time().'.'.$request->fotoktp->getClientOriginalName();
+    $agent->multidokumen = $imageNameKtp;
+    $request->fotoktp->move(public_path('ktp'), $imageNameKtp);
+
+    //dd($agent);
 
     $agent->save();
     return redirect ('/agent');
-
-
   }
 
   public function showAll() 
@@ -132,8 +142,8 @@ class AgentsController extends Controller {
         'gender'=>$request->gender,
         'tanggallahir'=>$request->tanggallahir,
         'bahasa'=>$request->bahasa,
-        'foto'=>$request->fotodiri,
-        'multidokumen'=>$request->fotoktp,
+        'foto'=>$request->foto,
+        'multidokumen'=>$request->multidokumen,
       );
     exit(json_encode($data));
       } 
@@ -150,9 +160,9 @@ class AgentsController extends Controller {
         'province'=>$request->province,
         'city'=>$request->city,
         'tanggallahir'=>$request->tanggallahir,
-        'bahasa'=>$request->bahasa
-        /*'foto'=>$request->fotodiri,
-        'multidokumen'=>$request->fotoktp*/
+        'bahasa'=>$request->bahasa,
+        'foto'=>$request->foto,
+        'multidokumen'=>$request->multidokumen
       );
     $update = $agents::where('id', $id)->update($data);
     echo "success"; 

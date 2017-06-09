@@ -137,7 +137,7 @@
 								<div class="col-sm-offset-2 col-sm-7">
 									<form class="form-horizontal" role="form" method="POST" 
                                     action="{{ URL('/agent')}}" accept-charset="UTF-8" enctype="multipart/form-data">
-                                    <!-- {{ csrf_field() }} -->
+                                    {{ csrf_field() }}
                                         <div class="form-group">
                                             <label class="col-md-2 control-label">Username</label>
                                                 <div class="col-md-10">
@@ -172,11 +172,13 @@
 											<label class="col-sm-2 control-label">Provinsi</label>
 												<div class="col-md-10">
 													<select class="form-control" name="province">
-														<option>1</option>
-														<option>2</option>
-														<option>3</option>
-														<option>4</option>
-														<option>5</option>
+														<option value="P0" selected disabled>Provinsi</option>
+                                                        @foreach($query as $result)
+                                                        <option value="{{$result->lokasi_nama}}">
+                                                        <?php
+                                                            echo $result->lokasi_nama
+                                                        ?></option>
+                                                        @endforeach
 	                                                </select>
 	                                            </div>
 										</div>
@@ -184,11 +186,13 @@
 											<label class="col-sm-2 control-label">Kabupaten</label>
 												<div class="col-md-10">
 													<select class="form-control" name="city">
-														<option>1</option>
-														<option>2</option>
-														<option>3</option>
-														<option>4</option>
-														<option>5</option>
+														<option value="K0" selected disabled>Kabupaten</option>
+                                                        @foreach($query1 as $result)
+                                                        <option value="{{$result->lokasi_nama}}">
+                                                        <?php
+                                                            echo $result->lokasi_nama
+                                                        ?></option>
+                                                        @endforeach
 	                                                </select>
 	                                            </div>
 										</div>
@@ -219,7 +223,7 @@
 											<label class="control-label col-sm-2">Tanggal Lahir</label>
 												<div class="col-sm-8">
 													<div class="input-group">
-														<input type="text" name="tanggallahir" class="form-control" placeholder="mm/dd/yyyy" id="datepicker" required>
+														<input type="text" name="tanggallahir" class="form-control" placeholder="yyyy/mm/dd" id="datepicker" required>
 															<span class="input-group-addon bg-primary b-0 text-white"><i class="ti-calendar"></i></span>
 														</div><!-- input-group -->
 												</div>
@@ -229,33 +233,32 @@
 										<label class="col-sm-2 control-label">Bahasa</label>
 											<div class="col-sm-10">
 												<select class="form-control select2" name="bahasa">
-													<option value="ID">Indonesia</option>
-													<option value="ENG">English</option>
+													<option value="Indonesia">Indonesia</option>
+													<option value="English">English</option>
 												</select>
 											</div>
 										</div>
 										<div class="container">
 											<div class="row">
-												<div class="form-group">
+												
 												<label class="col-sm-2 control-label">Foto Diri</label>
 													<div class="col-sm-10">
 							                            <div class="card-box">
-							                                    <input type="file" name="fotodiri" class="dropify" data-height="200" />
+							                                    <input type="file" name="foto" class="dropify" data-height="200" />
 							                            </div>
 													</div>
-												</div>
+												
 											</div>
 										</div>
 										<div class="container">
 											<div class="row">
-												<div class="form-group">
 												<label class="col-sm-2 control-label">Foto KTP</label>
 													<div class="col-sm-10">
 							                            <div class="card-box">
-							                                    <input type="file" name="fotoa" class="dropify" />
+							                                    <input type="file" name="fotoktp" class="dropify" />
 							                            </div>
 													</div>
-												</div>
+												
 											</div>
 										</div>
 										<div class="form-group text-center">
