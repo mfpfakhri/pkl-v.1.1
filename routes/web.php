@@ -11,78 +11,100 @@
 |
 */
 
-Route::group(['middleware' => 'admin'], function(){	
+//ADMIN, LEVEL 0
+Route::group(['middleware' => 'admin'], function(){
 	//Dashboard
-	Route::get('/dashboard', 'DashboardController@index');
+	Route::get('/dash', 'Admin\DashboardController@index');
 
 	//CRUD Agent
-	Route::get('/agent', 'AgentsController@showAll');
-	Route::get('/agent/{id}','AgentsController@show');
-	Route::get('/agentcreate','AgentsController@createByAdmin');
-	Route::post('/agent','AgentsController@storeByAdmin');
-	Route::post('/agentupdate/{id}','AgentsController@edit');
-	Route::get('/agentdelete/{id}','AgentsController@destroy');
+	//tampil semua record
+	Route::get('/dash/agents', 'Admin\AgentsController@showAll');
+	//form create agent
+	Route::get('/dash/agentcreate','Admin\AgentsController@createByAdmin');
+	//store ke database
+	Route::post('/dash/agents','Admin\AgentsController@storeByAdmin');
+	//edit record
+	Route::get('/dash/agent/{id}/edit','Admin\AgentsController@editByAdmin');
+	//update record
+	Route::PUT('/dash/agent/{id}/update','Admin\AgentsController@updateByAdmin');
+	//hapus record
+	Route::get('/dash/agentdelete/{id}','Admin\AgentsController@destroy');
+	//approve
+	Route::get('/dash/agents/{id}/approve','Admin\AgentsController@approve');
+
 
 	//CRUD Customer
-	Route::get('/customer', 'CustomerController@showAll');
-	Route::get('/customer/{id}', 'CustomerController@show');
-	Route::get('/customercreate', 'CustomerController@createByAdmin');
-	Route::post('/customer', 'CustomerController@storeByAdmin');
-	Route::post('/customerupdate/{id}', 'CustomerController@edit');
-	Route::get('/customerdelete/{id}', 'CustomerController@destroy');
+	//tampil semua record
+	Route::get('/dash/customers', 'Admin\CustomersController@showAll');
+	//form create
+	Route::get('/dash/customercreate/', 'Admin\CustomersController@createByAdmin');
+	//store ke database
+	Route::post('/dash/customers', 'Admin\CustomersController@storeByAdmin');
+	//edit record
+	Route::get('/dash/customer/{id}/edit','Admin\CustomersController@editByAdmin');
+	//update record
+	Route::PUT('/dash/customer/{id}/update','Admin\CustomersController@updateByAdmin');
+	//hapus record
+	Route::get('/dash/customerdelete/{id}', 'Admin\CustomersController@destroy');
 
 	//CRUD Product
-	Route::get('/product', 'PaketController@showAll');
-	Route::get('/product/{id}', 'PaketController@show');
-	Route::get('/productcreate', 'PaketController@createByAdmin');
-	Route::post('/product', 'PaketController@storeByAdmin');
-	Route::post('/product/{id}', 'PaketController@edit');
-	Route::get('/productdelete/{id}', 'PaketController@destroy');
-
+	//tampil semua record
+	Route::get('dash/products', 'Admin\PaketController@showAll');
+	//form create
+	Route::get('dash/productcreate', 'Admin\PaketController@createByAdmin');
 });
 
-//Agent
-	Route::get('/dashboardagent', function(){
-		return view('agent.dashboardAgent');
-	});
+//CUSTOMER, LEVEL 1
+Route::group(['middleware' => 'customer'], function(){
+	//lengkapiDataSetelahVerif
+	Route::get('/{id}/customer/completing', 'Customer\LengkapiDataController@edit');
+	Route::PUT('/{id}/customer', 'Customer\LengkapiDataController@update');
 
-//Product
-	Route::get('/productagent', function(){
-		return view('agent.productAgent');
-	});
+	// Manage Profile
+	Route::get('/{id}/customer/showedit', 'Customer\EditProfilController@edit');
+	Route::PUT('/{id}/update', 'Customer\EditProfilController@update');
 
-//Booking
-	Route::get('/bookingagent', function(){
-		return view('agent.BookingAgent');
-	});
+	//Booking
+	Route::get('{query2}/booking/{id}/', 'BookingController@show');
+	Route::get('/detail/{id}', 'ListingController@detail');
+});
 
-//Create and register Agent
-Route::get('/registeragent', 'AgentsController@index');
-Route::post('/registeragentprocess', 'AgentsController@register');
-Route::get('/createagent/{id}', 'AgentsController@create');
-Route::post('/createagentprocess/{id}', 'AgentsController@store');
+//AGENT, LEVEL 2
+Route::group(['middleware' => 'agent'], function(){
+	//lengkapiDataSetelahVerif
+	Route::get('/{id}/agent/completing', 'Agent\LengkapiDataController@edit');
+	Route::PUT('/{id}/agent', 'Agent\LengkapiDataController@update');
 
-//Create and register Customer
-Route::get('/registercustomer', 'CustomerController@index');
-Route::post('/registercustomerprocess', 'CustomerController@register');
-Route::get('/createcustomer/{id}', 'CustomerController@create');
-Route::post('/createcustomerprocess/{id}', 'CustomerController@store');
+	// Manage Profile
+	// Route::get('/{id}/manageprofile', 'EditProfilController@edit');
+	// Route::PUT('/{id}/update', 'EditProfilController@update');
 
-//Create product
-Route::get('/createproduct', 'PaketController@index');
-Route::post('/createproduct/submit', 'PaketController@store');
+	//Agent
+	Route::get('/dashboardagent', 'Agent\DashboardController@index');
+
+	//Product
+	//tampil semua record
+	Route::get('/productagent', 'Agent\ProductController@showAll');
+	//form create
+	Route::get('/productcreate', 'Agent\ProductController@create');
+
+	//Booking
+	Route::get('/bookingagent', 'Agent\BookingController@index');
+});
 
 Route::get('/', 'WelcomeController@index');
-Route::get('/listing', 'WelcomeController@index');
-Route::post('/listing', 'WelcomeController@show');
+Route::post('/mail/{pakets}', 'BookingController@mail');
+Route::get('/listing', 'WelcomeController@show');
+Route::get('/detail/{id}', 'ListingController@detail');
+
+// Route::get('/booking/{id}/{query2}', 'BookingController@show');
+Route::post('/booking', 'BookingController@mail');
 
 Route::get('/verify/{ver_token}/{id}','Auth\RegisterController@verify_register');
 
 Auth::routes();
 
-Route::get('/home', 'HomeController@index');
-
-// Manage Profile
-Route::get('/booking', function () {
-    return view('bookingform');
-});
+// Booking Form
+// Route::get('/booking', function () {
+//     return view('bookingform');
+// });

@@ -4,10 +4,10 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    
+
     <!-- Page Title -->
     <title>NEKANEKA</title>
-    
+
     <!-- Bootstrap -->
     <link rel="stylesheet" href="{{ URL::asset('assets/css/bootstrap.min.css') }}" />
     <!-- mystyle -->
@@ -16,7 +16,7 @@
     <link rel="stylesheet" href="{{ URL::asset('assets/css/font-awesome.min.css') }}" />
     <!-- App Favicon -->
     <link rel="shortcut icon" href="{{ URL::asset('assets/images/favicon.ico') }}" />
-    
+
 
     <!-- App CSS -->
     <link rel="stylesheet" type="text/css" href="{{ URL::asset('assets/css/components.css') }}"/>
@@ -26,7 +26,7 @@
     <link rel="stylesheet" type="text/css" href="{{ URL::asset('assets/css/responsive.css') }}"/>
 
     <script src="assets/js/modernizr.min.js"></script>
-  
+
   <!-- Navigation Bar (Top) -->
     <nav class="navbar navbar-top navbar-inverse navbar-fixed-top">
       <div class="container">
@@ -40,7 +40,7 @@
               <li><a href="#">IDR</a></li>
             </ul>
           </li>
-      
+
           <!-- Language -->
           <li class="dropdown">
             <a class="dropdown-toggle" data-toggle="dropdown" href="#">English
@@ -53,28 +53,36 @@
         </ul>
 @if (Auth::guest())
         <ul class="nav navbar-nav navbar-right">
-          <li><a href="/login"><span class="glyphicon glyphicon-lock"></span> Sign In /</a></li>
+          <li><a href="/login"><span class="glyphicon glyphicon-lock"></span> Sign In </a></li>
           <li><a href="/register"><span class="glyphicon glyphicon-edit"></span> Register</a></li>
         </ul>
 
 @elseif(Auth::user())
 @if(Auth::user()->isAdmin(true))
         <ul class="nav navbar-nav navbar-right">
-          <li><a href="/dashboard">Dashboard</a></li>
-
-@endif        
+          <li><a href="/dash">Dashboard</a></li>
+@endif
+@if(Auth::user()->isCustomer(true))
+        <ul class="nav navbar-nav navbar-right">
+          <li><a href="/{{$query2}}/customer/showedit">Profile</a></li>
+@endif
+@if(Auth::user()->isAgent(true))
+        <ul class="nav navbar-nav navbar-right">
+          <li><a href="/dashboardagent">Dashboard</a></li>
+@endif
           <li>
             <a href="{{ url('/logout') }}"
-              onclick="event.preventDefault();
-                      document.getElementById('logout-form').submit();">
-              Logout
+                onclick="event.preventDefault();
+                         document.getElementById('logout-form').submit();">
+                Logout
             </a>
           </li>
           <form id="logout-form" action="{{ url('/logout') }}" method="POST">
             {{ csrf_field() }}
           </form>
-@endif
         </ul>
+@endif
+      </div>
     </nav>
 
   <!-- Navigation Bar Menu -->
@@ -86,19 +94,19 @@
           </li>
           <li class="navbar-padding">
             <a href="#">DESTINATIONS</a>
-          </li> 
+          </li>
           <li class="navbar-padding">
             <a href="#">TRAVEL STYLES</a>
-          </li> 
+          </li>
           <li class="navbar-padding">
             <a href="#">SPECIALS</a>
           </li>
           <li class="navbar-padding">
             <a href="#">BLOG</a>
-          </li> 
+          </li>
           <li>
             <a href="#">CONTACT</a>
-          </li> 
+          </li>
         </ul>
       </div>
     </nav>
@@ -117,19 +125,19 @@
               <tr>
                 <td><li><i class="image-contact fa fa-paper-plane fa-lg" aria-hidden="true"></i></li></td>
                 <td><p class="text-subfooter">19 Charlotte Street, Toronto, Ontario, M5V 2H5</p></td>
-              </tr>          
+              </tr>
               <tr>
                 <td><li><i class="image-contact fa fa-envelope-o fa-lg" aria-hidden="true"></i></li></td>
                 <td><p class="text-subfooter">travel@gadventures.com</p></td>
               </tr>
-          
+
               <tr>
                 <td><li><i class="image-contact contact-image glyphicon glyphicon-earphone "></i></li></td>
                 <td><p class="text-subfooter">+001 666 8989 55</p></td>
               </tr>
             </table>
           </div>
-          
+
           <!-- About Us -->
           <div class="col-md-2 col-sm-2 col-xs-2">
             <p class="title-subfooter"><b>ABOUT US</b></p><br /><br />
@@ -166,7 +174,7 @@
               </li>
             </ul>
           </div>
-          
+
           <!-- Destinations -->
           <div class="col-md-2 col-sm-2 col-xs-2">
             <p class="title-subfooter"><b>DESTINATIONS</b></p><br /><br />
@@ -221,7 +229,7 @@
               </li>
             </ul>
           </div>
-          
+
           <!-- Design Themes -->
           <div class="col-md-2 col-sm-2 col-xs-2">
             <p class="title-subfooter"><b>DESIGN THEMES</b></p><br /><br />
@@ -270,7 +278,7 @@
               </li>
             </ul>
           </div>
-          
+
           <!-- NEKANEKA Latest Tweets -->
           <div class="col-md-3 col-sm-3 col-xs-3">
             <p class="title-subfooter"><b>LATEST TWEET</b></p><br /><br />
@@ -285,7 +293,7 @@
               </tr>
             </table>
           </div>
-          
+
           <div class="row">
             <!-- Social Media Icon -->
             <div class="col-md-6 col-sm-6 col-xs-6">
@@ -330,7 +338,7 @@
         </div>
       </div>
     </div>
-    
+
     <nav class="navbar navbar-fixed-bottom navbar-light bg-faded">
       <div class="container">
         <div class="row">
@@ -363,11 +371,11 @@
       </div>
     </nav>
   </div>
-  
+
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
-  
+
   <script type="text/javascript" href="{{ URL::asset('assets/js/jquery.js') }}"></script>
-  
+
   <script>
     var resizefunc = [];
   </script>

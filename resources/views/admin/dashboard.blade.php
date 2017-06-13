@@ -31,27 +31,6 @@
                     </li>
                 </ul>
 
-                <!-- Right(Notification and Searchbox -->
-                <ul class="nav navbar-nav navbar-right">
-                    <li>
-                        <!-- Notification -->
-                        <div class="notification-box">
-                            <ul class="list-inline m-b-0">
-                                <li>
-                                    <a href="javascript:void(0);" class="right-bar-toggle">
-                                        <i class="zmdi zmdi-notifications-none"></i>
-                                    </a>
-                                    <div class="noti-dot">
-                                        <span class="dot"></span>
-                                        <span class="pulse"></span>
-                                    </div>
-                                </li>
-                            </ul>
-                        </div>
-                        <!-- End Notification bar -->
-                    </li>
-                </ul>
-
             </div><!-- end container -->
         </div><!-- end navbar -->
     </div>
@@ -72,10 +51,15 @@
                         </a>
                     </li>
                     <li>
-                        <a href="#" class="text-custom">
+                        <a href="{{ url('/logout') }}" class="text-custom"
+                        onclick="event.preventDefault();
+                                 document.getElementById('logout-form').submit();">
                             <i class="zmdi zmdi-power"></i>
                         </a>
                     </li>
+                    <form id="logout-form" action="{{ url('/logout') }}" method="POST">
+                    {{ csrf_field() }}
+                    </form>
                 </ul>
             </div>
             <!-- End User -->
@@ -86,19 +70,19 @@
                   <li class="text-muted menu-title">Navigation</li>
 
                     <li>
-                        <a href="dashboard" class="waves-effect active"><i class="zmdi zmdi-view-dashboard"></i> <span> Dashboard </span> </a>
+                        <a href="/dash" class="waves-effect active"><i class="zmdi zmdi-view-dashboard"></i> <span> Dashboard </span> </a>
                     </li>
 
                     <li>
-                        <a href="product" class="waves-effect"><i class="zmdi zmdi-cloud-box"></i> <span> Product </span> </a>
+                        <a href="/dash/products" class="waves-effect"><i class="zmdi zmdi-cloud-box"></i> <span> Products </span> </a>
                     </li>
 
                     <li>
-                        <a href="agent" class="waves-effect"><i class="zmdi zmdi-account-box"></i> <span> Agent </span> </a>
-                        
+                        <a href="/dash/agents" class="waves-effect"><i class="zmdi zmdi-account-box"></i> <span> Agents </span> </a>
+
                     <li>
-                        <a href="customer" class="waves-effect"><i class="zmdi zmdi-account-box-o"></i><span> Customer </span> </a>
-                        
+                        <a href="/dash/customers" class="waves-effect"><i class="zmdi zmdi-account-box-o"></i><span> Customers </span> </a>
+
                 </ul>
                 <div class="clearfix"></div>
             </div>
@@ -122,7 +106,7 @@
 
                     <div class="col-lg-4 col-md-6">
                     <div class="card-box">
-                            
+
                       <h4 class="header-title m-t-0 m-b-30">Total Product</h4>
 
                             <div class="widget-chart-1">
@@ -176,41 +160,6 @@
                 </div>
                 <!-- end row -->
 
-                <div class="row">
-                    <div class="col-lg-4">
-                    <div class="card-box">
-                      <h4 class="header-title m-t-0">Production By Category</h4>
-                            <div class="widget-chart text-center">
-                                <div id="morris-donut-example"style="height: 245px;"></div>
-                                <ul class="list-inline chart-detail-list m-b-0">
-                                    <li>
-                                        <h5 style="color: #ff8acc;"><i class="fa fa-circle m-r-5"></i>Series A</h5>
-                                    </li>
-                                    <li>
-                                        <h5 style="color: #5b69bc;"><i class="fa fa-circle m-r-5"></i>Series B</h5>
-                                    </li>
-                                </ul>
-                          </div>
-                    </div>
-                    </div><!-- end col -->
-
-                    <div class="col-lg-4">
-                        <div class="card-box">
-                            <h4 class="header-title m-t-0">Statistics</h4>
-                            <div id="morris-bar-example" style="height: 280px;"></div>
-                        </div>
-                    </div><!-- end col -->
-
-                    <div class="col-lg-4">
-                        <div class="card-box">
-                            <h4 class="header-title m-t-0">Total Revenue</h4>
-                            <div id="morris-line-example" style="height: 280px;"></div>
-                        </div>
-                    </div><!-- end col -->
-
-                </div>
-                <!-- end row -->
-
             </div> <!-- container -->
 
         </div> <!-- content -->
@@ -220,83 +169,6 @@
         </footer>
 
     </div>
-    <!-- ============================================================== -->
-    <!-- End Right content here -->
-    <!-- ============================================================== -->
-
-
-    <!-- Right Sidebar -->
-    <div class="side-bar right-bar">
-        <a href="javascript:void(0);" class="right-bar-toggle">
-            <i class="zmdi zmdi-close-circle-o"></i>
-        </a>
-        <h4 class="">Notifications</h4>
-        <div class="notification-list nicescroll">
-            <ul class="list-group list-no-border user-list">
-                <li class="list-group-item">
-                    <a href="#" class="user-list-item">
-                        <div class="avatar">
-                            <img src="assets/images/users/avatar-2.jpg" alt="">
-                        </div>
-                        <div class="user-desc">
-                            <span class="name">Michael Zenaty</span>
-                            <span class="desc">There are new settings available</span>
-                            <span class="time">2 hours ago</span>
-                        </div>
-                    </a>
-                </li>
-                <li class="list-group-item">
-                    <a href="#" class="user-list-item">
-                        <div class="icon bg-info">
-                            <i class="zmdi zmdi-account"></i>
-                        </div>
-                        <div class="user-desc">
-                            <span class="name">New Signup</span>
-                            <span class="desc">There are new settings available</span>
-                            <span class="time">5 hours ago</span>
-                        </div>
-                    </a>
-                </li>
-                <li class="list-group-item">
-                    <a href="#" class="user-list-item">
-                        <div class="icon bg-pink">
-                            <i class="zmdi zmdi-comment"></i>
-                        </div>
-                        <div class="user-desc">
-                            <span class="name">New Message received</span>
-                            <span class="desc">There are new settings available</span>
-                            <span class="time">1 day ago</span>
-                        </div>
-                    </a>
-                </li>
-                <li class="list-group-item active">
-                    <a href="#" class="user-list-item">
-                        <div class="avatar">
-                            <img src="assets/images/users/avatar-3.jpg" alt="">
-                        </div>
-                        <div class="user-desc">
-                            <span class="name">James Anderson</span>
-                            <span class="desc">There are new settings available</span>
-                            <span class="time">2 days ago</span>
-                        </div>
-                    </a>
-                </li>
-                <li class="list-group-item active">
-                    <a href="#" class="user-list-item">
-                        <div class="icon bg-warning">
-                            <i class="zmdi zmdi-settings"></i>
-                        </div>
-                        <div class="user-desc">
-                            <span class="name">Settings</span>
-                            <span class="desc">There are new settings available</span>
-                            <span class="time">1 day ago</span>
-                        </div>
-                    </a>
-                </li>
-            </ul>
-        </div>
-    </div>
-    <!-- /Right-bar -->
 
 </div>
 <!-- END wrapper -->

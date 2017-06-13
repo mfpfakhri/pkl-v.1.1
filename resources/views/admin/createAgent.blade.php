@@ -31,27 +31,6 @@
                     </li>
                 </ul>
 
-                <!-- Right(Notification and Searchbox -->
-                <ul class="nav navbar-nav navbar-right">
-                    <li>
-                        <!-- Notification -->
-                        <div class="notification-box">
-                            <ul class="list-inline m-b-0">
-                                <li>
-                                    <a href="javascript:void(0);" class="right-bar-toggle">
-                                        <i class="zmdi zmdi-notifications-none"></i>
-                                    </a>
-                                    <div class="noti-dot">
-                                        <span class="dot"></span>
-                                        <span class="pulse"></span>
-                                    </div>
-                                </li>
-                            </ul>
-                        </div>
-                        <!-- End Notification bar -->
-                    </li>
-                </ul>
-
             </div><!-- end container -->
         </div><!-- end navbar -->
     </div>
@@ -72,10 +51,15 @@
                         </a>
                     </li>
                     <li>
-                        <a href="#" class="text-custom">
+                        <a href="{{ url('/logout') }}" class="text-custom"
+                        onclick="event.preventDefault();
+                                 document.getElementById('logout-form').submit();">
                             <i class="zmdi zmdi-power"></i>
                         </a>
                     </li>
+                    <form id="logout-form" action="{{ url('/logout') }}" method="POST">
+                    {{ csrf_field() }}
+                    </form>
                 </ul>
             </div>
             <!-- End User -->
@@ -86,19 +70,19 @@
                   <li class="text-muted menu-title">Navigation</li>
 
                     <li>
-                        <a href="dashboard" class="waves-effect"><i class="zmdi zmdi-view-dashboard"></i> <span> Dashboard </span> </a>
+                        <a href="/dash" class="waves-effect"><i class="zmdi zmdi-view-dashboard"></i> <span> Dashboard </span> </a>
                     </li>
 
                     <li>
-                        <a href="product" class="waves-effect"><i class="zmdi zmdi-cloud-box"></i> <span> Product </span> </a>
+                        <a href="/dash/products" class="waves-effect"><i class="zmdi zmdi-cloud-box"></i> <span> Products </span> </a>
                     </li>
 
                     <li>
-                        <a href="agent" class="waves-effect active"><i class="zmdi zmdi-account-box"></i> <span> Agent </span> </a>
-                        
+                        <a href="/dash/agents" class="waves-effect active"><i class="zmdi zmdi-account-box"></i> <span> Agents </span> </a>
+
                     <li>
-                        <a href="customer" class="waves-effect"><i class="zmdi zmdi-account-box-o"></i><span> Customer </span> </a>
-                        
+                        <a href="/dash/customers" class="waves-effect"><i class="zmdi zmdi-account-box-o"></i><span> Customers </span> </a>
+
                 </ul>
                 <div class="clearfix"></div>
             </div>
@@ -124,8 +108,8 @@
                                 <div class="row">
                                     <div class="col-sm-6">
                                         <div class="m-b-30">
-                                            <a href="agentcreate" class="btn btn-primary waves-effect waves-light">Add Agent <i class="fa fa-plus"></i></a>
-                                            <a href="agent" class="btn btn-primary waves-effect waves-light">List Agent <i class="fa fa-list"></i></a>
+                                            <a href="/dash/agentcreate" class="btn btn-primary waves-effect waves-light">Add Agent <i class="fa fa-plus"></i></a>
+                                            <a href="/dash/agents" class="btn btn-primary waves-effect waves-light">List Agent <i class="fa fa-list"></i></a>
                                         </div>
                                     </div>
                                 </div>
@@ -135,9 +119,9 @@
                                 <h5 class="text-muted m-t-0 font-600">Add Agent</h5><br/>
                             </div>
 								<div class="col-sm-offset-2 col-sm-7">
-									<form class="form-horizontal" role="form" method="POST" 
-                                    action="{{ URL('/agent')}}" accept-charset="UTF-8" enctype="multipart/form-data">
-                                    {{ csrf_field() }}
+									<form class="form-horizontal" role="form" method="post"
+                                    action="{{ URL('dash/agents')}}" accept-charset="UTF-8" enctype="multipart/form-data">
+                                    <!-- {{ csrf_field() }} -->
                                         <div class="form-group">
                                             <label class="col-md-2 control-label">Username</label>
                                                 <div class="col-md-10">
@@ -171,29 +155,29 @@
 										<div class="form-group">
 											<label class="col-sm-2 control-label">Provinsi</label>
 												<div class="col-md-10">
-													<select class="form-control" name="province">
-														<option value="P0" selected disabled>Provinsi</option>
+		                                            <select class="form-control" name="province">
+                                                        <option value="P0" selected disabled>Provinsi</option>
                                                         @foreach($query as $result)
                                                         <option value="{{$result->lokasi_nama}}">
                                                         <?php
                                                             echo $result->lokasi_nama
                                                         ?></option>
                                                         @endforeach
-	                                                </select>
+                                                    </select>
 	                                            </div>
 										</div>
 										<div class="form-group">
 											<label class="col-sm-2 control-label">Kabupaten</label>
 												<div class="col-md-10">
 													<select class="form-control" name="city">
-														<option value="K0" selected disabled>Kabupaten</option>
+                                                        <option value="K0" selected disabled>Kabupaten</option>
                                                         @foreach($query1 as $result)
                                                         <option value="{{$result->lokasi_nama}}">
                                                         <?php
                                                             echo $result->lokasi_nama
                                                         ?></option>
                                                         @endforeach
-	                                                </select>
+                                                    </select>
 	                                            </div>
 										</div>
 										<div class="form-group">
@@ -211,19 +195,13 @@
                                                         Female
                                                     </label>
                                                 </div>
-                                                <div class="radio radio-custom">
-                                                    <input type="radio" name="gender" id="other" value="other">
-                                                    <label for="other">
-                                                        Other
-                                                    </label>
-                                                </div>
                                             </div>
                                         </div>
 			                            <div class="form-group">
 											<label class="control-label col-sm-2">Tanggal Lahir</label>
 												<div class="col-sm-8">
 													<div class="input-group">
-														<input type="text" name="tanggallahir" class="form-control" placeholder="yyyy/mm/dd" id="datepicker" required>
+														<input type="text" name="tanggallahir" class="form-control" placeholder="mm/dd/yyyy" id="datepicker" required>
 															<span class="input-group-addon bg-primary b-0 text-white"><i class="ti-calendar"></i></span>
 														</div><!-- input-group -->
 												</div>
@@ -240,25 +218,26 @@
 										</div>
 										<div class="container">
 											<div class="row">
-												
+												<!-- <div class="form-group"> -->
 												<label class="col-sm-2 control-label">Foto Diri</label>
 													<div class="col-sm-10">
 							                            <div class="card-box">
-							                                    <input type="file" name="foto" class="dropify" data-height="200" />
+							                                    <input type="file" name="fotodiri" class="dropify" />
 							                            </div>
 													</div>
-												
+												<!-- </div> -->
 											</div>
 										</div>
 										<div class="container">
 											<div class="row">
+												<!-- <div class="form-group"> -->
 												<label class="col-sm-2 control-label">Foto KTP</label>
 													<div class="col-sm-10">
 							                            <div class="card-box">
 							                                    <input type="file" name="fotoktp" class="dropify" />
 							                            </div>
 													</div>
-												
+												<!-- </div> -->
 											</div>
 										</div>
 										<div class="form-group text-center">
@@ -285,85 +264,7 @@
         </footer>
 
     </div>
-    <!-- ============================================================== -->
-    <!-- End Right content here -->
-    <!-- ============================================================== -->
-
-
-    <!-- Right Sidebar -->
-    <div class="side-bar right-bar">
-        <a href="javascript:void(0);" class="right-bar-toggle">
-            <i class="zmdi zmdi-close-circle-o"></i>
-        </a>
-        <h4 class="">Notifications</h4>
-        <div class="notification-list nicescroll">
-            <ul class="list-group list-no-border user-list">
-                <li class="list-group-item">
-                    <a href="#" class="user-list-item">
-                        <div class="avatar">
-                            <img src="assets/images/users/avatar-2.jpg" alt="">
-                        </div>
-                        <div class="user-desc">
-                            <span class="name">Michael Zenaty</span>
-                            <span class="desc">There are new settings available</span>
-                            <span class="time">2 hours ago</span>
-                        </div>
-                    </a>
-                </li>
-                <li class="list-group-item">
-                    <a href="#" class="user-list-item">
-                        <div class="icon bg-info">
-                            <i class="zmdi zmdi-account"></i>
-                        </div>
-                        <div class="user-desc">
-                            <span class="name">New Signup</span>
-                            <span class="desc">There are new settings available</span>
-                            <span class="time">5 hours ago</span>
-                        </div>
-                    </a>
-                </li>
-                <li class="list-group-item">
-                    <a href="#" class="user-list-item">
-                        <div class="icon bg-pink">
-                            <i class="zmdi zmdi-comment"></i>
-                        </div>
-                        <div class="user-desc">
-                            <span class="name">New Message received</span>
-                            <span class="desc">There are new settings available</span>
-                            <span class="time">1 day ago</span>
-                        </div>
-                    </a>
-                </li>
-                <li class="list-group-item active">
-                    <a href="#" class="user-list-item">
-                        <div class="avatar">
-                            <img src="assets/images/users/avatar-3.jpg" alt="">
-                        </div>
-                        <div class="user-desc">
-                            <span class="name">James Anderson</span>
-                            <span class="desc">There are new settings available</span>
-                            <span class="time">2 days ago</span>
-                        </div>
-                    </a>
-                </li>
-                <li class="list-group-item active">
-                    <a href="#" class="user-list-item">
-                        <div class="icon bg-warning">
-                            <i class="zmdi zmdi-settings"></i>
-                        </div>
-                        <div class="user-desc">
-                            <span class="name">Settings</span>
-                            <span class="desc">There are new settings available</span>
-                            <span class="time">1 day ago</span>
-                        </div>
-                    </a>
-                </li>
-            </ul>
-        </div>
-    </div>
-    <!-- /Right-bar -->
-
 </div>
 <!-- END wrapper -->
-		
+
 @stop
