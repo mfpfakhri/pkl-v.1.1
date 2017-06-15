@@ -281,6 +281,9 @@
             jQuery('#datepicker').datepicker({
                 format: "yyyy-mm-dd"
             });
+            jQuery('#datepicker1').datepicker({
+                format: "yyyy-mm-dd"
+            });
             jQuery('#datepicker-autoclose').datepicker({
                 autoclose: true,
                 todayHighlight: true
@@ -481,7 +484,7 @@
             function executedeleteagent(a){
                 $(a).attr('disabled','true');
                 $.ajax({
-                  url: "/dash/agentdelete/"+idsementaradelete
+                  url: "agentdelete/"+idsementaradelete
                 }).done(function(data, status) {
                     if (data=='success') {
                         $('#panel-modal').modal('hide');

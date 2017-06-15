@@ -53,14 +53,14 @@ class CustomersController extends BaseController {
       $customer = new Customer;
       $customer->user_id = $user->id;
       $customer->firstname = $request->fname;
-      $customer->lastname = $request->lname;      
+      $customer->lastname = $request->lname;
       $customer->alamat = $request->address;
       $customer->phone = $request->phone;
       $customer->gender = $request->gender;
       $customer->tanggallahir = $request->tanggallahir;
-      $customer->nationality = $request->nationality;      
+      $customer->nationality = $request->nationality;
 
-      //simpan gambar 
+      //simpan gambar
       $fileFoto = $request->username. '_foto.png';
       $request->file('foto')->storeAs("public\FotoCustomer",$fileFoto);
       $customer->foto = $fileFoto;
@@ -92,11 +92,11 @@ class CustomersController extends BaseController {
     $user_id = $user->id;
     $customer = Customer::where('user_id', $user_id)->first();
     $customer->firstname = $request->firstname;
-    $customer->lastname = $request->lastname;    
+    $customer->lastname = $request->lastname;
     $customer->alamat = $request->alamat;
     $customer->phone = $request->phone;
     $customer->tanggallahir = $request->tanggallahir;
-    $customer->nationality = $request->nationality;    
+    $customer->nationality = $request->nationality;
     $user->save();
     $customer->save();
 
@@ -106,150 +106,12 @@ class CustomersController extends BaseController {
   public function destroy($id)
   {
    $user = User::find($id);
-   $user_id = $user->id;   
+   $user_id = $user->id;
    $customer = Customer::where('user_id', $user_id)->first();
    file::delete(public_path('storage/FotoCustomer/'.$customer->foto));
    $customer->delete();
    return redirect('/dash/customers')->with('warning', 'User '.$user->username.' berhasil dihapus!');
   }
-
-
-/////BATAS
-
-  public function index()
-  {
-    return view('customer_register');
-  }
-
-  public function register(Request $request)
-  {
-    $customer = new Customer();
-    $customer->username = $request->username;
-    $customer->password = sha1($request->password);
-    $customer->save();
-
-    return redirect('/createcustomer/'.$customers->id);
-  }
-
-  public function create($id)
-  {
-    $customer = new Customer();
-    $data['id'] = $id;
-    $data['query'] = $customers::where('id', $id)->get();
-    return view('customer_create', $data);
-  }
-
-  /**
-   * Store a newly created resource in storage.
-   *
-   * @return Response
-   */
   
-
-
-  public function store($id, Request $request)
-  {
-    $customer = new Customer();
-    $data = array(
-        'email'=>$request->email,
-        'firstname'=>$request->fname,
-        'lastname'=>$request->lname,
-        'alamat'=>$request->alamat,
-        'phone'=>$request->phone,
-        'gender'=>$request->gender,
-        'tanggallahir'=>$request->tanggallahir,
-        'nationality'=>$request->nationality,
-        'foto'=>$request->foto
-      );
-    $update = $customers::where('id', $id)->update($data);
-    dd('submit');
-  }
-
-  /**
-   * Display the specified resource.
-   *
-   * @param  int  $id
-   * @return Response
-   */
-
-  public function addNew()
-  {
-    return view('customer_add');
-  }
-
-  public function add($id, Request $request)
-  {
-    $customers = new Customer();
-    $data = array(
-      'username' => $request->username,
-      'password' => sha1($request->password),
-      'email'=>$request->email,
-      'firstname'=>$request->fname,
-      'lastname'=>$request->lname,
-      'alamat'=>$request->alamat,
-      'phone'=>$request->phone,
-      'gender'=>$request->gender,
-      'tanggallahir'=>$request->tanggallahir,
-      'nationality'=>$request->nationality,
-      'foto'=>$request->foto
-    );
-    $customers->save();
-    dd('submit');
-  }
-
-
-
-  /**
-   * Show the form for editing the specified resource.
-   *
-   * @param  int  $id
-   * @return Response
-   */
-
-public function show($id)
-  {
-    if(isset($id)) {
-        $request =Customer::find($id);
-        $data = array(
-        'username'=>$request->username,
-        'firstname'=>$request->firstname,
-        'lastname'=>$request->lastname,
-        'email'=>$request->email,
-        'alamat'=>$request->alamat,
-        'phone'=>$request->phone,
-        'gender'=>$request->gender,
-        'tanggallahir'=>$request->tanggallahir,
-        'nationality'=>$request->nationality,
-        'foto'=>$request->foto,
-      );
-    exit(json_encode($data));
-      }
-  }
-
-  public function edit($id, Request $request)
-  {
-    $customer = new Customer();
-    $data = array(
-        'username'=>$request->username,
-        'firstname'=>$request->firstname,
-        'lastname'=>$request->lastname,
-        'email'=>$request->email,
-        'alamat'=>$request->alamat,
-        'phone'=>$request->phone,
-        'gender'=>$request->gender,
-        'nationality'=>$request->nationality,
-        'tanggallahir'=>$request->tanggallahir,
-        // 'foto'=>$request->foto,
-      );
-    $update = $customer::where('id', $id)->update($data);
-    echo "success";
-  }
-
-  /**
-   * Update the specified resource in storage.
-   *
-   * @param  int  $id
-   * @return Response
-   */
-
 }
+/////BATAS

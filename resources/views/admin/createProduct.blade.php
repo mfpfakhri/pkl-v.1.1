@@ -79,10 +79,10 @@
 
                     <li>
                         <a href="/dash/agents" class="waves-effect"><i class="zmdi zmdi-account-box"></i> <span> Agent </span> </a>
-                        
+
                     <li>
                         <a href="/dash/customers" class="waves-effect"><i class="zmdi zmdi-account-box-o"></i><span> Customer </span> </a>
-                        
+
                 </ul>
                 <div class="clearfix"></div>
             </div>
@@ -117,11 +117,11 @@
                                       <a href="index.html" class="logo"><span>NEKANEKA</span></span></a>
                                       <h5 class="text-muted m-t-0 font-600">Product</h5><br/>
                                     </div>
-                                    <div class="col-sm-offset-2 col-sm-7">                    
-                                    <form class="form-horizontal" role="form" method="POST" action="{{ URL('/product') }}" accept-charset="UTF-8" enctype="multipart/form-data">
+                                    <div class="col-sm-offset-2 col-sm-7">
+                                    <form class="form-horizontal" role="form" method="POST" action="{{ URL('dash/products') }}" accept-charset="UTF-8" enctype="multipart/form-data">
                                         {{ csrf_field() }}
                                     <div class="form-group">
-                                      <label class="col-md-2 control-label">Nomor ID</label>
+                                      <label class="col-md-2 control-label">Nama Agent</label>
                                         <div class="col-md-10">
                                         <select class="form-control" name="idagent">
                                             <option value="P0" selected disabled>Agent</option>
@@ -145,7 +145,7 @@
                                     <div class="form-group">
                                       <label class="col-sm-2 control-label">Kategori</label>
                                         <div class="col-md-10">
-                                          <select class="form-control" name="kategori" id="kategori">
+                                          <select class="form-control" name="adv_id" id="adv_id">
                                             <option value="A0" selected disabled>Select Adventure</option>
                                                 @foreach($query as $result)
                                                 <option value="{{$result->id_adv}}">
@@ -158,30 +158,24 @@
                                     </div>
 
                                     <div class="form-group">
-                                      <label class="control-label col-sm-2">Date Range</label>
+                                      <label class="control-label col-sm-2">Date 1</label>
                                         <div class="col-sm-10">
-                                          <div class="input-daterange input-group" id="date-range">
-                                            <input type="text" name="start_date" class="form-control" name="start" />
-                                              <span class="input-group-addon bg-primary b-0 text-white">to</span>
-                                                <input type="text" name="end_date" class="form-control" name="end" />
+                                          <div class="input-group">
+                                            <input type="text" name="start_date" class="form-control" id="datepicker" />
+                                              <span class="input-group-addon bg-primary b-0 text-white"><i class="ti-calendar"></i></span>
                                           </div>
                                         </div>
                                       </div>
 
                                       <div class="form-group">
-                                      <label class="col-sm-2 control-label">Provinsi</label>
-                                        <div class="col-md-10">
-                                          <select class="form-control" name="province">
-                                            <option value="P0" selected disabled>Provinsi</option>
-                                            @foreach($query3 as $result)
-                                                <option value="{{$result->lokasi_ID}}">
-                                                <?php
-                                                    echo $result->lokasi_nama
-                                                ?></option>
-                                            @endforeach
-                                            </select>
+                                        <label class="control-label col-sm-2">Date 2</label>
+                                          <div class="col-sm-10">
+                                            <div class="input-group">
+                                              <input type="text" name="end_date" class="form-control" id="datepicker1" />
+                                                <span class="input-group-addon bg-primary b-0 text-white"><i class="ti-calendar"></i></span>
+                                            </div>
+                                          </div>
                                         </div>
-                                    </div>
 
                                     <div class="form-group">
                                       <label class="col-sm-2 control-label">Kota</label>
@@ -189,7 +183,7 @@
                                           <select class="form-control" name="city">
                                                 <option value="K0" selected disabled>Kabupaten</option>
                                                 @foreach($query4 as $result)
-                                                <option value="{{$result->lokasi_nama}}">
+                                                <option value="{{$result->lokasi_ID}}">
                                                 <?php
                                                     echo $result->lokasi_nama
                                                 ?></option>
@@ -234,16 +228,14 @@
                                     </div>
 
                                     <div class="container">
-                                      <div class="row">
-                                        
-                                        <label class="col-sm-2 control-label">Foto Paket</label>
-                                          <div class="col-sm-10">
-                                              <div class="card-box">
-                                                <input type="file" name="product" class="dropify" data-height="200" />
-                                              </div>
-                                          </div>
-                                        
-                                      </div>
+                                        <div class="row">
+                                            <label class="col-sm-2 control-label">Foto</label>
+                                                <div class="col-sm-10">
+                                                    <div class="card-box">
+                                                            <input type="file" name="product" class="dropify" data-height="200" />
+                                                    </div>
+                                                </div>
+                                        </div>
                                     </div>
 
                                     <div class="form-group">
@@ -259,7 +251,7 @@
                                         <textarea name="description" class="form-control" rows="5"></textarea>
                                       </div>
                                     </div>
-                                    </div>                    
+                                    </div>
                                     <div class="form-group text-center">
                                       <div class="col-xs-offset-3 col-sm-offset-3 col-md-offset-3 col-xs-6 col-sm-6 col-md-6 tombol-submit">
                                         <button class="btn btn-custom btn-bordred btn-block waves-effect waves-light" type="submit">

@@ -160,6 +160,9 @@
                 </div>
                 <!-- end row -->
 
+                </div>
+                <!-- end row -->
+
             </div> <!-- container -->
 
         </div> <!-- content -->

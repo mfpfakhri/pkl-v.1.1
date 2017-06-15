@@ -1,6 +1,6 @@
 @extends('layouts.side')
 
-@section('title', 'Product')
+@section('title', 'Agent')
 
 @section('content')
 
@@ -27,7 +27,7 @@
                         </button>
                     </li>
                     <li>
-                        <h4 class="page-title">Product</h4>
+                        <h4 class="page-title">Agents</h4>
                     </li>
                 </ul>
 
@@ -74,14 +74,14 @@
                     </li>
 
                     <li>
-                        <a href="/dash/products" class="waves-effect active"><i class="zmdi zmdi-cloud-box"></i> <span> Product </span> </a>
+                        <a href="/dash/products" class="waves-effect"><i class="zmdi zmdi-cloud-box"></i> <span> Products </span> </a>
                     </li>
 
                     <li>
-                        <a href="/dash/agents" class="waves-effect"><i class="zmdi zmdi-account-box"></i> <span> Agent </span> </a>
+                        <a href="/dash/agents" class="waves-effect active"><i class="zmdi zmdi-account-box"></i> <span> Agents </span> </a>
 
                     <li>
-                        <a href="/dash/customers" class="waves-effect"><i class="zmdi zmdi-account-box-o"></i><span> Customer </span> </a>
+                        <a href="/dash/customers" class="waves-effect"><i class="zmdi zmdi-account-box-o"></i><span> Customers </span> </a>
 
                 </ul>
                 <div class="clearfix"></div>
@@ -108,56 +108,31 @@
                                 <div class="row">
                                     <div class="col-sm-6">
                                         <div class="m-b-30">
-                                            <a href="/dash/productcreate" class="btn btn-primary waves-effect waves-light">Add Product <i class="fa fa-plus"></i></a>
-                                            <a href="/dash/products" class="btn btn-primary waves-effect waves-light">List Product <i class="fa fa-list"></i></a>
+                                            <a href="/dash/agentcreate" class="btn btn-primary waves-effect waves-light">Add Agent <i class="fa fa-plus"></i></a>
+                                            <a href="/dash/agents" class="btn btn-primary waves-effect waves-light">List Agent <i class="fa fa-list"></i></a>
                                         </div>
                                         <div class="m-b-30">
-                                            <h2>Kategori</h2>
-                                                <select class="form-control">
-                                                    <option value="" selected disabled>All Adventure</option>
-                                                        @foreach($query as $result)
-                                                        <option value="{{$result->id_adv}}">
-                                                        <?php
-                                                            echo $result->nama_adv
-                                                        ?></option>
-                                                        @endforeach
-                                                </select>
                                         </div>
+                                        <form action="/dash/agents/{id}/reject" method="POST">
+                                            <div class="row">
+                                                <label>Alasan Reject</label>
+                                                <textarea class="form-control" name="alasan" rows="5"></textarea>
+                                            </div>
+                                        <div class="row">
+                                            <div class="form-group text-center">
+                                            <div class="col-xs-12">
+                                                {{ csrf_field() }}
+                                                <button class="btn btn-custom btn-bordred btn-block waves-effect waves-light" type="submit">
+                                                    Submit
+                                                </button>
+                                            </div>
+                                            </div>
+                                        </div>
+                                        </form>
                                     </div>
                                 </div>
-
-                                <div class="">
-                                    <table class="table table-striped" id="datatable-editable">
-                                        <thead>
-                                            <tr>
-                                                <th>ID</th>
-                                                <th>Agent</th>
-                                                <th>Judul</th>
-                                                <th>Harga</th>
-                                                <th>Jadwal</th>
-                                                <th>Peserta</th>
-                                                <th>Action</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            <tr class="gradeX">
-                                            @foreach($product as $product)
-                                                <td>{{$product->id }}</td>
-                                                <td>{{$product->agents_id }}</td>
-                                                <td>{{$product->judul }}</td>
-                                                <td>Rp. {{$product->price }} /pax</td>
-                                                <td>{{$product->start_date }} s/d {{$product->end_date }}</td>
-                                                <td>{{$product->maxpeople }} orang</td>
-                                                <td class="actions">
-                                                    <a onclick="" href="/dash/product/{{$product->id}}/edit" class="on-default edit-row"><i class="fa fa-pencil"></i></a>
-                                                    <a onclick="" href="#" class="on-default remove-row"><i class="fa fa-trash-o"></i></a>
-                                                </td>
-                                            </tr>
-                                            @endforeach
-                                        </tbody>
-                                    </table>
-                                </div>
-                            </div><!-- end: panel body -->
+                            </div>
+                            <!-- end: panel body -->
 
                         </div> <!-- end panel -->
                     </div> <!-- end col-->

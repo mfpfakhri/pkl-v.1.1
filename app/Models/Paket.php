@@ -13,6 +13,9 @@ class Paket extends Model
     public function adventures(){
     	return @$this->belongsTo('App\Models\Adventures','adv_id','id_adv');
     }
+    public function paket_foto(){
+    	return @$this->hasMany('App\Models\PaketFoto','id','paket_foto_id');
+    }
     public function inf_lokasi(){
     	return@$this->belongsTo('App\Models\Inf_lokasi','id_lokasi','lokasi_ID');
     }

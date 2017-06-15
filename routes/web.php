@@ -13,6 +13,7 @@
 
 //ADMIN, LEVEL 0
 Route::group(['middleware' => 'admin'], function(){
+
 	//Dashboard
 	Route::get('/dash', 'Admin\DashboardController@index');
 
@@ -31,6 +32,8 @@ Route::group(['middleware' => 'admin'], function(){
 	Route::get('/dash/agentdelete/{id}','Admin\AgentsController@destroy');
 	//approve
 	Route::get('/dash/agents/{id}/approve','Admin\AgentsController@approve');
+	//approve
+	Route::get('/dash/agents/{id}/reject','Admin\AgentsController@reject');
 
 
 	//CRUD Customer
@@ -52,6 +55,14 @@ Route::group(['middleware' => 'admin'], function(){
 	Route::get('dash/products', 'Admin\PaketController@showAll');
 	//form create
 	Route::get('dash/productcreate', 'Admin\PaketController@createByAdmin');
+	//store ke db
+	Route::post('dash/products', 'Admin\PaketController@storeByAdmin');
+	//edit record
+	Route::get('/dash/product/{id}/edit','Admin\PaketController@editByAdmin');
+	//update record
+	Route::PUT('/dash/product/{id}/update','Admin\PaketController@updateByAdmin');
+	//hapus record
+	Route::get('/dash/productdelete/{id}', 'Admin\PaketController@destroy');
 });
 
 //CUSTOMER, LEVEL 1
@@ -65,8 +76,11 @@ Route::group(['middleware' => 'customer'], function(){
 	Route::PUT('/{id}/update', 'Customer\EditProfilController@update');
 
 	//Booking
-	Route::get('{query2}/booking/{id}/', 'BookingController@show');
-	Route::get('/detail/{id}', 'ListingController@detail');
+	Route::get('/booking/{id}/{query2}', 'BookingController@create');
+	//coba
+	Route::post('/createbooking/{idpaket}/{iduser}', 'BookingController@store');
+	//akhircoba
+
 });
 
 //AGENT, LEVEL 2
@@ -74,10 +88,6 @@ Route::group(['middleware' => 'agent'], function(){
 	//lengkapiDataSetelahVerif
 	Route::get('/{id}/agent/completing', 'Agent\LengkapiDataController@edit');
 	Route::PUT('/{id}/agent', 'Agent\LengkapiDataController@update');
-
-	// Manage Profile
-	// Route::get('/{id}/manageprofile', 'EditProfilController@edit');
-	// Route::PUT('/{id}/update', 'EditProfilController@update');
 
 	//Agent
 	Route::get('/dashboardagent', 'Agent\DashboardController@index');
@@ -96,15 +106,10 @@ Route::get('/', 'WelcomeController@index');
 Route::post('/mail/{pakets}', 'BookingController@mail');
 Route::get('/listing', 'WelcomeController@show');
 Route::get('/detail/{id}', 'ListingController@detail');
-
-// Route::get('/booking/{id}/{query2}', 'BookingController@show');
-Route::post('/booking', 'BookingController@mail');
+// Route::get('/booking/{id}/NULL', 'BookingController@create');
+// Route::get('/booking/{id}/{query2}', 'BookingController@create');
+// Route::post('/booking', 'BookingController@mail');
 
 Route::get('/verify/{ver_token}/{id}','Auth\RegisterController@verify_register');
 
 Auth::routes();
-
-// Booking Form
-// Route::get('/booking', function () {
-//     return view('bookingform');
-// });

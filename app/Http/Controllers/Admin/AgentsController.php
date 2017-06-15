@@ -20,6 +20,7 @@ use App\Http\Requests;
 use Storage;
 use File;
 
+
 class AgentsController extends BaseController {
 
   public function __construct(){
@@ -32,7 +33,7 @@ class AgentsController extends BaseController {
     // $user_id = DB::table('users')->where('level', 2)->pluck('id');
     $agents = DB::table('agents')->leftJoin('users', 'agents.user_id', '=', 'users.id')->where('level', 2)->get();
     //hasilnya ID user
-    //$agents = DB::table('users')->leftJoin('agents', 'users.id','=','agents.user_id')->where('level', 2)->get();
+    // $approve = $agents;
     //hasilnya primary ID agent
     return view('admin.agents',[
       'agents'=>$agents,
@@ -134,94 +135,27 @@ class AgentsController extends BaseController {
   return redirect('/dash/agents');
   }
 
+  public function showreject($id)
+  {
+    $user = User::find($id);
+    return view('admin.rejectagent');
+  }
+
+    public function reject($id)
+  {
+    $user = User::findOrFail($id);
+    $data = $request->alasan;
+    Mail::to($user->email)->send(new agentApproval($user, $data));
+  }
+
   public function destroy($id)
   {
    $user = User::find($id);
-   $user_id = $user->id;   
+   $user_id = $user->id;
    $agent = Agent::where('user_id', $user_id)->first();
    file::delete(public_path('storage/diri/'.$agent->foto));
    file::delete(public_path('storage/KTP/'.$agent->multidokumen));
    $agent->delete();
    return redirect('/dash/agents')->with('warning', 'User '.$user->username.' berhasil dihapus!');
   }
-
-
-///////BATAS
-
-
-  public function index()
-  {
-    return view('agent_register');
-  }
-
-  public function register(Request $request)
-  {
-    $agents = new Agent();
-    $agents->username = $request->username;
-    $agents->password = sha1($request->password);
-    $agents->save();
-
-    return redirect('/createagent/'.$agents->id);
-  }
-
-  public function create($id)
-  {
-    $agents = new Agent();
-    $data['id'] = $id;
-    $data['query'] = $agents::where('id', $id)->get();
-    return view('agents_create', $data);
-  }
-
-  public function store($id, Request $request)
-  {
-    $agents = new Agents();
-    $data = array(
-        'fullname'=>$request->fullname,
-        'email'=>$request->email,
-        'address'=>$request->alamat,
-        'province'=>$request->provinsi,
-        'city'=>$request->kabupaten,
-        'gender'=>$request->gender,
-        'tanggallahir'=>$request->tanggallahir,
-        'bahasa'=>$request->bahasa,
-        'foto'=>$request->fotodiri,
-        'multidokumen'=>$request->fotoktp
-      );
-    // $file=$request->file('fotodiri');
-    // $filename=$request->username.".png";
-    // $request->file('fotodiri')->storeAs('public/FotoDiri',
-    $update = $agents::where('id', $id)->update($data);
-    dd('submit');
-  }
-
-
-  public function show($id)
-  {
-    if(isset($id)) {
-        $request =Agent::find($id);
-        $data = array(
-        'fullname'=>$request->fullname,
-        'username'=>$request->username,
-        'email'=>$request->email,
-        'address'=>$request->address,
-        'province'=>$request->province,
-        'city'=>$request->city,
-        'gender'=>$request->gender,
-        'tanggallahir'=>$request->tanggallahir,
-        'bahasa'=>$request->bahasa,
-        'foto'=>$request->fotodiri,
-        'multidokumen'=>$request->fotoktp,
-      );
-    exit(json_encode($data));
-      }
-  }
-
-  /**
-   * Remove the specified resource from storage.
-   *
-   * @param  int  $id
-   * @return Response
-   */
-  
-
 }

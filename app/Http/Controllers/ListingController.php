@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
 use App\Models\Paket;
+use App\User;
 
 class ListingController extends Controller
 {
@@ -87,16 +88,20 @@ class ListingController extends Controller
         //
     }
 
-    public function detail($id)
+    public function detail(Request $request, $id)
     {
         $paket_id=$id;
         $pakets = Paket::where('id','=',$paket_id)->get();
+        // dd($pakets);
         if(!Auth::user()){
-          $query2 = NULL;
-          // dd($id,$pakets,$query2);
-          redirect ('/login',['id'=>$id,'pakets'=>$pakets, 'query2'=>$query2]);
+          $query2 = "NULL";
+          // dd($pakets, $query2);
+          // return redirect('/login')->with('warning', 'Silahkan login terlebih dahulu');
+          $request->session()->flash('warningdetail', 'Silahkan login terlebih dahulu untuk memesan paket');
+          return view('/detail',['id'=>$id, 'pakets'=>$pakets,'query2'=>$query2]);
         }
         $query2 = Auth::user()->id;
-        return view('customer.detail',['id'=>$id,'pakets'=>$pakets, 'query2'=>$query2]);
+        // dd($id,$pakets,$query2);
+        return view('customer.detail',['id'=>$id, 'pakets'=>$pakets,'query2'=>$query2]);
     }
 }

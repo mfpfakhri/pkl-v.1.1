@@ -124,9 +124,9 @@
                                         <thead>
                                            <tr>
                                                 <th>ID</th>
-                                                <th>Paket</th>
+                                                <th>Judul</th>
                                                 <th>Harga</th>
-                                                <th>Jadwal</th>
+                                                
                                                 <th>Peserta</th>
                                                 <th>Action</th>
                                             </tr>
@@ -135,8 +135,8 @@
                                             <tr class="gradeX">
                                                 <td>1</td>
                                                 <td>Wisata Bromo</td>
-                                                <td>Rp 400.000</td>
-                                                <td>5-5-2017</td>
+                                                <td>400000</td>
+                                                
                                                 <td>20</td>
                                                 <td class="actions">
                                                     <a onclick="" href="#" class="on-default edit-row"><i class="fa fa-pencil"></i></a>

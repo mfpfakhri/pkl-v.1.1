@@ -8,28 +8,19 @@ use Illuminate\Queue\SerializesModels;
 use Illuminate\Contracts\Queue\ShouldQueue;
 // TAMBAHAN
 use App\User; //Pakai model user
-use App\Models\Booking;
-use App\Models\Schedule;
-use App\Models\Inf_lokasi;
 
-class userOrder extends Mailable
+class userRegistered extends Mailable
 {
     use Queueable, SerializesModels;
-    public $schedule;
     public $user;
-    public $booking;
-    public $lokasi;
     /**
      * Create a new message instance.
      *
      * @return void
      */
-    public function __construct(User $user, Booking $booking, Inf_lokasi $lokasi, Schedule $schedule)
+    public function __construct(User $user)
     {
         $this->user = $user;
-        $this->lokasi = $lokasi;
-        $this->booking = $booking;
-        $this->schedule = $schedule;
     }
 
     /**
@@ -39,6 +30,6 @@ class userOrder extends Mailable
      */
     public function build()
     {
-        return $this->view('email.order');
+        return $this->view('email.approval');
     }
 }
