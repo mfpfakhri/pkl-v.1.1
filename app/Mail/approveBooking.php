@@ -9,7 +9,7 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 // TAMBAHAN
 use App\User; //Pakai model user
 
-class agentApproval extends Mailable
+class approveBooking extends Mailable
 {
     use Queueable, SerializesModels;
     public $user;
@@ -32,6 +32,6 @@ class agentApproval extends Mailable
      */
     public function build()
     {
-        return $this->view('email.approval');
+        return $this->view('email.approveBooking');
     }
 }

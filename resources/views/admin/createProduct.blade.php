@@ -126,7 +126,7 @@
                                         <select class="form-control" name="idagent">
                                             <option value="P0" selected disabled>Agent</option>
                                             @foreach($query1 as $result)
-                                            <option value="{{$result->id}}">
+                                            <option value="{{$result->user_id}}">
                                             <?php
                                                 echo $result->fullname
                                             ?></option>
@@ -178,11 +178,11 @@
                                         </div>
 
                                     <div class="form-group">
-                                      <label class="col-sm-2 control-label">Kota</label>
+                                      <label class="col-sm-2 control-label">Provinsi</label>
                                         <div class="col-md-10">
-                                          <select class="form-control" name="city">
-                                                <option value="K0" selected disabled>Kabupaten</option>
-                                                @foreach($query4 as $result)
+                                          <select class="form-control" name="provinsi">
+                                                <option value="K0" selected disabled>Province</option>
+                                                @foreach($query3 as $result)
                                                 <option value="{{$result->lokasi_ID}}">
                                                 <?php
                                                     echo $result->lokasi_nama

@@ -137,13 +137,13 @@
                                         <div class="form-group">
                                             <label class="col-md-2 control-label">First Name</label>
                                                 <div class="col-md-10">
-                                                    <input type="text" name="fname" class="form-control" placeholder="First Name" required/>
+                                                    <input type="text" name="fname" class="form-control" placeholder="First Name" />
                                                 </div>
                                         </div>
                                         <div class="form-group">
                                             <label class="col-md-2 control-label">Last Name</label>
                                                 <div class="col-md-10">
-                                                    <input type="text" name="lname" class="form-control" placeholder="Last Name" required/>
+                                                    <input type="text" name="lname" class="form-control" placeholder="Last Name" />
                                                 </div>
                                         </div>
 										<div class="form-group">
@@ -155,13 +155,13 @@
 										<div class="form-group">
 											<label class="col-md-2 control-label" placeholder="Address">Address</label>
 												<div class="col-md-10">
-													<input type="text" name="address" class="form-control" placeholder="Address" required/>
+													<input type="text" name="address" class="form-control" placeholder="Address" />
 												</div>
 										</div>
                                         <div class="form-group">
                                                 <label class="col-md-2 control-label" placeholder="Alamat">Phone</label>
                                                 <div class="col-md-10">
-                                                    <input type="text" name="phone" placeholder="Phone" class="form-control" required>
+                                                    <input type="text" name="phone" placeholder="Phone" class="form-control" >
                                                 </div>
                                         </div>
 										<div class="form-group">
@@ -191,7 +191,7 @@
 											<label class="control-label col-sm-2">Tanggal Lahir</label>
 												<div class="col-sm-8">
 													<div class="input-group">
-														<input type="text" name="tanggallahir" class="form-control" placeholder="mm/dd/yyyy" id="datepicker" required>
+														<input type="text" name="tanggallahir" class="form-control" placeholder="mm/dd/yyyy" id="datepicker" >
 															<span class="input-group-addon bg-primary b-0 text-white"><i class="ti-calendar"></i></span>
 														</div><!-- input-group -->
 												</div>
@@ -401,7 +401,7 @@
                                                 <label class="col-sm-2 control-label">Foto</label>
                                                     <div class="col-sm-10">
                                                         <div class="card-box">
-                                                                <input type="file" name="foto" class="dropify" data-height="200" />
+                                                                <input type="file" name="foto" class="dropify" data-height="200" required />
                                                         </div>
                                                     </div>
                                             </div>

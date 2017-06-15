@@ -110,23 +110,22 @@
                                                 <th>Firstname</th>
                                                 <th>Lastname</th>
                                                 <th>Address</th>
-                                                <th>Action</th>
                                             </tr>
                                         </thead>
                                         <tbody>
                                             <tr class="gradeX">
-                                                <td>1</td>
-                                                <td>user2@email.com</td>
-                                                <td>user2 username</td>
-                                                <td>User2</td>
-                                                <td>Last</td>
-                                                <td>Address user2</td>
+                                            @foreach($bookings as $booking)
+                                                <td>{{$booking->id}}</td>
+                                                <td>{{$booking->paket_id}}</td>
+                                                <td>{{$booking->customer_id}}</td>
+                                                <td>{{$booking->schedule_id}}</td>
+                                                <td>{{$booking->participants}}</td>
                                                 <td class="actions">
-                                                    <a onclick="" href="#" class="on-default edit-row" style="color:#65E839;"><i class="fa fa-check-square" style="color:#65E839;"></i> Approve</a>
-                                                    <a onclick="" href="#" class="on-default remove-row" style="color:#FF5043;"><i class="fa fa-minus-square" style="color:#FF5043;"></i> Reject</a>
+                                                    <a onclick="" href="bookingagent/{{$booking->id}}/showapprove" class="on-default edit-row" style="color:#65E839;"><i class="fa fa-check-square" style="color:#65E839;"></i> Approve</a>
+                                                    <a onclick="" href="bookingagent/{{$booking->id}}/showreject" class="on-default remove-row" style="color:#FF5043;"><i class="fa fa-minus-square" style="color:#FF5043;"></i> Reject</a>
                                                 </td>
                                             </tr>
-                                            
+                                            @endforeach
                                         </tbody>
                                     </table>
                                 </div>

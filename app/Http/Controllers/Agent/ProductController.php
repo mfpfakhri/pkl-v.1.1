@@ -54,4 +54,19 @@ class ProductController extends BaseController {
     return view('agent.createproduct',$data);
   }
 
+  public function store()
+  {
+
+  }
+
+  public function edit($id)
+  {
+
+  }
+
+  public function destroy($id)
+  {
+    
+  }
+
 }

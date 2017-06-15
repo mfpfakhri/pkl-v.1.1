@@ -160,20 +160,7 @@
                                       </div>
                                   </div>
                                   <div class="row">
-                                      <div class="col-md-4">
-                                          <div class="form-group">
-                                              <label for="field-6" class="control-label">Kota</label>
-                                                <select class="form-control" name="city">
-                                                    <option value="{{$agent->city}}" selected>{{$agent->city}}</option>
-                                                    @foreach($query4 as $result)
-                                                    <option value="{{$result->lokasi_nama}}">
-                                                    <?php
-                                                        echo $result->lokasi_nama
-                                                    ?></option>
-                                                    @endforeach
-                                                </select>
-                                          </div>
-                                      </div>
+
                                       <div class="col-md-4">
                                           <div class="form-group">
                                               <label for="field-7" class="control-label">Provinsi</label>

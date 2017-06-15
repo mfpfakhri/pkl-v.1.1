@@ -43,7 +43,7 @@
 
             <!-- User -->
             <div class="user-box">
-                <h5><a href="#">Admin</a> </h5>
+                <h5><a href="#">Agent</a> </h5>
                 <ul class="list-inline">
                     <li>
                         <a href="/" class="text-custom">
@@ -119,12 +119,12 @@
                                 <h5 class="text-muted m-t-0 font-600">Edit Product</h5><br/>
                             </div>
                 <!-- MULAI FORM EDIT -->
-                                <form class="" action="/dash/product/{{$product->id}}/update" method="POST">
+                                <form class="" action="" method="POST">
                                   <div class="row">
                                       <div class="col-md-6">
                                           <div class="form-group">
                                               <label for="field-1" class="control-label">Nama Agent</label>
-                                            <input name="idagent" type="text" class="form-control" value="{{$product->agents_id}}" disabled=""></input>
+                                            <input name="idagent" type="text" class="form-control" value="" disabled=""></input>
                                         </select>
                                           </div>
                                       </div>
@@ -134,7 +134,7 @@
                                       <div class="col-md-12">
                                           <div class="form-group">
                                               <label for="field-2" class="control-label">Title</label>
-                                              <input name="title" type="text" class="form-control" value="{{$product->judul}}">
+                                              <input name="title" type="text" class="form-control" value="">
                                           </div>
                                       </div>
                                   </div>
@@ -144,7 +144,7 @@
                                           <div class="form-group">
                                               <label for="field-3" class="control-label">Date 1</label>
                                               <div class="input-group">
-                                                <input type="text" name="start_date" class="form-control" id="datepicker" value="{{$product->start_date}}">
+                                                <input type="text" name="start_date" class="form-control" id="datepicker" value="">
                                                   <span class="input-group-addon bg-primary b-0 text-white"><i class="ti-calendar"></i></span>
                                                 </div><!-- input-group -->
                                           </div>
@@ -153,7 +153,7 @@
                                           <div class="form-group">
                                               <label for="field-4" class="control-label">Date 2</label>
                                               <div class="input-group">
-                                                <input type="text" name="end_date" class="form-control" id="datepicker1" value="{{$product->end_date}}">
+                                                <input type="text" name="end_date" class="form-control" id="datepicker1" value="">
                                                   <span class="input-group-addon bg-primary b-0 text-white"><i class="ti-calendar"></i></span>
                                                 </div><!-- input-group -->
                                           </div>
@@ -165,26 +165,20 @@
                                           <div class="form-group">
                                               <label for="field-6" class="control-label">Kota</label>
                                                 <select class="form-control" name="city">
-                                                  <option value="{{$product->lokasi_id}}" selected>{{$product->lokasi_id}}</option>
-                                                    @foreach($query7 as $result)
-                                                    <option value="{{$result->lokasi_nama}}">
-                                                    <?php
-                                                        echo $result->lokasi_nama
-                                                    ?></option>
-                                                    @endforeach
-                                                </select>
+                                                  <option value="" selected></option>
+                                                    
                                           </div>
                                       </div>
                                       <div class="col-md-4">
                                           <div class="form-group">
                                               <label for="field-7" class="control-label">Pickup Point</label>
-                                              <input type="text" name="pickuppoint" class="form-control" placeholder="Pickup Point" value="{{$product->start_point}}">
+                                              <input type="text" name="pickuppoint" class="form-control" placeholder="Pickup Point" value="">
                                           </div>
                                       </div>
                                       <div class="col-md-4">
                                           <div class="form-group">
                                               <label for="field-8" class="control-label">End Point</label>
-                                              <input type="text" name="endpoint" class="form-control" placeholder="End Point" value="{{$product->end_point}}">
+                                              <input type="text" name="endpoint" class="form-control" placeholder="End Point" value="">
                                           </div>
                                       </div>
                                   </div>
@@ -202,13 +196,13 @@
                                       <div class="col-md-4">
                                           <div class="form-group">
                                               <label for="field-7" class="control-label">Peserta</label>
-                                              <input type="text" name="peserta" class="form-control" placeholder="" value="{{$product->maxpeople}}">
+                                              <input type="text" name="peserta" class="form-control" placeholder="" value="">
                                           </div>
                                       </div>
                                       <div class="col-md-4">
                                           <div class="form-group">
                                               <label for="field-8" class="control-label">Price</label>
-                                              <input type="text" name="price" id="price" class="form-control" placeholder="" value="{{$product->price}}"><p id="harga"></p>
+                                              <input type="text" name="price" id="price" class="form-control" placeholder="" value=""><p id="harga"></p>
                                           </div>
                                       </div>
                                   </div>
@@ -218,9 +212,7 @@
                                           <div class="form-group">
                                               <label for="field-2" class="control-label">Itinerary</label>
                                               <textarea name="event" class="form-control" rows="5">
-                                              <?php
-                                                  echo $product->event
-                                              ?>
+                                              
                                               </textarea>
                                           </div>
                                       </div>
@@ -230,10 +222,7 @@
                                       <div class="col-md-12">
                                           <div class="form-group">
                                               <label for="field-2" class="control-label">Detail Paket</label>
-                                              <textarea name="detail" class="form-control" rows="5">
-                                              <?php
-                                                  echo $product->detail
-                                              ?></textarea>
+                                              <textarea name="detail" class="form-control" rows="5"></textarea>
                                           </div>
                                       </div>
                                   </div>
@@ -243,9 +232,7 @@
                                           <div class="form-group">
                                               <label for="field-2" class="control-label">Description</label>
                                               <textarea name="description" class="form-control" rows="5" value="">
-                                              <?php
-                                                  echo $product->description
-                                              ?>
+
                                               </textarea>
                                           </div>
                                       </div>
@@ -255,7 +242,7 @@
                                 <div class="col-md-4">
                                     <div class="user-img">
                                     <label for="field-8" class="control-label">Foto Paket</label></br>                      
-                                        <img src="{{ asset('storage/product/' .$product->multipic) }}" alt="user-img" class="img-thumbnail img-responsive" width="200px" height="200px">
+                                        <img src="" alt="user-img" class="img-thumbnail img-responsive" width="200px" height="200px">
                                     </div>
                                 </div>
                               </div>

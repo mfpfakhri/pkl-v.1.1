@@ -31,7 +31,7 @@ class DashboardController extends BaseController {
 
     $data['countcustomer']= DB::table('customers')->count();
     $data['countagent']= DB::table('agents')->count();
-    $data['countproduct']= DB::table('paket')->count();
+    $data['countproduct']= DB::table('products')->count();
     return view('admin.dashboard',$data);
   }
 

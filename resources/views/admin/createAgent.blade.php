@@ -125,7 +125,7 @@
                                         <div class="form-group">
                                             <label class="col-md-2 control-label">Username</label>
                                                 <div class="col-md-10">
-                                                    <input type="text" name="username" class="form-control" placeholder="Username">
+                                                    <input type="text" name="username" class="form-control" placeholder="Username" required>
                                                 </div>
                                         </div>
                                         <div class="form-group ">
@@ -137,7 +137,7 @@
                                         <div class="form-group">
 											<label class="col-md-2 control-label" placeholder="Fullname">Fullname</label>
 												<div class="col-md-10">
-													<input type="text" name="fullname" class="form-control" placeholder="Fullname" required/>
+													<input type="text" name="fullname" class="form-control" placeholder="Fullname"/>
 												</div>
 										</div>
 										<div class="form-group">
@@ -149,7 +149,7 @@
 										<div class="form-group">
 											<label class="col-md-2 control-label" placeholder="Address">Address</label>
 												<div class="col-md-10">
-													<input type="text" name="address" class="form-control" placeholder="Address" required/>
+													<input type="text" name="address" class="form-control" placeholder="Address"/>
 												</div>
 										</div>
 										<div class="form-group">
@@ -158,20 +158,6 @@
 		                                            <select class="form-control" name="province">
                                                         <option value="P0" selected disabled>Provinsi</option>
                                                         @foreach($query as $result)
-                                                        <option value="{{$result->lokasi_nama}}">
-                                                        <?php
-                                                            echo $result->lokasi_nama
-                                                        ?></option>
-                                                        @endforeach
-                                                    </select>
-	                                            </div>
-										</div>
-										<div class="form-group">
-											<label class="col-sm-2 control-label">Kabupaten</label>
-												<div class="col-md-10">
-													<select class="form-control" name="city">
-                                                        <option value="K0" selected disabled>Kabupaten</option>
-                                                        @foreach($query1 as $result)
                                                         <option value="{{$result->lokasi_nama}}">
                                                         <?php
                                                             echo $result->lokasi_nama
@@ -201,7 +187,7 @@
 											<label class="control-label col-sm-2">Tanggal Lahir</label>
 												<div class="col-sm-8">
 													<div class="input-group">
-														<input type="text" name="tanggallahir" class="form-control" placeholder="mm/dd/yyyy" id="datepicker" required>
+														<input type="text" name="tanggallahir" class="form-control" placeholder="mm/dd/yyyy" id="datepicker">
 															<span class="input-group-addon bg-primary b-0 text-white"><i class="ti-calendar"></i></span>
 														</div><!-- input-group -->
 												</div>
@@ -222,7 +208,7 @@
 												<label class="col-sm-2 control-label">Foto Diri</label>
 													<div class="col-sm-10">
 							                            <div class="card-box">
-							                                    <input type="file" name="fotodiri" class="dropify" />
+							                                    <input type="file" name="fotodiri" class="dropify" required/>
 							                            </div>
 													</div>
 												<!-- </div> -->
@@ -234,7 +220,7 @@
 												<label class="col-sm-2 control-label">Foto KTP</label>
 													<div class="col-sm-10">
 							                            <div class="card-box">
-							                                    <input type="file" name="fotoktp" class="dropify" />
+							                                    <input type="file" name="fotoktp" class="dropify" required/>
 							                            </div>
 													</div>
 												<!-- </div> -->

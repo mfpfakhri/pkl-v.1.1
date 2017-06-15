@@ -14,7 +14,12 @@ use App\Http\Middleware\VerifyCsrfToken;
 
 use App\User;
 use App\Models\Agent;
+
 use Illuminate\Http\Request;
+
+use App\Mail\agentApproval;
+
+use Illuminate\Support\Facades\Mail;
 
 use App\Http\Requests;
 use Storage;
@@ -132,20 +137,35 @@ class AgentsController extends BaseController {
   $user = User::find($id);
   $user->stat=1;
   $user->save();
-  return redirect('/dash/agents');
+  return redirect('/dash/agents')->with('warning', 'User '.$user->username.' telah terverifikasi!');
   }
 
   public function showreject($id)
   {
+    // mengambil data user
     $user = User::find($id);
-    return view('admin.rejectagent');
+
+    //mengambil data agent
+    $user_id = $user->id;
+    $agent = Agent::where('user_id', $user_id);
+
+    return view('admin.rejectagent', ['agent' => $agent, 'user' => $user]);
   }
 
-    public function reject($id)
+    public function reject(Request $request, $id)
   {
+
     $user = User::findOrFail($id);
+    $user_email = $user->email;
+
+    $user->stat=0;
+    $user->save();
+
     $data = $request->alasan;
+
     Mail::to($user->email)->send(new agentApproval($user, $data));
+
+     return redirect ('dash/agents')->with('warning', 'User '.$user->username.' telah tereject!');
   }
 
   public function destroy($id)

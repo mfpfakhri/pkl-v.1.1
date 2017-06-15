@@ -160,9 +160,6 @@
                 </div>
                 <!-- end row -->
 
-                </div>
-                <!-- end row -->
-
             </div> <!-- container -->
 
         </div> <!-- content -->
@@ -172,7 +169,6 @@
         </footer>
 
     </div>
-
 </div>
 <!-- END wrapper -->
 

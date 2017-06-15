@@ -32,8 +32,10 @@ Route::group(['middleware' => 'admin'], function(){
 	Route::get('/dash/agentdelete/{id}','Admin\AgentsController@destroy');
 	//approve
 	Route::get('/dash/agents/{id}/approve','Admin\AgentsController@approve');
-	//approve
-	Route::get('/dash/agents/{id}/reject','Admin\AgentsController@reject');
+	//show alasan rejcet
+	Route::get('/dash/agents/{id}/showreject','Admin\AgentsController@showreject');
+	//post rejcet
+	Route::post('/dash/agents/{id}/reject','Admin\AgentsController@reject');
 
 
 	//CRUD Customer
@@ -63,6 +65,7 @@ Route::group(['middleware' => 'admin'], function(){
 	Route::PUT('/dash/product/{id}/update','Admin\PaketController@updateByAdmin');
 	//hapus record
 	Route::get('/dash/productdelete/{id}', 'Admin\PaketController@destroy');
+
 });
 
 //CUSTOMER, LEVEL 1
@@ -97,9 +100,25 @@ Route::group(['middleware' => 'agent'], function(){
 	Route::get('/productagent', 'Agent\ProductController@showAll');
 	//form create
 	Route::get('/productcreate', 'Agent\ProductController@create');
+	//store ke database
+	Route::post('/productagent', 'Agent\ProductController@store');
+	//edit
+	Route::get('/product/{id}/edit', 'Agent\ProductController@edit');
+	//update
+	Route::PUT('/product/{id}/update', 'Agent\ProductController@update');
+	//delete
+	Route::get('/productdelete/{id}', 'Agent\ProductController@destroy');
 
 	//Booking
 	Route::get('/bookingagent', 'Agent\BookingController@index');
+	//show approve
+	Route::get('/bookingagent/{id}/showapprove','Agent\BookingController@showapprove');
+	//post approve
+	Route::post('/bookingagent/{id}/approve','Agent\BookingController@approve');
+	//show alasan rejcet
+	Route::get('/bookingagent/{id}/showreject','Agent\BookingController@showreject');
+	//post rejcet
+	Route::post('/bookingagent/{id}/reject','Agent\BookingController@reject');
 });
 
 Route::get('/', 'WelcomeController@index');

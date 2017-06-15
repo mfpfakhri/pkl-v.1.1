@@ -142,7 +142,7 @@
                                                   <a href="/dash/agent/{{$agent->id}}/edit" class="on-default edit-row"><i class="fa fa-pencil"></i></a>
                                                   <a href="agentdelete/{{$agent->id}}" class="on-default remove-row"><i class="fa fa-trash-o"></i></a>
                                                   <a href="agents/{{$agent->id}}/approve" class="on-default edit-row" style="color:#65E839;"><i class="fa fa-check-square" style="color:#65E839;"></i> Approve</a>
-                                                  <a onclick="" href="agents/{{$agent->id}}/reject" class="on-default remove-row" style="color:#FF5043;"><i class="fa fa-minus-square" style="color:#FF5043;"></i> Reject</a>
+                                                  <a onclick="" href="agents/{{$agent->id}}/showreject" class="on-default remove-row" style="color:#FF5043;"><i class="fa fa-minus-square" style="color:#FF5043;"></i> Reject</a>
                                                 </td>
                                             </tr>
                                             @endforeach
