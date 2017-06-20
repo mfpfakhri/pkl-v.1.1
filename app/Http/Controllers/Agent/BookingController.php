@@ -39,9 +39,10 @@ class BookingController extends BaseController {
    */
   public function index()
   {
-    $bookings = DB::table('bookings')->get();
+    $bookingsapprove = DB::table('bookings')->where('approve', 1)->get();
+    $bookingsreject = DB::table('bookings')->where('approve', 0)->get();
 
-    return view('agent.bookingagent', ['bookings' => $bookings]);
+    return view('agent.bookingagent', ['bookingsapprove' => $bookingsapprove, 'bookingsreject' => $bookingsreject]);
   }
 
   public function showapprove($id)
@@ -59,22 +60,18 @@ class BookingController extends BaseController {
   public function approve(Request $request, $id)
   {
     // mengambil booking
+    $customer_id = Booking::find($id)->customer_id;
+    $user_id = Customer::find($customer_id)->user_id;
+    $user = User::find($user_id);
+    $user_email = $user->email;
+
     $booking = Booking::find($id);
-
-    //ambil data Customer
-    $customer_id = $booking->customer_id;
-    $customer = Customer::where('customer_id', $customer_id);
-
-    $user = User::where('id' ,$customer_id)->email;
-
-    dd($user);
-
-    // $user = User::find($id);
-    // $user_email = $user->email;
+    $booking->approve=1;
+    $booking->save();
 
     $data = $request->detail;
 
-    Mail::to($user->email)->send(new approveBooking($user, $data));
+    Mail::to($user_email)->send(new approveBooking($user, $data));
 
     return redirect ('/bookingagent');
   }
@@ -93,15 +90,21 @@ class BookingController extends BaseController {
 
     public function reject(Request $request, $id)
   {
-    
-    $user = User::findOrFail($id);
+    // mengambil booking
+    $customer_id = Booking::find($id)->customer_id;
+    $user_id = Customer::find($customer_id)->user_id;
+    $user = User::find($user_id);
     $user_email = $user->email;
 
-    $data = $request->alasan;
+    $booking = Booking::find($id);
+    $booking->approve=0;
+    $booking->save();
 
-    Mail::to($user->email)->send(new rejectBooking($user, $data));
+    $data = $request->detail;
 
-    return redirect ('/bookingagent');
+    Mail::to($user_email)->send(new rejectBooking($user, $data));
+
+    return redirect ('/bookingagent')->with('warning', 'Product id: '.$booking->id.' berhasil dihapus!');
   }  
 
 }

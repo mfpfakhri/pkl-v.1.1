@@ -68,20 +68,15 @@
             <div id="sidebar-menu">
                 <ul>
                   <li class="text-muted menu-title">Navigation</li>
-
                     <li>
-                        <a href="/dash" class="waves-effect"><i class="zmdi zmdi-view-dashboard"></i> <span> Dashboard </span> </a>
+                        <a href="{{ url('/dashboardagent') }}" class="waves-effect "><i class="zmdi zmdi-view-dashboard"></i> <span> Dashboard </span> </a>
                     </li>
-
                     <li>
-                        <a href="/dash/products" class="waves-effect active"><i class="zmdi zmdi-cloud-box"></i> <span> Products </span> </a>
+                        <a href="{{ url('/productagent') }}" class="waves-effect active"><i class="zmdi zmdi-cloud-box"></i> <span> Product </span> </a>
                     </li>
-
                     <li>
-                        <a href="/dash/agents" class="waves-effect "><i class="zmdi zmdi-account-box"></i> <span> Agents </span> </a>
-
-                    <li>
-                        <a href="/dash/customers" class="waves-effect"><i class="zmdi zmdi-account-box-o"></i><span> Customers </span> </a>
+                        <a href="{{ url('/bookingagent') }}" class="waves-effect"><i class="zmdi zmdi-email-open"></i> <span> Booking </span> </a>
+                    </li>
 
                 </ul>
                 <div class="clearfix"></div>
@@ -108,8 +103,8 @@
                                 <div class="row">
                                     <div class="col-sm-6">
                                         <div class="m-b-30">
-                                            <a href="/dash/productcreate" class="btn btn-primary waves-effect waves-light">Add Product <i class="fa fa-plus"></i></a>
-                                            <a href="/dash/products" class="btn btn-primary waves-effect waves-light">List Product <i class="fa fa-list"></i></a>
+                                            <a href="{{ url('/productcreate') }}" class="btn btn-primary waves-effect waves-light">Add Product <i class="fa fa-plus"></i></a>
+                                            <a href="{{ url('/productagent') }}" class="btn btn-primary waves-effect waves-light">List Product <i class="fa fa-list"></i></a>
                                         </div>
                                     </div>
                                 </div>
@@ -119,22 +114,13 @@
                                 <h5 class="text-muted m-t-0 font-600">Edit Product</h5><br/>
                             </div>
                 <!-- MULAI FORM EDIT -->
-                                <form class="" action="" method="POST">
-                                  <div class="row">
-                                      <div class="col-md-6">
-                                          <div class="form-group">
-                                              <label for="field-1" class="control-label">Nama Agent</label>
-                                            <input name="idagent" type="text" class="form-control" value="" disabled=""></input>
-                                        </select>
-                                          </div>
-                                      </div>
-                                    </div>
+                                <form class="" action="/product/{{$product->id}}/update" method="POST">
 
                                     <div class="row">
                                       <div class="col-md-12">
                                           <div class="form-group">
                                               <label for="field-2" class="control-label">Title</label>
-                                              <input name="title" type="text" class="form-control" value="">
+                                              <input name="title" type="text" class="form-control" value="{{$product->paket_judul}}">
                                           </div>
                                       </div>
                                   </div>
@@ -144,7 +130,7 @@
                                           <div class="form-group">
                                               <label for="field-3" class="control-label">Date 1</label>
                                               <div class="input-group">
-                                                <input type="text" name="start_date" class="form-control" id="datepicker" value="">
+                                                <input type="text" name="start_date" class="form-control" id="datepicker" value="{{$product->schedule_jadwal_start}}">
                                                   <span class="input-group-addon bg-primary b-0 text-white"><i class="ti-calendar"></i></span>
                                                 </div><!-- input-group -->
                                           </div>
@@ -153,7 +139,7 @@
                                           <div class="form-group">
                                               <label for="field-4" class="control-label">Date 2</label>
                                               <div class="input-group">
-                                                <input type="text" name="end_date" class="form-control" id="datepicker1" value="">
+                                                <input type="text" name="end_date" class="form-control" id="datepicker1" value="{{$product->schedule_jadwal_end}}">
                                                   <span class="input-group-addon bg-primary b-0 text-white"><i class="ti-calendar"></i></span>
                                                 </div><!-- input-group -->
                                           </div>
@@ -163,22 +149,28 @@
                                   <div class="row">
                                       <div class="col-md-4">
                                           <div class="form-group">
-                                              <label for="field-6" class="control-label">Kota</label>
-                                                <select class="form-control" name="city">
-                                                  <option value="" selected></option>
-                                                    
+                                              <label for="field-6" class="control-label">Provinsi</label>
+                                                <select class="form-control" name="provinsi">
+                                                <option value="{{$product->inf_lokasi_id}}" selected>{{$product->lokasi}}</option>
+                                                  @foreach($query5 as $result)
+                                                    <option value="{{$result->lokasi_nama}}">
+                                                    <?php
+                                                        echo $result->lokasi_nama
+                                                    ?></option>
+                                                    @endforeach
+                                                </select>
                                           </div>
                                       </div>
                                       <div class="col-md-4">
                                           <div class="form-group">
                                               <label for="field-7" class="control-label">Pickup Point</label>
-                                              <input type="text" name="pickuppoint" class="form-control" placeholder="Pickup Point" value="">
+                                              <input type="text" name="pickuppoint" class="form-control" placeholder="Pickup Point" value="{{$product->start_point}}">
                                           </div>
                                       </div>
                                       <div class="col-md-4">
                                           <div class="form-group">
                                               <label for="field-8" class="control-label">End Point</label>
-                                              <input type="text" name="endpoint" class="form-control" placeholder="End Point" value="">
+                                              <input type="text" name="endpoint" class="form-control" placeholder="End Point" value="{{$product->end_point}}">
                                           </div>
                                       </div>
                                   </div>
@@ -187,22 +179,27 @@
                                       <div class="col-md-4">
                                           <div class="form-group">
                                               <label for="field-6" class="control-label">Kategori</label>
-                                                <select class="form-control" name="city">
-                                                    <option value="" selected></option>
-                                                    <option value="">
+                                                <select class="form-control" name="kategori">
+                                                    <option value="{{$product->kategori}}" selected>{{$product->kategori}}</option>
+                                                    @foreach($query4 as $result)
+                                                    <option value="{{$result->id_adv}}">
+                                                    <?php
+                                                        echo $result->nama_adv
+                                                    ?></option>
+                                                    @endforeach
                                                 </select>
                                           </div>
                                       </div>
                                       <div class="col-md-4">
                                           <div class="form-group">
                                               <label for="field-7" class="control-label">Peserta</label>
-                                              <input type="text" name="peserta" class="form-control" placeholder="" value="">
+                                              <input type="text" name="peserta" class="form-control" placeholder="" value="{{$product->schedule_max_people}}">
                                           </div>
                                       </div>
                                       <div class="col-md-4">
                                           <div class="form-group">
                                               <label for="field-8" class="control-label">Price</label>
-                                              <input type="text" name="price" id="price" class="form-control" placeholder="" value=""><p id="harga"></p>
+                                              <input type="text" name="price" id="price" class="form-control" placeholder="" value="{{$product->paket_harga}}"><p id="harga"></p>
                                           </div>
                                       </div>
                                   </div>
@@ -211,9 +208,7 @@
                                       <div class="col-md-12">
                                           <div class="form-group">
                                               <label for="field-2" class="control-label">Itinerary</label>
-                                              <textarea name="event" class="form-control" rows="5">
-                                              
-                                              </textarea>
+                                              <textarea name="event" class="form-control" rows="5"><?php echo $product->itenerary ?></textarea>
                                           </div>
                                       </div>
                                   </div>
@@ -222,7 +217,7 @@
                                       <div class="col-md-12">
                                           <div class="form-group">
                                               <label for="field-2" class="control-label">Detail Paket</label>
-                                              <textarea name="detail" class="form-control" rows="5"></textarea>
+                                              <textarea name="detail" class="form-control" rows="5"><?php echo $product->detail ?></textarea>
                                           </div>
                                       </div>
                                   </div>
@@ -231,9 +226,7 @@
                                       <div class="col-md-12">
                                           <div class="form-group">
                                               <label for="field-2" class="control-label">Description</label>
-                                              <textarea name="description" class="form-control" rows="5" value="">
-
-                                              </textarea>
+                                              <textarea name="description" class="form-control" rows="5" value=""><?php echo $product->description ?></textarea>
                                           </div>
                                       </div>
                                   </div>

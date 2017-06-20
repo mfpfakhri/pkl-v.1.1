@@ -68,13 +68,13 @@
                 <ul>
                   <li class="text-muted menu-title">Navigation</li>
                     <li>
-                        <a href="dashboardagent" class="waves-effect"><i class="zmdi zmdi-view-dashboard"></i> <span> Dashboard </span> </a>
+                        <a href="{{ url('/dashboardagent') }}" class="waves-effect "><i class="zmdi zmdi-view-dashboard"></i> <span> Dashboard </span> </a>
                     </li>
                     <li>
-                        <a href="productagent" class="waves-effect active"><i class="zmdi zmdi-cloud-box"></i> <span> Product </span> </a>
+                        <a href="{{ url('/productagent') }}" class="waves-effect active"><i class="zmdi zmdi-cloud-box"></i> <span> Product </span> </a>
                     </li>
                     <li>
-                        <a href="bookingagent" class="waves-effect"><i class="zmdi zmdi-email-open"></i> <span> Booking </span> </a>
+                        <a href="{{ url('/bookingagent') }}" class="waves-effect"><i class="zmdi zmdi-email-open"></i> <span> Booking </span> </a>
                     </li>
                 </ul>
                 <div class="clearfix"></div>
@@ -101,21 +101,12 @@
                                 <div class="row">
                                     <div class="col-sm-6">
                                         <div class="m-b-30">
-                                            <a href="productcreate" class="btn btn-primary waves-effect waves-light">Add Product <i class="fa fa-plus"></i></a>
-                                            <a href="productagent" class="btn btn-primary waves-effect waves-light">List Product <i class="fa fa-list"></i></a>
+                                            <a href="{{ url('/productcreate') }}" class="btn btn-primary waves-effect waves-light">Add Product <i class="fa fa-plus"></i></a>
+                                            <a href="{{ url('/productagent') }}" class="btn btn-primary waves-effect waves-light">List Product <i class="fa fa-list"></i></a>
                                         </div>
-                                        <div class="m-b-10">
-                                            <h2>Kategori</h2>
-                                                <select class="form-control">
-                                                    <option value="" selected disabled>All Adventure</option>
-                                                        @foreach($query as $result)
-                                                        <option value="{{$result->id_adv}}">
-                                                        <?php
-                                                            echo $result->nama_adv
-                                                        ?></option>
-                                                        @endforeach
-                                                </select>
-                                        </div>
+                                        @if(session('warning'))
+                                            {{session('warning')}}
+                                        @endif
                                     </div>
                                 </div>
 
@@ -126,23 +117,25 @@
                                                 <th>ID</th>
                                                 <th>Judul</th>
                                                 <th>Harga</th>
-                                                
                                                 <th>Peserta</th>
+                                                <th>Jadwal</th>
                                                 <th>Action</th>
                                             </tr>
                                         </thead>
                                         <tbody>
                                             <tr class="gradeX">
-                                                <td>1</td>
-                                                <td>Wisata Bromo</td>
-                                                <td>400000</td>
-                                                
-                                                <td>20</td>
+                                            @foreach($query as $product)
+                                                <td>{{$product->paket_id}}</td>
+                                                <td>{{$product->paket_judul}}</td>
+                                                <td>Rp. {{$product->paket_harga}} /pax</td>
+                                                <th>{{$product->schedule_jadwal_start}} s/d {{$product->schedule_jadwal_end}}</th>
+                                                <td>{{$product->schedule_max_people}}</td>
                                                 <td class="actions">
-                                                    <a onclick="" href="#" class="on-default edit-row"><i class="fa fa-pencil"></i></a>
-                                                    <a onclick="" href="#" class="on-default remove-row"><i class="fa fa-trash-o"></i></a>
+                                                    <a onclick="" href="/product/{{$product->id}}/edit" class="on-default edit-row"><i class="fa fa-pencil"></i></a>
+                                                    <a onclick="" href="productdelete/{{$product->id}}" class="on-default remove-row"><i class="fa fa-trash-o"></i></a>
                                                 </td>
                                             </tr>
+                                            @endforeach
                                         </tbody>
                                     </table>
                                 </div>

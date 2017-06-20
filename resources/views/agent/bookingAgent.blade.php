@@ -69,13 +69,13 @@
                 <ul>
                   <li class="text-muted menu-title">Navigation</li>
                     <li>
-                        <a href="dashboardagent" class="waves-effect"><i class="zmdi zmdi-view-dashboard"></i> <span> Dashboard </span> </a>
+                        <a href="{{ url('/dashboardagent') }}" class="waves-effect active"><i class="zmdi zmdi-view-dashboard"></i> <span> Dashboard </span> </a>
                     </li>
                     <li>
-                        <a href="productagent" class="waves-effect"><i class="zmdi zmdi-cloud-box"></i> <span> Product </span> </a>
+                        <a href="{{ url('/productagent') }}" class="waves-effect"><i class="zmdi zmdi-cloud-box"></i> <span> Product </span> </a>
                     </li>
                     <li>
-                        <a href="bookingagent" class="waves-effect active"><i class="zmdi zmdi-email-open"></i> <span> Booking </span> </a>
+                        <a href="{{ url('/bookingagent') }}" class="waves-effect"><i class="zmdi zmdi-email-open"></i> <span> Booking </span> </a>
                     </li>
                 </ul>
                 <div class="clearfix"></div>
@@ -101,33 +101,67 @@
                         <div class="panel">
                             <div class="panel-body">
                                 <div class="">
+                                @if(session('warning'))
+                                    {{session('warning')}}
+                                @endif
+                                    <label>Daftar Booking Approve</label>
                                     <table class="table table-striped" id="datatable-editable">
                                         <thead>
                                             <tr>
                                                 <th>ID</th>
-                                                <th>Email</th>
-                                                <th>Username</th>
-                                                <th>Firstname</th>
-                                                <th>Lastname</th>
-                                                <th>Address</th>
+                                                <th>Paket</th>
+                                                <th>Customer</th>
+                                                <th>Jadwal</th>
+                                                <th>Partisipan</th>
+                                                <th>Action</th> 
                                             </tr>
                                         </thead>
                                         <tbody>
                                             <tr class="gradeX">
-                                            @foreach($bookings as $booking)
+                                            @foreach($bookingsapprove as $booking)
                                                 <td>{{$booking->id}}</td>
                                                 <td>{{$booking->paket_id}}</td>
                                                 <td>{{$booking->customer_id}}</td>
                                                 <td>{{$booking->schedule_id}}</td>
-                                                <td>{{$booking->participants}}</td>
+                                                <td>{{$booking->participants}} orang</td>
                                                 <td class="actions">
-                                                    <a onclick="" href="bookingagent/{{$booking->id}}/showapprove" class="on-default edit-row" style="color:#65E839;"><i class="fa fa-check-square" style="color:#65E839;"></i> Approve</a>
                                                     <a onclick="" href="bookingagent/{{$booking->id}}/showreject" class="on-default remove-row" style="color:#FF5043;"><i class="fa fa-minus-square" style="color:#FF5043;"></i> Reject</a>
                                                 </td>
                                             </tr>
                                             @endforeach
                                         </tbody>
                                     </table>
+
+<div class="row">
+<label>Daftar Booking</label>
+                                <table class="table table-striped" id="datatable-editable">
+                                        <thead>
+                                            <tr>
+                                                <th>ID</th>
+                                                <th>Paket</th>
+                                                <th>Customer</th>
+                                                <th>Jadwal</th>
+                                                <th>Partisipan</th>
+                                                <th>Action</th> 
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr class="gradeX">
+                                            @foreach($bookingsreject as $booking)
+                                                <td>{{$booking->id}}</td>
+                                                <td>{{$booking->paket_id}}</td>
+                                                <td>{{$booking->customer_id}}</td>
+                                                <td>{{$booking->schedule_id}}</td>
+                                                <td>{{$booking->participants}} orang</td>
+                                                <td class="actions">
+                                                    <a onclick="" href="bookingagent/{{$booking->id}}/showapprove" class="on-default edit-row" style="color:#65E839;"><i class="fa fa-check-square" style="color:#65E839;"></i> Approve</a>
+                                                </td>
+                                            </tr>
+                                            @endforeach
+                                        </tbody>
+                                    </table>
+</div>
+
                                 </div>
                             </div>
                             <!-- end: panel body -->

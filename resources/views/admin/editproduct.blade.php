@@ -119,12 +119,12 @@
                                 <h5 class="text-muted m-t-0 font-600">Edit Product</h5><br/>
                             </div>
                 <!-- MULAI FORM EDIT -->
-                                <form class="" action="" method="POST">
+                                <form class="" action="/dash/product/{{$product->id}}/update" method="POST">
                                   <div class="row">
                                       <div class="col-md-6">
                                           <div class="form-group">
-                                              <label for="field-1" class="control-label">Nama Agent</label>
-                                            <input name="idagent" type="text" class="form-control" value="{{$product->fullname}}" disabled=""></input>
+                                              <label for="field-1" class="control-label">ID Agent</label>
+                                            <input name="idagent" type="text" class="form-control" value="{{$product->agent_id}}"></input>
                                           </div>
                                       </div>
                                     </div>
@@ -133,7 +133,7 @@
                                       <div class="col-md-12">
                                           <div class="form-group">
                                               <label for="field-2" class="control-label">Title</label>
-                                              <input name="title" type="text" class="form-control" value="{{$product->judul}}">
+                                              <input name="title" type="text" class="form-control" value="{{$product->paket_judul}}">
                                           </div>
                                       </div>
                                   </div>
@@ -143,7 +143,7 @@
                                           <div class="form-group">
                                               <label for="field-3" class="control-label">Date 1</label>
                                               <div class="input-group">
-                                                <input type="text" name="start_date" class="form-control" id="datepicker" value="{{$product->start_date}}">
+                                                <input type="text" name="start_date" class="form-control" id="datepicker" value="{{$product->schedule_jadwal_start}}">
                                                   <span class="input-group-addon bg-primary b-0 text-white"><i class="ti-calendar"></i></span>
                                                 </div><!-- input-group -->
                                           </div>
@@ -152,7 +152,7 @@
                                           <div class="form-group">
                                               <label for="field-4" class="control-label">Date 2</label>
                                               <div class="input-group">
-                                                <input type="text" name="end_date" class="form-control" id="datepicker1" value="{{$product->end_date}}">
+                                                <input type="text" name="end_date" class="form-control" id="datepicker1" value="{{$product->schedule_jadwal_end}}">
                                                   <span class="input-group-addon bg-primary b-0 text-white"><i class="ti-calendar"></i></span>
                                                 </div><!-- input-group -->
                                           </div>
@@ -164,7 +164,7 @@
                                           <div class="form-group">
                                               <label for="field-6" class="control-label">Provinsi</label>
                                                 <select class="form-control" name="provinsi">
-                                                  <option value="{{$product->city}}" selected disabled>{{$product->city}}</option>
+                                                  <option value="{{$product->inf_lokasi_id}}" selected>{{$product->lokasi}}</option>
                                                   @foreach($query7 as $result)
                                                     <option value="{{$result->lokasi_nama}}">
                                                     <?php
@@ -195,7 +195,7 @@
                                           <div class="form-group">
                                               <label for="field-6" class="control-label">Kategori</label>
                                                 <select class="form-control" name="kategori">
-                                                    <option value="{{$product->adv_id}}" selected disabled>{{$lokasi->nama_adv}}</option>
+                                                    <option value="{{$product->kategori}}" selected>{{$product->kategori}}</option>
                                                     @foreach($query6 as $result)
                                                     <option value="{{$result->id_adv}}">
                                                     <?php
@@ -208,13 +208,13 @@
                                       <div class="col-md-4">
                                           <div class="form-group">
                                               <label for="field-7" class="control-label">Peserta</label>
-                                              <input type="text" name="peserta" class="form-control" placeholder="" value="{{$product->maxpeople}}">
+                                              <input type="text" name="peserta" class="form-control" placeholder="" value="{{$product->schedule_max_people}}">
                                           </div>
                                       </div>
                                       <div class="col-md-4">
                                           <div class="form-group">
                                               <label for="field-8" class="control-label">Price</label>
-                                              <input type="text" name="price" id="price" class="form-control" placeholder="" value="{{$product->price}}"><p id="harga"></p>
+                                              <input type="text" name="price" id="price" class="form-control" placeholder="" value="{{$product->paket_harga}}"><p id="harga"></p>
                                           </div>
                                       </div>
                                   </div>
@@ -223,10 +223,7 @@
                                       <div class="col-md-12">
                                           <div class="form-group">
                                               <label for="field-2" class="control-label">Itinerary</label>
-                                              <textarea name="event" class="form-control" rows="5">
-                                              <?php
-                                                  echo $activity->event
-                                              ?>
+                                              <textarea name="event" class="form-control" rows="5"><?php echo $product->itenerary ?>
                                               </textarea>
                                           </div>
                                       </div>
@@ -236,10 +233,7 @@
                                       <div class="col-md-12">
                                           <div class="form-group">
                                               <label for="field-2" class="control-label">Detail Paket</label>
-                                              <textarea name="detail" class="form-control" rows="5">
-                                                <?php
-                                                  echo $product->detail
-                                              ?>
+                                              <textarea name="detail" class="form-control" rows="5"><?php echo $product->detail ?>
                                               </textarea>
                                           </div>
                                       </div>
@@ -249,10 +243,7 @@
                                       <div class="col-md-12">
                                           <div class="form-group">
                                               <label for="field-2" class="control-label">Description</label>
-                                              <textarea name="description" class="form-control" rows="5" >
-                                              <?php
-                                                  echo $product->description
-                                              ?>
+                                              <textarea name="description" class="form-control" rows="5" ><?php echo $product->description ?>
                                               </textarea>
                                           </div>
                                       </div>

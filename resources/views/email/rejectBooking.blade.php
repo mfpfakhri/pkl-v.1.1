@@ -41,7 +41,7 @@
                                         <h1 style="margin-top: 0; color: #2F3133; font-size: 19px; font-weight: bold; text-align: left;">Hello {{$user->username}}</h1>
                                         <!-- Intro -->
                                            <p style="margin-top: 0; color: #74787E; font-size: 16px; line-height: 1.5em;">
-                                                Akun Anda telah di reject oleh Admin dengan alasan:
+                                                Booking Anda telah di diterima oleh Admin.
                                             </p>
                                             
                                             <h4>{{$data}}</h4>

@@ -68,20 +68,15 @@
             <div id="sidebar-menu">
                 <ul>
                   <li class="text-muted menu-title">Navigation</li>
-
                     <li>
-                        <a href="/dash" class="waves-effect"><i class="zmdi zmdi-view-dashboard"></i> <span> Dashboard </span> </a>
+                        <a href="{{ url('/dashboardagent') }}" class="waves-effect "><i class="zmdi zmdi-view-dashboard"></i> <span> Dashboard </span> </a>
                     </li>
-
                     <li>
-                        <a href="/dash/products" class="waves-effect"><i class="zmdi zmdi-cloud-box"></i> <span> Products </span> </a>
+                        <a href="{{ url('/productagent') }}" class="waves-effect"><i class="zmdi zmdi-cloud-box"></i> <span> Product </span> </a>
                     </li>
-
                     <li>
-                        <a href="/dash/agents" class="waves-effect active"><i class="zmdi zmdi-account-box"></i> <span> Agents </span> </a>
-
-                    <li>
-                        <a href="/dash/customers" class="waves-effect"><i class="zmdi zmdi-account-box-o"></i><span> Customers </span> </a>
+                        <a href="{{ url('/bookingagent') }}" class="waves-effect active"><i class="zmdi zmdi-email-open"></i> <span> Booking </span> </a>
+                    </li>
 
                 </ul>
                 <div class="clearfix"></div>
@@ -107,13 +102,7 @@
                             <div class="panel-body">
                                 <div class="row">
                                     <div class="col-sm-6">
-                                        <div class="m-b-30">
-                                            <a href="/dash/agentcreate" class="btn btn-primary waves-effect waves-light">Add Agent <i class="fa fa-plus"></i></a>
-                                            <a href="/dash/agents" class="btn btn-primary waves-effect waves-light">List Agent <i class="fa fa-list"></i></a>
-                                        </div>
-                                        <div class="m-b-30">
-                                        </div>
-                                        <form action="/dash/agents/{{$user->id}}/reject" method="POST">
+                                        <form action="/bookingagent/{{$booking->id}}/reject" method="POST">
                                             <div class="row">
                                                 <label>Alasan Reject</label>
                                                 <textarea class="form-control" name="alasan" rows="5"></textarea>

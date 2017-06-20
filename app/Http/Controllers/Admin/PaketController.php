@@ -10,14 +10,16 @@ use Illuminate\Foundation\Validation\ValidatesRequests;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Illuminate\Foundation\Auth\Access\AuthorizesResources;
 
+use DB;
 use App\User;
 use App\Models\Paket;
 use App\Models\Schedule;
 use App\Models\Activity;
-use DB;
 use App\Models\Adventures;
 use App\Models\Inf_lokasi;
 use App\Models\Product;
+
+
 //file
 use App\Http\Requests;
 use File;
@@ -125,36 +127,31 @@ class PaketController extends BaseController {
     //provinsi
     $data['query7'] = DB::table('inf_lokasi')->where('lokasi_kabupatenkota', '00')->where('lokasi_kecamatan', '00')->where('lokasi_kelurahan', '0000')->orderby('lokasi_nama')->get();
 
-    // $data['query7'] = DB::table('paket')
-    //   ->leftJoin('inf_lokasi', 'paket.lokasi_id', '=', 'inf_lokasi.lokasi_ID')
-    //   ->where('lokasi_kecamatan', '00')->where('lokasi_kelurahan', '0000')->orderby('lokasi_propinsi')->get();
-
     $product = Product::find($id);
 
-    $user_id = $user->id;
-    $agent = Agent::where('user_id', $user_id)->first();
-
-    //mengambil data product
-
-    $product = DB::table('products')
-                     ->leftJoin('agents', 'products.agent_id', '=', 'agents.id')
-                      ->leftJoin('schedule', 'products.schedule_id', '=', 'schedule.id')
-                      ->leftJoin('paket', 'products.paket_id', '=', 'paket.id')
-                      ->leftJoin('inf_lokasi', 'products.inf_lokasi_id', '=', 'inf_lokasi.lokasi_ID')
-                      ->first();
-
-    //activity
-    $activity = DB::table('activity')->leftJoin('paket', 'activity.paket_id', '=', 'paket.id')->first();
-
-    $lokasi = DB::table('paket')->leftJoin('adventures', 'paket.adv_id', '=', 'adventures.id_adv')->first();    
-
-    return view ('admin.editproduct', ['product' => $product, 'activity' => $activity, 'lokasi' => $lokasi], $data);
+    return view ('admin.editproduct', ['product' => $product], $data);
   }
 
 
-  public function update($id)
+  public function updateByAdmin(Request $request, $id)
   {
-    //
+    $product = Product::find($id);
+    $product->agent_id = $request->idagent;
+    $product->paket_judul = $request->title;
+    $product->paket_harga = $request->price;
+    $product->schedule_max_people = $request->peserta;
+    $product->schedule_jadwal_start = $request->start_date;
+    $product->schedule_jadwal_end = $request->end_date;
+    $product->lokasi = $request->provinsi;
+    $product->kategori = $request->kategori;
+    $product->start_point = $request->pickuppoint;
+    $product->end_point = $request->endpoint;
+    $product->itenerary = $request->event;
+    $product->detail = $request->detail;
+    $product->description = $request->description;
+    $product->save();
+
+    return redirect ('/dash/products');
   }
 
   public function destroy($id)

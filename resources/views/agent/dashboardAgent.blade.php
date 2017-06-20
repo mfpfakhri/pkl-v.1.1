@@ -69,13 +69,13 @@
                 <ul>
                   <li class="text-muted menu-title">Navigation</li>
                     <li>
-                        <a href="dashboardagent" class="waves-effect active"><i class="zmdi zmdi-view-dashboard"></i> <span> Dashboard </span> </a>
+                        <a href="{{ url('/dashboardagent') }}" class="waves-effect active"><i class="zmdi zmdi-view-dashboard"></i> <span> Dashboard </span> </a>
                     </li>
                     <li>
-                        <a href="productagent" class="waves-effect"><i class="zmdi zmdi-cloud-box"></i> <span> Product </span> </a>
+                        <a href="{{ url('/productagent') }}" class="waves-effect"><i class="zmdi zmdi-cloud-box"></i> <span> Product </span> </a>
                     </li>
                     <li>
-                        <a href="bookingagent" class="waves-effect"><i class="zmdi zmdi-email-open"></i> <span> Booking </span> </a>
+                        <a href="{{ url('/bookingagent') }}" class="waves-effect"><i class="zmdi zmdi-email-open"></i> <span> Booking </span> </a>
                     </li>
                 </ul>
                 <div class="clearfix"></div>

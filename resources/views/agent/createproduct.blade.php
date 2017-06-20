@@ -69,13 +69,13 @@
                 <ul>
                   <li class="text-muted menu-title">Navigation</li>
                     <li>
-                        <a href="dashboardagent" class="waves-effect"><i class="zmdi zmdi-view-dashboard"></i> <span> Dashboard </span> </a>
+                        <a href="{{ url('/dashboardagent') }}" class="waves-effect "><i class="zmdi zmdi-view-dashboard"></i> <span> Dashboard </span> </a>
                     </li>
                     <li>
-                        <a href="productagent" class="waves-effect active"><i class="zmdi zmdi-cloud-box"></i> <span> Product </span> </a>
+                        <a href="{{ url('/productagent') }}" class="waves-effect active"><i class="zmdi zmdi-cloud-box"></i> <span> Product </span> </a>
                     </li>
                     <li>
-                        <a href="bookingagent" class="waves-effect"><i class="zmdi zmdi-email-open"></i> <span> Booking </span> </a>
+                        <a href="{{ url('/bookingagent') }}" class="waves-effect"><i class="zmdi zmdi-email-open"></i> <span> Booking </span> </a>
                     </li>
                 </ul>
                 <div class="clearfix"></div>
@@ -102,8 +102,8 @@
                                 <div class="row">
                                     <div class="col-sm-6">
                                         <div class="m-b-30">
-                                            <a href="productcreate" class="btn btn-primary waves-effect waves-light">Add Product <i class="fa fa-plus"></i></a>
-                                            <a href="productagent" class="btn btn-primary waves-effect waves-light">List Product <i class="fa fa-list"></i></a>
+                                            <a href="{{ url('/productcreate') }}" class="btn btn-primary waves-effect waves-light">Add Product <i class="fa fa-plus"></i></a>
+                                            <a href="{{ url('/productagent') }}" class="btn btn-primary waves-effect waves-light">List Product <i class="fa fa-list"></i></a>
                                         </div>
                                     </div>
                                     <div class="col-sm-10">
@@ -112,15 +112,8 @@
                                       <h5 class="text-muted m-t-0 font-600">Product</h5><br/>
                                     </div>
                                     <div class="col-sm-offset-2 col-sm-7">                    
-                                    <form class="form-horizontal" role="form" method="POST" action="{{ URL('/product') }}" accept-charset="UTF-8" enctype="multipart/form-data">
+                                    <form class="form-horizontal" role="form" method="POST" action="{{ URL('/productagent') }}" accept-charset="UTF-8" enctype="multipart/form-data">
                                         {{ csrf_field() }}
-                                    <div class="form-group">
-                                      <label class="col-md-2 control-label">Nomor ID</label>
-                                        <div class="col-md-10">
-                                        <input type="text" name="nomoragent" class="form-control"></input>
-                                        </div>
-                                    </div>
-
                                     <div class="form-group">
                                     <label class="col-sm-2 control-label">Title</label>
                                       <div class="col-sm-10">
@@ -131,7 +124,7 @@
                                     <div class="form-group">
                                       <label class="col-sm-2 control-label">Kategori</label>
                                         <div class="col-md-10">
-                                          <select class="form-control" name="kategori" id="kategori">
+                                          <select class="form-control" name="adv_id" id="adv_id">
                                             <option value="A0" selected disabled>Select Adventure</option>
                                                 @foreach($query1 as $result)
                                                 <option value="{{$result->id_adv}}">
@@ -144,20 +137,29 @@
                                     </div>
 
                                     <div class="form-group">
-                                      <label class="control-label col-sm-2">Date Range</label>
+                                      <label class="control-label col-sm-2">Date 1</label>
                                         <div class="col-sm-10">
-                                          <div class="input-daterange input-group" id="date-range">
-                                            <input type="text" name="start_date" class="form-control" name="start" />
-                                              <span class="input-group-addon bg-primary b-0 text-white">to</span>
-                                                <input type="text" name="end_date" class="form-control" name="end" />
+                                          <div class="input-group">
+                                            <input type="text" name="start_date" class="form-control" id="datepicker" />
+                                              <span class="input-group-addon bg-primary b-0 text-white"><i class="ti-calendar"></i></span>
                                           </div>
                                         </div>
                                       </div>
 
                                       <div class="form-group">
+                                        <label class="control-label col-sm-2">Date 2</label>
+                                          <div class="col-sm-10">
+                                            <div class="input-group">
+                                              <input type="text" name="end_date" class="form-control" id="datepicker1" />
+                                                <span class="input-group-addon bg-primary b-0 text-white"><i class="ti-calendar"></i></span>
+                                            </div>
+                                          </div>
+                                        </div>
+
+                                      <div class="form-group">
                                       <label class="col-sm-2 control-label">Provinsi</label>
                                         <div class="col-md-10">
-                                          <select class="form-control" name="province">
+                                          <select class="form-control" name="provinsi">
                                             <option value="P0" selected disabled>Provinsi</option>
                                             @foreach($query3 as $result)
                                                 <option value="{{$result->lokasi_ID}}">
@@ -165,21 +167,6 @@
                                                     echo $result->lokasi_nama
                                                 ?></option>
                                             @endforeach
-                                            </select>
-                                        </div>
-                                    </div>
-
-                                    <div class="form-group">
-                                      <label class="col-sm-2 control-label">Kota</label>
-                                        <div class="col-md-10">
-                                          <select class="form-control" name="city">
-                                                <option value="K0" selected disabled>Kabupaten</option>
-                                                @foreach($query4 as $result)
-                                                <option value="{{$result->lokasi_nama}}">
-                                                <?php
-                                                    echo $result->lokasi_nama
-                                                ?></option>
-                                                @endforeach
                                             </select>
                                         </div>
                                     </div>
